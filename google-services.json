@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904830137206",
+    "project_id": "covid19update-fe7b1",
+    "storage_bucket": "covid19update-fe7b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904830137206:android:969665423c48b009bec057",
+        "android_client_info": {
+          "package_name": "com.developers_in.covid_19_updates_SL"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904830137206-0lpi19pqdb728l4d980787obvmmn506p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLQ1Cu5IaH-RLHxgoLKCDxWb65dkCvyEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904830137206-0lpi19pqdb728l4d980787obvmmn506p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
