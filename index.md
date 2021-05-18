@@ -1,6 +1,6 @@
 ## Welcome to Covid 19 Update App
 
-###General Guid Line 
+### General Guid Line 
 1. Download App From Google play store 
 2. Click to location icon on the bottom navbar
 3. Log in to your Gmail account using valid credentials
