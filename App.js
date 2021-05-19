@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, StatusBar, BackHandler, Alert } from "react-native";
 import {
   NavigationContainer,
@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { themeReducer } from "./src/reducers/themeReducer";
 import { useSelector, useDispatch } from "react-redux";
+import * as Location from 'expo-location';
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -21,7 +22,6 @@ import TimelineScreen from "./src/screens/TimelineScreen";
 import MessageServiceScreen from "./src/screens/MessageServiceScreen";
 import PoliceStationsScreen from "./src/screens/PoliceStationsScreen";
 
-import Constant from "expo-constants";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const customDarkTheme = {
@@ -32,7 +32,8 @@ const customDarkTheme = {
     fontColor: "white",
     menuIconColor: "white",
     msgTxtColor: "white",
-    screenBgColor: "black"
+    screenBgColor: "black",
+    subTitleColor: "white"
   },
 };
 
@@ -44,7 +45,8 @@ const customDefaultTheme = {
     fontColor: "black",
     menuIconColor: "gray",
     msgTxtColor: "black",
-    screenBgColor: "white"
+    screenBgColor: "white",
+    subTitleColor: "black",
   },
 };
 
@@ -77,7 +79,7 @@ const RootHome = () => {
       tabBarOptions={{
         activeTintColor: "red",
         inactiveTintColor: "gray",
-        labelStyle: { fontWeight: "bold" },
+        labelStyle: { fontWeight: "bold", fontSize:12 },
       }}
     >
       <Tabs.Screen name="Sri Lanka" component={LocalDataScreen} />
@@ -95,7 +97,7 @@ function SettingsScreen({ navigation }) {
   });
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1,paddingHorizontal:10 }}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <MaterialCommunityIcons
           style={{ padding: 10 }}
@@ -175,6 +177,32 @@ export default App = () => {
   //   );
   
   //   return () => backHandler.remove()}, []);
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
+  //console.log(location);
 
   return (
     

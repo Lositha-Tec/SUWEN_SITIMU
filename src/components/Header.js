@@ -16,7 +16,7 @@ export default function Header(props) {
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>COVID-19 UPDATES</Text>
-                <Text style={{ color: colors.fontColor, fontSize: RFPercentage(2), marginBottom: 15, }}>{props.dateAndTime}</Text>
+                <Text style={{ color: colors.fontColor, fontSize: RFPercentage(2), marginBottom: 15, }}>Last Updated: {props.dateAndTime}</Text>
             </View>
 
         </View>
