@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import DATA from "../data/data";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 // import all the components we are going to use
 import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
@@ -71,10 +71,17 @@ const PoliceStationsScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.screenBgColor }]}>
-      <View style= {{flexDirection: "row", alignItems:"center",justifyContent:"space-between", marginBottom:35 }}>
-        <MaterialCommunityIcons
-          name="keyboard-backspace"
-          size={34}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 35,
+        }}
+      >
+        <MaterialIcons
+          name="arrow-back-ios"
+          size={30}
           color="gray"
           onPress={() => navigation.navigate("Home")}
         />
@@ -89,7 +96,7 @@ const PoliceStationsScreen = ({ navigation }) => {
           }}
           containerStyle={{
             backgroundColor: "transparent",
-            width:"87%"
+            width: "90%",
           }}
           inputContainerStyle={{ backgroundColor: "#e6e6e6", borderRadius: 10 }}
           searchIcon={{ size: 24 }}
