@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Constant from "expo-constants";
 import { useTheme } from '@react-navigation/native';
-import {Picker} from '@react-native-picker/picker';
+//import {Picker} from '@react-native-picker/picker';
 
 
 import Header from "../components/Header";
@@ -16,7 +16,7 @@ export default function LocalDataScreen(props) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const { colors } = useTheme();
-    const [selectedLanguage, setSelectedLanguage] = useState("");
+    //const [selectedLanguage, setSelectedLanguage] = useState("");
     //console.log(selectedLanguage);
 
 
@@ -53,8 +53,7 @@ export default function LocalDataScreen(props) {
           showsVerticalScrollIndicator={false}
         >
           
-
-          <View style={{ borderWidth: 1, borderRadius: 5, marginBottom:10, marginTop:10 }}>
+          {/* <View style={{ borderWidth: 1, borderRadius: 5, marginBottom:10, marginTop:10 }}>
             <Picker
               selectedValue={selectedLanguage}
               style={{ height: 50, width: 320 }}
@@ -64,13 +63,12 @@ export default function LocalDataScreen(props) {
               prompt="Select Country"
               mode="dropdown"
             >
-            
 
               <Picker.Item label="Afganistan" value="AF" />
               <Picker.Item label="Sri Lanka" value="LK" />
               <Picker.Item label="India" value="IN" />
             </Picker>
-          </View>
+          </View> */}
 
           <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>
             Global

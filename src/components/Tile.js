@@ -41,11 +41,12 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         justifyContent: "center",
         alignItems: "center",
+        //borderWidth:1
     },
 
     headingTextParent: {
         flex:1,
-        marginBottom: 3,
+        marginBottom: 5,
         //borderWidth: 1,
         justifyContent:"flex-start"
     },

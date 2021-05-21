@@ -83,7 +83,10 @@ const VillegeServiceScreen = ({ navigation }) => {
           name="arrow-back-ios"
           size={30}
           color="gray"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.reset({
+            index: 0,
+            routes: [{ name: "Home" }],
+          })}
         />
 
         <SearchBar
