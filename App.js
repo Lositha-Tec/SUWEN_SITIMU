@@ -30,12 +30,14 @@ import GlobalDataScreen from "./src/screens/GlobalDataScreen";
 import TimelineScreen from "./src/screens/TimelineScreen";
 import MessageServiceScreen from "./src/screens/MessageServiceScreen";
 import PoliceStationsScreen from "./src/screens/PoliceStationsScreen";
+import VillegeServiceScreen from "./src/screens/VillegeServiceScreen";
 
 import {
   Ionicons,
   FontAwesome5,
   MaterialIcons,
   MaterialCommunityIcons,
+  FontAwesome,
 } from "@expo/vector-icons";
 
 const customDarkTheme = {
@@ -247,6 +249,19 @@ function MyDrawer() {
           drawerIcon: ({ focused, size }) => (
             <MaterialCommunityIcons
               name="police-badge"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Villages"
+        component={VillegeServiceScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome
+              name="users"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
