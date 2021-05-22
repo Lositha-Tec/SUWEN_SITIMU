@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "Covid-19 updates-SL",
-    "slug": "covid-19-updates-SL",
+    "name": "Covid-19 Updates",
+    "slug": "covid-19-Updates",
+    "owner": "developers-in",
     "sdkVersion": "41.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,7 +17,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "package": "com.developers_in.covid_19_updates_SL",
+      "package": "com.developers_in.covid_19_Updates",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
