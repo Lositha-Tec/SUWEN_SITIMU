@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import Constant from "expo-constants";
+import { useTheme } from '@react-navigation/native';
 
 import Header from "../components/Header";
 import Tile from "../components/Tile"
@@ -12,6 +12,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export default function LocalDataScreen(props) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
+    const { colors } = useTheme();
 
 
     useEffect(() => {
@@ -34,6 +35,7 @@ export default function LocalDataScreen(props) {
         covidData.local_total_number_of_individuals_in_hospitals = data.data.local_total_number_of_individuals_in_hospitals;
         covidData.local_recovered = data.data.local_recovered;
         covidData.local_deaths = data.data.local_deaths;
+        covidData.local_new_deaths = data.data.local_new_deaths;
     }
 
     return (
@@ -41,16 +43,29 @@ export default function LocalDataScreen(props) {
             <Header navigation={props.navigation} dateAndTime={covidData.update_date_time} />
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
 
-                <Text style={styles.subTitle}></Text>
+                <Text style={[styles.subTitle,{color: colors.subTitleColor}]}>Sri Lanka</Text>
 
                 <View style={styles.tileParent}>
+                    <View style={{flexDirection:"row"}}>
+                        <Tile heading={'Total Confirmed Cases'} iconComponent={<FontAwesome5 name="hospital" size={30} color="white" />} count={covidData.local_total_cases} tileBackgroundColor={{ backgroundColor: '#fdb01a' }} />
+                        <Tile heading={'Active Cases'} iconComponent={<FontAwesome5 name="procedures" size={30} color="white" />} count={covidData.local_active_cases} tileBackgroundColor={{ backgroundColor: '#e3342f' }} />
+                    </View>
 
-                    <Tile heading={'Total Confirmed Cases'} iconComponent={<FontAwesome5 name="hospital" size={30} color="white" />} count={covidData.local_total_cases} tileBackgroundColor={{ backgroundColor: '#fdb01a' }} />
-                    <Tile heading={'Active Cases'} iconComponent={<FontAwesome5 name="procedures" size={30} color="white" />} count={covidData.local_active_cases} tileBackgroundColor={{ backgroundColor: '#e3342f' }} />
-                    <Tile heading={'Daily New Cases'} iconComponent={<FontAwesome5 name="ambulance" size={30} color="white" />} count={covidData.local_new_cases} tileBackgroundColor={{ backgroundColor: '#7052fb' }} />
-                    <Tile heading={'Currently in hospitals'} iconComponent={<FontAwesome5 name="clinic-medical" size={30} color="white" />} count={covidData.local_total_number_of_individuals_in_hospitals} tileBackgroundColor={{ backgroundColor: '#4d4dff' }} />
-                    <Tile heading={'Recovered & Discharged'} iconComponent={<FontAwesome5 name="running" size={30} color="white" />} count={covidData.local_recovered} tileBackgroundColor={{ backgroundColor: '#50cd8a' }} />
-                    <Tile heading={'Deaths'} iconComponent={<FontAwesome5 name="bed" size={30} color="white" />} count={covidData.local_deaths} tileBackgroundColor={{ backgroundColor: '#f64a8f' }} />
+                    <View style={{flexDirection:"row"}}>
+                        <Tile heading={'Daily New Cases'} iconComponent={<FontAwesome5 name="ambulance" size={30} color="white" />} count={covidData.local_new_cases} tileBackgroundColor={{ backgroundColor: '#7052fb' }} />
+                        <Tile heading={'Currently in hospitals'} iconComponent={<FontAwesome5 name="clinic-medical" size={30} color="white" />} count={covidData.local_total_number_of_individuals_in_hospitals} tileBackgroundColor={{ backgroundColor: '#4d4dff' }} />
+                    </View>
+
+                    <View style={{flexDirection:"row"}}>
+                        <Tile heading={'Recovered & Discharged'} iconComponent={<FontAwesome5 name="running" size={30} color="white" />} count={covidData.local_recovered} tileBackgroundColor={{ backgroundColor: '#50cd8a' }} />
+                        <Tile heading={'Deaths'} iconComponent={<FontAwesome5 name="bed" size={30} color="white" />} count={covidData.local_deaths} tileBackgroundColor={{ backgroundColor: '#f64a8f' }} />
+                    </View>
+
+                    <View style={{flexDirection:"row", alignItems: "center"}}>
+                        <Tile heading={'New Deaths'} iconComponent={<FontAwesome5 name="bed" size={30} color="white" />} count={covidData.local_new_deaths} tileBackgroundColor={{ backgroundColor: '#f57b25' }} />
+                    </View>
+                    
+                    
 
                 </View>
             </ScrollView>
@@ -72,7 +87,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
-        flexDirection: "row",
-        flexWrap: "wrap",
+        //flexDirection: "row",
+        //flexWrap: "wrap",
     }
 });
