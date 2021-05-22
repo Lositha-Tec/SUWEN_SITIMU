@@ -22,12 +22,14 @@ const Tile = (props) => {
 
 const styles = StyleSheet.create({
     tile: {
+        flex:1,
         width: wp('35%'),
         height: hp('20%'),
         padding: 5,
         margin: 5,
         alignItems: "center",
-        justifyContent: "flex-end"
+        //justifyContent: "flex-end",
+        //borderWidth: 1
     },
 
     imageIcon: {
@@ -38,11 +40,15 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 5,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        //borderWidth:1
     },
 
     headingTextParent: {
-        marginBottom: 3
+        flex:1,
+        marginBottom: 5,
+        //borderWidth: 1,
+        justifyContent:"flex-start"
     },
 
     headingText: {

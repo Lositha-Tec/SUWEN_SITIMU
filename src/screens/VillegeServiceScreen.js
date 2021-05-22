@@ -1,21 +1,21 @@
 // import React in our code
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
-import DATA from "../data/data";
+import VillegeData from "../data/gramaniladari";
 import { MaterialIcons } from "@expo/vector-icons";
 
 // import all the components we are going to use
 import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
 import { SearchBar } from "react-native-elements";
-const PoliceStationsScreen = ({ navigation }) => {
+const VillegeServiceScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
   useEffect(() => {
-    setFilteredDataSource(DATA);
-    setMasterDataSource(DATA);
+    setFilteredDataSource(VillegeData);
+    setMasterDataSource(VillegeData);
   }, []);
 
   const searchFilterFunction = (text) => {
@@ -25,8 +25,8 @@ const PoliceStationsScreen = ({ navigation }) => {
       // Filter the masterDataSource
       // Update FilteredDataSource
       const newData = masterDataSource.filter(function (item) {
-        const itemData = item.police_station
-          ? item.police_station.toUpperCase()
+        const itemData = item.gn_name
+          ? item.gn_name.toUpperCase()
           : "".toUpperCase();
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
@@ -45,24 +45,24 @@ const PoliceStationsScreen = ({ navigation }) => {
     return (
       // Flat List Item
       <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.police_station.toUpperCase()}
+        {item.gn_name.toUpperCase()}
       </Text>
     );
   };
 
   const showAlert = (item) =>
     Alert.alert(
-      "Police Station Details",
+      "Grama Niladhari Details",
       "\nProvince : " +
-        item.province +
-        "\n\nDivision : " +
-        item.police_division +
-        "\n\nStation : " +
-        item.police_station +
-        "\n\nOIC Mobile Number : " +
-        item.oic_mobile +
-        "\n\nOffice Number : " +
-        item.office_number
+        item.p_name +
+        "\n\nDistrict : " +
+        item.d_name +
+        "\n\nDivisional Secretariat : " +
+        item.ds_name +
+        "\n\nGrama Niladhari Division : " +
+        item.gn_name +
+        "\n\nGN Division Number : " +
+        item.gn_number
     );
 
   const getItem = (item) => {
@@ -105,7 +105,7 @@ const PoliceStationsScreen = ({ navigation }) => {
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction("")}
-          placeholder="Search Police Station"
+          placeholder="Search Village"
           placeholderTextColor={"black"}
           value={search}
         />
@@ -137,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PoliceStationsScreen;
+export default VillegeServiceScreen;
