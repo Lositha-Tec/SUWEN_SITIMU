@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Covid-19 Updates",
-    "slug": "covid-19-Updates",
+    "name": "Strong Village",
+    "slug": "strong_village",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
     "version": "1.0.0",
@@ -17,7 +17,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "package": "com.developers_in.covid_19_Updates",
+      "package": "com.developers_in.strong_village",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
