@@ -31,6 +31,7 @@ import TimelineScreen from "./src/screens/TimelineScreen";
 import MessageServiceScreen from "./src/screens/MessageServiceScreen";
 import PoliceStationsScreen from "./src/screens/PoliceStationsScreen";
 import VillegeServiceScreen from "./src/screens/VillegeServiceScreen";
+import TopTabScreen from "./src/screens/TopTabScreen";
 
 import {
   Ionicons,
@@ -73,7 +74,7 @@ const Drawer = createDrawerNavigator();
 
 const RootHome = () => {
   return (
-    <Tabs.Navigator
+    <Tabs.Navigator backBehavior="none"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
@@ -106,26 +107,26 @@ const RootHome = () => {
 };
 
 export default App = () => {
-  useEffect(() => {
-    const backAction = () => {
-      Alert.alert("Hold on!", "Are you sure you want to close application?", [
-        {
-          text: "No",
-          onPress: () => null,
-          style: "cancel",
-        },
-        { text: "Yes", onPress: () => BackHandler.exitApp() },
-      ]);
-      return true;
-    };
+  // useEffect(() => {
+  //   const backAction = () => {
+  //     Alert.alert("Hold on!", "Are you sure you want to close application?", [
+  //       {
+  //         text: "No",
+  //         onPress: () => null,
+  //         style: "cancel",
+  //       },
+  //       { text: "Yes", onPress: () => BackHandler.exitApp() },
+  //     ]);
+  //     return true;
+  //   };
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
+  //   const backHandler = BackHandler.addEventListener(
+  //     "hardwareBackPress",
+  //     backAction
+  //   );
 
-    return () => backHandler.remove();
-  }, []);
+  //   return () => backHandler.remove();
+  // }, []);
 
   return (
     <Provider store={store}>
@@ -222,7 +223,7 @@ function CustomDrawerContent(props) {
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator
+    <Drawer.Navigator backBehavior="initialRoute"
       initialRouteName="Home"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
@@ -262,6 +263,19 @@ function MyDrawer() {
           drawerIcon: ({ focused, size }) => (
             <FontAwesome
               name="users"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="How to be Healthy"
+        component={TopTabScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="hand-holding-heart"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
