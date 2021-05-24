@@ -12,16 +12,16 @@ const SearchInput = ({ term, setTerm, placeholder, placeholderTextColor, }) => {
   const isLoading = false;
   //const throttlingTime = 500;
 
-//   useEffect(() => {
-//     const timeoutId = setTimeout(() => {
-//       if (term) {
-//         onChangeText(term);
-//       }
-//     }, throttlingTime);
-//     return () => {
-//       clearTimeout(timeoutId);
-//     };
-//   }, [term]);
+  //   useEffect(() => {
+  //     const timeoutId = setTimeout(() => {
+  //       if (term) {
+  //         onChangeText(term);
+  //       }
+  //     }, throttlingTime);
+  //     return () => {
+  //       clearTimeout(timeoutId);
+  //     };
+  //   }, [term]);
 
   const clearTerm = () => {
     setTerm("");
