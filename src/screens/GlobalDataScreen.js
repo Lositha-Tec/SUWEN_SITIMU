@@ -12,7 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default function LocalDataScreen(props) {
+export default function GlobalDataScreen(props) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const { colors } = useTheme();
