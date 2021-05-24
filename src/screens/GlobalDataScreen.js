@@ -9,6 +9,7 @@ import Tile from "../components/Tile"
 import { FontAwesome5 } from '@expo/vector-icons';
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import DatePicker from 'react-native-datepicker';
 
 export default function GlobalDataScreen(props) {
