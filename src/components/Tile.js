@@ -22,7 +22,7 @@ const Tile = (props) => {
 
 const styles = StyleSheet.create({
     tile: {
-        flex:1,
+        flex: 1,
         width: wp('35%'),
         height: hp('20%'),
         padding: 5,
@@ -36,19 +36,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#7052fb',
         width: wp('15%'),
         height: hp('8%'),
-        borderRadius: 10,
+        borderRadius: 15,
         padding: 10,
         marginBottom: 5,
         justifyContent: "center",
         alignItems: "center",
-        //borderWidth:1
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+        elevation: 20
     },
 
     headingTextParent: {
-        flex:1,
-        marginBottom: 5,
-        //borderWidth: 1,
-        justifyContent:"flex-start"
+        flex: 1,
+        marginBottom: 3,
+        justifyContent: "flex-start"
     },
 
     headingText: {
