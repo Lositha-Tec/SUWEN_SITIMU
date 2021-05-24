@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
-import {
-  StyleSheet,
-  StatusBar,
-  BackHandler,
-  Alert,
-  Linking,
-} from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, StatusBar, View, Button, Text } from "react-native";
+import { WebView } from "react-native-webview";
 import {
   NavigationContainer,
   DefaultTheme,
@@ -51,6 +46,11 @@ const customDarkTheme = {
     msgTxtColor: "white",
     screenBgColor: "black",
     subTitleColor: "white",
+    paraTextColor: "white",
+    WHOAdviceTextColor: "white",
+    symptomTextIconColor: "white",
+    symptomTextColor: "white",
+    symptomHeaderTextColor: "white",
   },
 };
 
@@ -64,6 +64,11 @@ const customDefaultTheme = {
     msgTxtColor: "black",
     screenBgColor: "white",
     subTitleColor: "black",
+    paraTextColor: "#454141",
+    WHOAdviceTextColor: "black",
+    symptomTextIconColor: "black",
+    symptomTextColor: "#2B2727",
+    symptomHeaderTextColor: "#000000",
   },
 };
 
@@ -74,7 +79,8 @@ const Drawer = createDrawerNavigator();
 
 const RootHome = () => {
   return (
-    <Tabs.Navigator backBehavior="none"
+    <Tabs.Navigator
+      backBehavior="none"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
@@ -106,28 +112,66 @@ const RootHome = () => {
   );
 };
 
+export class HealthGuidlineScreen extends Component {
+  render() {
+    return (
+      <WebView source={{ uri: "https://covid19.gov.lk/guidelines.html" }} />
+    );
+  }
+}
+
+export class RateUsScreen extends Component {
+  render() {
+    return <WebView source={{ uri: "https://play.google.com/" }} />;
+  }
+}
+
+export class PrivacyPolicyScreen extends Component {
+  render() {
+    return (
+      <WebView
+        source={{
+          uri: "https://github.com/Developers-In/covid19/blob/master/Privacy%20Policy.md",
+        }}
+      />
+    );
+  }
+}
+
+export class TermsConditionScreen extends Component {
+  render() {
+    return (
+      <WebView
+        source={{
+          uri: "https://github.com/Developers-In/covid19/blob/master/Terms%20%26%20Conditions.md",
+        }}
+      />
+    );
+  }
+}
+
+// function NewScreen2 () {
+//   return(
+//     <View>
+//       <Text>
+//         New Screen2
+//       </Text>
+//     </View>
+//   )
+// }
+
+// function NewScreen ({navigation}) {
+//   return(
+//     <View>
+//       <Text>
+//         New Screen
+//       </Text>
+//       <Button title="Heyyyyyyyyyyy" onPress={()=> navigation.navigate(NewScreen2)} />
+//     </View>
+//   )
+// }
+
 export default App = () => {
-  // useEffect(() => {
-  //   const backAction = () => {
-  //     Alert.alert("Hold on!", "Are you sure you want to close application?", [
-  //       {
-  //         text: "No",
-  //         onPress: () => null,
-  //         style: "cancel",
-  //       },
-  //       { text: "Yes", onPress: () => BackHandler.exitApp() },
-  //     ]);
-  //     return true;
-  //   };
-
-  //   const backHandler = BackHandler.addEventListener(
-  //     "hardwareBackPress",
-  //     backAction
-  //   );
-
-  //   return () => backHandler.remove();
-  // }, []);
-
   return (
     <Provider store={store}>
       <StatusBar backgroundColor="gray" />
@@ -147,64 +191,6 @@ function CustomDrawerContent(props) {
       <DrawerItemList {...props} />
       <DrawerItem
         icon={({ focused, color, size }) => (
-          <FontAwesome5
-            color={"#5c5c5c"}
-            size={size}
-            name={focused ? "head-side-mask" : "head-side-mask"}
-          />
-        )}
-        label="Health Guidlines"
-        onPress={() =>
-          Linking.openURL("https://covid19.gov.lk/guidelines.html")
-        }
-        labelStyle={{ fontSize: 15, fontWeight: "bold" }}
-      />
-      <DrawerItem
-        icon={({ focused, color, size }) => (
-          <MaterialIcons
-            color={"#5c5c5c"}
-            size={size}
-            name={focused ? "star-rate" : "star-rate"}
-          />
-        )}
-        label="Rate Us"
-        onPress={() => Linking.openURL("https://play.google.com/")}
-        labelStyle={{ fontSize: 15, fontWeight: "bold" }}
-      />
-      <DrawerItem
-        icon={({ focused, color, size }) => (
-          <MaterialIcons
-            color={"#5c5c5c"}
-            size={size}
-            name={focused ? "privacy-tip" : "privacy-tip"}
-          />
-        )}
-        label="Privacy Policy"
-        onPress={() =>
-          Linking.openURL(
-            "https://github.com/Developers-In/covid19/blob/master/Privacy%20Policy.md"
-          )
-        }
-        labelStyle={{ fontSize: 15, fontWeight: "bold" }}
-      />
-      <DrawerItem
-        icon={({ focused, color, size }) => (
-          <Ionicons
-            color={"#5c5c5c"}
-            size={size}
-            name={focused ? "md-document-text" : "md-document-text"}
-          />
-        )}
-        label="Terms & Conditions"
-        onPress={() =>
-          Linking.openURL(
-            "https://github.com/Developers-In/covid19/blob/master/Terms%20%26%20Conditions.md"
-          )
-        }
-        labelStyle={{ fontSize: 15, fontWeight: "bold" }}
-      />
-      <DrawerItem
-        icon={({ focused, color, size }) => (
           <Ionicons
             color={"#5c5c5c"}
             size={size}
@@ -215,7 +201,7 @@ function CustomDrawerContent(props) {
         onPress={() =>
           dispatch({ type: "change_theme", payload: !currentTheme })
         }
-        labelStyle={{ fontSize: 15, fontWeight: "bold" }}
+        labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
       />
     </DrawerContentScrollView>
   );
@@ -223,7 +209,8 @@ function CustomDrawerContent(props) {
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator backBehavior="initialRoute"
+    <Drawer.Navigator
+      backBehavior="initialRoute"
       initialRouteName="Home"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
@@ -244,6 +231,45 @@ function MyDrawer() {
         }}
       />
       <Drawer.Screen
+        name="How to be Healthy"
+        component={TopTabScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="hand-holding-heart"
+              size={22}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Health Guidelines"
+        component={HealthGuidlineScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="head-side-mask"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Grama Niladhari"
+        component={VillegeServiceScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome
+              name="users"
+              size={22}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="Police Stations"
         component={PoliceStationsScreen}
         options={{
@@ -257,12 +283,12 @@ function MyDrawer() {
         }}
       />
       <Drawer.Screen
-        name="Villages"
-        component={VillegeServiceScreen}
+        name="Rate Us"
+        component={RateUsScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <FontAwesome
-              name="users"
+            <MaterialIcons
+              name="star-rate"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
@@ -270,21 +296,76 @@ function MyDrawer() {
         }}
       />
       <Drawer.Screen
-        name="How to be Healthy"
-        component={TopTabScreen}
+        name="Privacy Policy"
+        component={PrivacyPolicyScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <FontAwesome5
-              name="hand-holding-heart"
+            <MaterialIcons
+              name="privacy-tip"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
         }}
       />
+      <Drawer.Screen
+        name="Terms & Conditions"
+        component={TermsConditionScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              name="md-document-text"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      {/* <Drawer.Screen
+        name="New Screen"
+        component={NewScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              name="md-document-text"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      /> */}
     </Drawer.Navigator>
   );
 }
+
+// function NotificationsScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Button
+//         title="Go to Settings"
+//         onPress={() => navigation.navigate("Settings")}
+//       />
+//       <Button title="Go back" onPress={() => navigation.goBack()} />
+//     </View>
+//   );
+// }
+
+// function SettingsScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Button title="Go back" onPress={() => navigation.goBack()} />
+//     </View>
+//   );
+// }
+
+// function MyStack() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen name="Notifications" component={NotificationsScreen} />
+//       <Stack.Screen name="Settings" component={SettingsScreen} />
+//     </Stack.Navigator>
+//   );
+// }
 
 export function Navigation() {
   let currentTheme = useSelector((state) => {
@@ -296,6 +377,7 @@ export function Navigation() {
       theme={currentTheme ? customDarkTheme : customDefaultTheme}
     >
       <MyDrawer />
+      {/* <MyStack /> */}
     </NavigationContainer>
   );
 }

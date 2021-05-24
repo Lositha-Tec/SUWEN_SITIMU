@@ -18,8 +18,8 @@ export default function GlobalDataScreen(props) {
   const { colors } = useTheme();
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  console.log(selectedCountry);
-  console.log(data);
+  //console.log(selectedCountry);
+  //console.log(data);
 
   // useEffect(() => {
   //   fetch('https://www.hpb.health.gov.lk/api/get-current-statistical')
