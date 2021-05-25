@@ -36,7 +36,7 @@ export default function LocalDataScreen(props) {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.fullPage}>
             <Header navigation={props.navigation} dateAndTime={covidData.update_date_time} />
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
 
@@ -72,16 +72,21 @@ export default function LocalDataScreen(props) {
 const styles = StyleSheet.create({
     subTitle: {
         fontSize: RFPercentage(3),
-        marginBottom: 10
+        marginBottom: 10,
+        fontWeight: 'bold'
     },
 
     tileParent: {
         width: wp('90%'),
         marginBottom: 10,
         padding: 10,
-        backgroundColor: "#e0e0e0",
+        // backgroundColor: "blue",
         borderRadius: 20,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+    }, 
+    fullPage: {
+        flex: 1,
+        backgroundColor: "white",
     }
 });

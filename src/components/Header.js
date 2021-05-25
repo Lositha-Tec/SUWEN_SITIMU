@@ -16,7 +16,7 @@ export default function Header(props) {
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>COVID-19 UPDATES</Text>
-                <Text style={{ color: colors.fontColor, fontSize: RFPercentage(2), marginBottom: 15, }}>Last Updated: {props.dateAndTime}</Text>
+                <Text style={styles.lastUpdateTime}>Last Updated: {props.dateAndTime}</Text>
             </View>
 
         </View>
@@ -34,10 +34,18 @@ const styles = StyleSheet.create({
     title: {
         fontSize: RFPercentage(4),
         fontWeight: 'bold',
-        color: "#7052fb",
         textAlign: 'center',
         marginTop: 5,
         marginBottom: 5,
+        color: "#DC143C",
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 4,
+        textShadowColor: '#800000',
     },
-
+    lastUpdateTime: {
+        fontSize: RFPercentage(2),
+        marginBottom: 15,
+        fontWeight: 'bold',
+        color: "#737373",
+    }
 });
