@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from "react-native";
 import { useTheme } from '@react-navigation/native';
 
 import Header from "../components/Header";
@@ -14,7 +14,6 @@ export default function LocalDataScreen(props) {
     const [data, setData] = useState([]);
     const { colors } = useTheme();
 
-
     useEffect(() => {
         fetch('https://www.hpb.health.gov.lk/api/get-current-statistical')
             .then((response) => response.json())
@@ -23,9 +22,7 @@ export default function LocalDataScreen(props) {
             .finally(() => setLoading(false));
     }, []);
 
-
     let covidData = {};
-
 
     if (data.data != undefined) {
         covidData.update_date_time = data.data.update_date_time;
@@ -44,6 +41,8 @@ export default function LocalDataScreen(props) {
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
 
                 <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
+
+                {loading ? <ActivityIndicator size="large" color="#cc0000" style={styles.activityIndicator} /> : null}
 
                 <View style={styles.tileParent}>
                     <View style={{ flexDirection: "row" }}>
