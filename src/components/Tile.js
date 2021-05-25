@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
         padding: 5,
         margin: 5,
         alignItems: "center",
-        //justifyContent: "flex-end",
-        //borderWidth: 1
+        borderRadius: 10,
+        backgroundColor: "white",
+        elevation: 10,
     },
 
     imageIcon: {
@@ -41,23 +42,21 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         justifyContent: "center",
         alignItems: "center",
-        shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 2,
-        elevation: 20
+        marginTop: 20,
     },
 
     headingTextParent: {
-        flex: 1,
+        // flex: 1,
         marginBottom: 3,
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
     },
 
     headingText: {
         fontWeight: "bold",
         fontSize: RFPercentage(2),
-        textAlign: "center"
+        textAlign: "center",
+        color: "black",
     },
 
     count: {
