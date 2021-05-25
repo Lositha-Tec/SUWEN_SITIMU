@@ -50,16 +50,18 @@ const PoliceStationsScreen = () => {
     }
   };
 
+
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <TouchableOpacity>
-        <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+      <TouchableOpacity onPress={()=>navigation.navigate("Police_Stations",{item})}>
+        <Text style={styles.itemStyle} /*onPress={() => getItem(item)}*/>
           {item.police_station.toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
   };
+  
 
   const showAlert = (item) =>
     Alert.alert(
