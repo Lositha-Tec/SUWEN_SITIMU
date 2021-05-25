@@ -11,7 +11,7 @@ import {
 } from "@react-navigation/drawer";
 import { useSelector, useDispatch } from "react-redux";
 
-import TabNavigator from "./TabNavigator";
+import RootStackScreen from "./StackNavigator";
 
 import PoliceStationsScreen from "../screens/PoliceStationsScreen";
 import VillegeServiceScreen from "../screens/VillegeServiceScreen";
@@ -104,7 +104,7 @@ const DrawerNavigator = () => {
     >
       <Drawer.Screen
         name="Home"
-        component={TabNavigator}
+        component={RootStackScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
             <Ionicons
