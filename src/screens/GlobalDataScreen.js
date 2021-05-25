@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
 
   countryPicker: {
     height: Dimensions.get('window').height / 20,
-    width: 400
+    width: wp('90%')
   },
 
   activityIndicator: {
