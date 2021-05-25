@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     marginRight:10,
+    marginTop: 3,
     fontWeight:"bold"
   },
 });

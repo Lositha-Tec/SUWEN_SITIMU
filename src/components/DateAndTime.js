@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 
     date: {
         fontSize: RFPercentage(2),
-        // color: ''
     }
 });
 

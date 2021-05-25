@@ -38,7 +38,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>
               Difficulty breathing or shortness of breath
@@ -56,7 +56,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Chest pain or pressure</Text>
           </View>
@@ -72,7 +72,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Loss of speech or movement</Text>
           </View>
@@ -102,7 +102,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Fever</Text>
           </View>
@@ -118,7 +118,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Dry Cough</Text>
           </View>
@@ -134,7 +134,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Tiredness</Text>
           </View>
@@ -164,7 +164,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Aches and pains</Text>
           </View>
@@ -180,7 +180,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Sore throat</Text>
           </View>
@@ -196,7 +196,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Diarrhoea</Text>
           </View>
@@ -212,7 +212,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Conjunctivitis</Text>
           </View>
@@ -228,7 +228,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Headache</Text>
           </View>
@@ -244,7 +244,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Loss of taste or smell</Text>
           </View>
@@ -260,7 +260,7 @@ function SymptomsScreen() {
               name="circle"
               size={16}
               color={colors.symptomTextIconColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>
               A rash on skin, or discolouration of fingers or toes
@@ -280,7 +280,7 @@ function SymptomsScreen() {
               name="dice-d20"
               size={16}
               color={colors.paraTextColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
               Seek immediate medical attention if you have serious symptoms.
@@ -299,7 +299,7 @@ function SymptomsScreen() {
               name="dice-d20"
               size={16}
               color={colors.paraTextColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
               People with mild symptoms who are otherwise healthy should manage
@@ -318,7 +318,7 @@ function SymptomsScreen() {
               name="dice-d20"
               size={16}
               color={colors.paraTextColor}
-              style={{ marginTop: 5 }}
+              style={{ marginTop: 3 }}
             />
             <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
               On average it takes 5–6 days from when someone is infected with
@@ -393,6 +393,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 10,
     fontWeight: "bold",
+    marginTop: 3,
   },
 });
 
