@@ -3,10 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import DATA from "../data/data";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 // import all the components we are going to use
-import { Alert, Text, StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
+import {
+  Alert,
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
 const PoliceStationsScreen = () => {
   const { colors } = useTheme();
@@ -43,25 +50,11 @@ const PoliceStationsScreen = () => {
     }
   };
 
-  function DetailsScreen({ navigation }) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        {/* <Button
-          title="Go to Details... again"
-          //onPress={() => navigation.navigate('Details')}
-        /> */}
-      </View>
-    );
-  }
-
-
-
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
       <TouchableOpacity>
-        <Text style={styles.itemStyle} onPress={() => navigation.navigate(DetailsScreen)} /*onPress={() => getItem(item)}*/>
+        <Text style={styles.itemStyle} onPress={() => getItem(item)}>
           {item.police_station.toUpperCase()}
         </Text>
       </TouchableOpacity>
