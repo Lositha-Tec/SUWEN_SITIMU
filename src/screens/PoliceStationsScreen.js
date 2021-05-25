@@ -3,12 +3,21 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import DATA from "../data/data";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 // import all the components we are going to use
-import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
+import {
+  Alert,
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
-const PoliceStationsScreen = ({ navigation }) => {
+const PoliceStationsScreen = () => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -41,14 +50,18 @@ const PoliceStationsScreen = ({ navigation }) => {
     }
   };
 
+
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.police_station.toUpperCase()}
-      </Text>
+      <TouchableOpacity onPress={()=>navigation.navigate("Police_Stations",{item})}>
+        <Text style={styles.itemStyle} /*onPress={() => getItem(item)}*/>
+          {item.police_station.toUpperCase()}
+        </Text>
+      </TouchableOpacity>
     );
   };
+  
 
   const showAlert = (item) =>
     Alert.alert(
@@ -83,10 +96,12 @@ const PoliceStationsScreen = ({ navigation }) => {
           name="arrow-back-ios"
           size={30}
           color="gray"
-          onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: "Home" }],
-          })}
+          onPress={() =>
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "Home" }],
+            })
+          }
         />
 
         <SearchBar
