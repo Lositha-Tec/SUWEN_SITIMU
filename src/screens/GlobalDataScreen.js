@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import Tile from "../components/Tile"
 
 import countryData from "../data/countries";
+import { set } from "react-native-reanimated";
 
 export default function GlobalDataScreen(props) {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ export default function GlobalDataScreen(props) {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [errMsg, setErrMsg] = useState(null);
+  const [title, setTitle] = useState("Global");
 
   // set country data to countries array in loading screen
   useEffect(() => {
@@ -62,6 +64,11 @@ export default function GlobalDataScreen(props) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
+
+  // Set Country Name
+  const setTitleFunc = (index) => {
+    setTitle(countryData[index].Name);
+  }
 
   // create a new object
   let covidData = {};
@@ -118,6 +125,7 @@ export default function GlobalDataScreen(props) {
               style={styles.countryPicker}
               onValueChange={(itemValue, itemIndex) => {
                 setSelectedCountry(itemValue)
+                setTitleFunc(itemIndex - 1)
                 fetchData(itemValue)
               }}
               mode="dialog"
@@ -128,7 +136,7 @@ export default function GlobalDataScreen(props) {
           </View>
         </View>
 
-        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Global</Text>
+        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>{title}</Text>
 
         {loading ? <ActivityIndicator size="large" color="#cc0000" style={styles.activityIndicator} /> : null}
 
