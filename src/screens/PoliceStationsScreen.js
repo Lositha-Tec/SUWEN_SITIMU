@@ -50,18 +50,21 @@ const PoliceStationsScreen = () => {
     }
   };
 
-
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <TouchableOpacity onPress={()=>navigation.navigate("Police_Stations",{item})}>
-        <Text style={styles.itemStyle} /*onPress={() => getItem(item)}*/>
+      <TouchableOpacity>
+        <Text
+          style={styles.itemStyle}
+          onPress={() =>
+            navigation.navigate("Police Station Details", { item })
+          } /*onPress={() => getItem(item)}*/
+        >
           {item.police_station.toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
   };
-  
 
   const showAlert = (item) =>
     Alert.alert(

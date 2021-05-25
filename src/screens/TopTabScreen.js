@@ -8,8 +8,9 @@ import SymptomsScreen from "./SymptomsScreen";
 const Tab = createMaterialTopTabNavigator();
 
 const TopTabScreen = ({ navigation }) => {
+
   return (
-    <Tab.Navigator
+    <Tab.Navigator 
       backBehavior="none"
       tabBarOptions={{ labelStyle: { fontSize: 14, fontWeight: "bold" } }}
     >
