@@ -19,6 +19,7 @@ export default function GlobalDataScreen(props) {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [errMsg, setErrMsg] = useState(null);
+  const [title, setTitle] = useState("Global");
 
   // set country data to countries array in loading screen
   useEffect(() => {
@@ -63,6 +64,11 @@ export default function GlobalDataScreen(props) {
       .finally(() => setLoading(false));
   };
 
+  // Set Country Name
+  const setTitleFunc = (index) => {
+    setTitle(countryData[index].Name);
+  }
+
   // create a new object
   let covidData = {};
 
@@ -102,7 +108,7 @@ export default function GlobalDataScreen(props) {
   covidData.global_deaths = globalDeaths;
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.fullPage}>
       <Header
         navigation={props.navigation}
         dateAndTime={covidData.update_date_time}
@@ -118,6 +124,7 @@ export default function GlobalDataScreen(props) {
               style={styles.countryPicker}
               onValueChange={(itemValue, itemIndex) => {
                 setSelectedCountry(itemValue)
+                setTitleFunc(itemIndex - 1)
                 fetchData(itemValue)
               }}
               mode="dialog"
@@ -128,7 +135,7 @@ export default function GlobalDataScreen(props) {
           </View>
         </View>
 
-        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Global</Text>
+        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>{title}</Text>
 
         {loading ? <ActivityIndicator size="large" color="#cc0000" style={styles.activityIndicator} /> : null}
 
@@ -150,14 +157,14 @@ export default function GlobalDataScreen(props) {
 const styles = StyleSheet.create({
   subTitle: {
     fontSize: RFPercentage(3),
-    marginBottom: 10
+    marginBottom: 10,
+    fontWeight: 'bold'
   },
 
   tileParent: {
     width: wp('90%'),
     marginBottom: 10,
     padding: 10,
-    backgroundColor: "#e0e0e0",
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -179,10 +186,14 @@ const styles = StyleSheet.create({
 
   countryPicker: {
     height: Dimensions.get('window').height / 20,
-    width: 400
+    width: wp('90%')
   },
 
   activityIndicator: {
     marginTop: '10%'
+  },
+  fullPage: {
+    flex: 1,
+    backgroundColor: "white",
   }
 });
