@@ -4,7 +4,6 @@ import { useNavigation, useTheme } from '@react-navigation/native';
 
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons } from '@expo/vector-icons';
-import { color } from "react-native-reanimated";
 
 export default function Header(props) {
     const navigation = useNavigation();
@@ -16,7 +15,7 @@ export default function Header(props) {
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>COVID-19 UPDATES</Text>
-                <Text style={styles.lastUpdateTime}>Last Updated: {props.dateAndTime}</Text>
+                <Text style={[styles.lastUpdateTime,{color:colors.dateColor}]}>Last Updated: {props.dateAndTime}</Text>
             </View>
 
         </View>
@@ -46,6 +45,5 @@ const styles = StyleSheet.create({
         fontSize: RFPercentage(2),
         marginBottom: 15,
         fontWeight: 'bold',
-        color: "#737373",
     }
 });
