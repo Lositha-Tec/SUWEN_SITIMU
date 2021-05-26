@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
 
     headingTextParent: {
-        // flex: 1,
+        flex: 1,
         marginBottom: 3,
         justifyContent: "flex-start",
     },
