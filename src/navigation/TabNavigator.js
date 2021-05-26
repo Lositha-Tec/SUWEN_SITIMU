@@ -3,12 +3,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { MainStackNavigator, TimelineStackNavigator } from "./StackNavigator";
-
 import GlobalDataScreen from "../screens/GlobalDataScreen";
 import MessageServiceScreen from "../screens/MessageServiceScreen";
 
 import { FontAwesome5 } from "@expo/vector-icons";
+import TimelineScreen from "../screens/TimelineScreen";
+import LocalDataScreen from "../screens/LocalDataScreen";
 
 const Tabs = createBottomTabNavigator();
 
@@ -39,9 +39,9 @@ const BottomTabNavigator = () => {
         labelStyle: { fontWeight: "bold", fontSize: 12 },
       }}
     >
-      <Tabs.Screen name="Sri Lanka" component={MainStackNavigator} />
+      <Tabs.Screen name="Sri Lanka" component={LocalDataScreen} />
       <Tabs.Screen name="Global" component={GlobalDataScreen} />
-      <Tabs.Screen name="Your history" component={TimelineStackNavigator} />
+      <Tabs.Screen name="Your history" component={TimelineScreen} />
       {/* <Tabs.Screen name="Message" component={MessageServiceScreen} /> */}
     </Tabs.Navigator>
   );

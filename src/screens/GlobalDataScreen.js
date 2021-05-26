@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     width: wp('90%'),
     marginBottom: 10,
     padding: 10,
-    // backgroundColor: "#e0e0e0",
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -197,5 +196,5 @@ const styles = StyleSheet.create({
   fullPage: {
     flex: 1,
     backgroundColor: "white",
-}
+  }
 });

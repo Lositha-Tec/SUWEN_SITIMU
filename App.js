@@ -23,12 +23,13 @@ const customDarkTheme = {
     menuIconColor: "white",
     msgTxtColor: "white",
     screenBgColor: "black",
-    subTitleColor: "white",
+    subTitleColor: "black",
     paraTextColor: "white",
     WHOAdviceTextColor: "white",
     symptomTextIconColor: "white",
     symptomTextColor: "white",
     symptomHeaderTextColor: "white",
+    dateColor: "white",
   },
 };
 
@@ -47,6 +48,7 @@ const customDefaultTheme = {
     symptomTextIconColor: "black",
     symptomTextColor: "#2B2727",
     symptomHeaderTextColor: "#000000",
+    dateColor: "#737373",
   },
 };
 
