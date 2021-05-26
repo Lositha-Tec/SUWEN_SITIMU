@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 function WHOImageComponent(props) {
+  const { colors } = useTheme();
   return (
     <View style={styles.mainContainer}>
       <Image source={props.image} style={styles.imageContainer} />
-      <Text style={styles.textContainer}>{props.text}</Text>
+      <Text style={[styles.textContainer,{color:colors.WHOAdviceTextColor}]}>{props.text}</Text>
     </View>
   );
 }
