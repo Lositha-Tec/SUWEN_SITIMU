@@ -126,6 +126,7 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          headerShown: true,
         }}
       />
       <Drawer.Screen
