@@ -89,7 +89,6 @@ export default function GlobalDataScreen(props) {
     } else {
       console.log('No data received yet');
     }
-
   } else {
     if (data.length != 0) {
       for (let i in data) {
@@ -97,7 +96,27 @@ export default function GlobalDataScreen(props) {
         globalActive += data[i].Active;
         globalRecovered += data[i].Recovered;
         globalDeaths += data[i].Deaths;
-        dateAndTime = data[i].Date;
+        if (data[i].Date != undefined) {
+          let newTimeAndDate = [""];
+          let extDateAndTime = data[i].Date;
+          let stringIndex = 0;
+
+          for (let i = 0; i < extDateAndTime.length - 1; i++) {
+            if (extDateAndTime[i] === "T") {
+              stringIndex++;
+              newTimeAndDate[stringIndex] = " ";
+            } else {
+              newTimeAndDate[stringIndex] += extDateAndTime[i];
+            }
+          }
+          dateAndTime = newTimeAndDate;
+        } else {
+          globalConfirmed = "No data";
+          globalActive = "No data";
+          globalRecovered = "No data";
+          globalDeaths = "No data";
+          dateAndTime = "---";
+        }
       }
     }
   }
