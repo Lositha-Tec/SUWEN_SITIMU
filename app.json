@@ -15,7 +15,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "package": "com.developers_in.strong_village",
       "versionCode": 1,
@@ -23,6 +25,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/Developers-In/covid19_updates.git"
   }
 }
