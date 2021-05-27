@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import {
   MaterialCommunityIcons,
   FontAwesome,
@@ -7,27 +14,9 @@ import {
   Fontisto,
 } from "@expo/vector-icons";
 
-//import call from 'react-native-phone-call';
-
-// const [inputValue, setInputValue] = useState('0705278262');
-
-//   const triggerCall = () => {
-//     // Check for perfect 10 digit length
-//     if (inputValue.length != 10) {
-//       alert('Please insert correct contact number');
-//       return;
-//     }
-
-//     const args = {
-//       number: inputValue,
-//       prompt: true,
-//     };
-//     // Make a call
-//     call(args).catch(console.error);
-//   };
-
 const OpenItemScreen = ({ route, navigation }) => {
   const { item } = route.params;
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -76,7 +65,11 @@ const OpenItemScreen = ({ route, navigation }) => {
             <Text style={styles.detailText}>Contact Numbers</Text>
           </View>
 
-          <TouchableOpacity /*onPress={triggerCall}*/>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(`tel:${item.oic_mobile}`);
+            }}
+          >
             <View style={styles.contactGroup}>
               <Fontisto
                 name="mobile-alt"
@@ -90,7 +83,12 @@ const OpenItemScreen = ({ route, navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            disabled={item.office_number == "-"}
+            onPress={() => {
+              Linking.openURL(`tel:${item.office_number}`);
+            }}
+          >
             <View style={styles.contactGroup}>
               <MaterialCommunityIcons
                 name="phone-outgoing"

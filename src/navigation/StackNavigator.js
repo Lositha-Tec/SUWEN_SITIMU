@@ -1,5 +1,8 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 
 import OpenItemScreen from "../screens/OpenItemScreen";
 
@@ -16,7 +19,7 @@ function MainStackScreen() {
   );
 }
 
-function RootStackScreen() {
+function RootStackScreen({ navigation }) {
   return (
     <RootStack.Navigator>
       <RootStack.Screen
@@ -24,7 +27,20 @@ function RootStackScreen() {
         component={MainStackScreen}
         options={{ headerShown: false }}
       />
-      <RootStack.Screen name="Police Station Details" component={OpenItemScreen} />
+      <RootStack.Screen
+        name="Police Station Details"
+        component={OpenItemScreen}
+        options={{
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => {
+                navigation.navigate("Police Stations");
+              }}
+            />
+          ),
+        }}
+      />
     </RootStack.Navigator>
   );
 }
