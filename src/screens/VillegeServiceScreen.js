@@ -1,14 +1,15 @@
 // import React in our code
 import React, { useState, useEffect } from "react";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import VillegeData from "../data/gramaniladari";
 import { MaterialIcons } from "@expo/vector-icons";
 
 // import all the components we are going to use
 import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
 import { SearchBar } from "react-native-elements";
-const VillegeServiceScreen = ({ navigation }) => {
+const VillegeServiceScreen = () => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -44,7 +45,9 @@ const VillegeServiceScreen = ({ navigation }) => {
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+      <Text style={styles.itemStyle} onPress={() =>
+        navigation.navigate("Grama Niladhari Details", { item })
+      }>
         {item.gn_name.toUpperCase()}
       </Text>
     );
