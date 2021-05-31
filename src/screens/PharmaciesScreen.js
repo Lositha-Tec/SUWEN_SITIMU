@@ -1,7 +1,7 @@
 // import React in our code
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
-import HospitalData from "../data/hospital";
+import PharmacyData from "../data/osusal";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -15,7 +15,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-const HospitalsScreen = () => {
+const PharmaciesScreen = () => {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const [search, setSearch] = useState("");
@@ -23,8 +23,8 @@ const HospitalsScreen = () => {
   const [masterDataSource, setMasterDataSource] = useState([]);
 
   useEffect(() => {
-    setFilteredDataSource(HospitalData);
-    setMasterDataSource(HospitalData);
+    setFilteredDataSource(PharmacyData);
+    setMasterDataSource(PharmacyData);
   }, []);
 
   const searchFilterFunction = (text) => {
@@ -54,33 +54,12 @@ const HospitalsScreen = () => {
       <TouchableOpacity>
         <Text
           style={styles.itemStyle}
-          onPress={() =>
-            navigation.navigate("Hospital Details", { item })
-          } /*onPress={() => getItem(item)}*/
+          onPress={() => navigation.navigate("Osusala Details", { item })}
         >
           {item.name.toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
-  };
-
-  const showAlert = (item) =>
-    Alert.alert(
-      "Police Station Details",
-      "\nProvince : " +
-        item.province +
-        "\n\nDivision : " +
-        item.police_division +
-        "\n\nStation : " +
-        item.police_station +
-        "\n\nOIC Mobile Number : " +
-        item.oic_mobile +
-        "\n\nOffice Number : " +
-        item.office_number
-    );
-
-  const getItem = (item) => {
-    showAlert(item);
   };
 
   return (
@@ -121,7 +100,7 @@ const HospitalsScreen = () => {
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction("")}
-          placeholder="Search Hospital"
+          placeholder="Search Osusal"
           placeholderTextColor={"black"}
           value={search}
         />
@@ -153,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HospitalsScreen;
+export default PharmaciesScreen;

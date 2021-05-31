@@ -7,6 +7,7 @@ import {
 import OpenItemScreen from "../screens/OpenItemScreen";
 import VillageOpenItemScreen from "../screens/VillageOpenItemScreen";
 import HospitalOpenItemScreen from "../screens/HospitalOpenItemScreen";
+import PharmacyOpenItemScreen from "../screens/PharmacyOpenItemScreen";
 
 import TabNavigator from "./TabNavigator";
 
@@ -66,6 +67,20 @@ function RootStackScreen({ navigation }) {
               {...props}
               onPress={() => {
                 navigation.navigate("Hospitals");
+              }}
+            />
+          ),
+        }}
+      />
+      <RootStack.Screen
+        name="Osusala Details"
+        component={PharmacyOpenItemScreen}
+        options={{
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => {
+                navigation.navigate("Osusal");
               }}
             />
           ),

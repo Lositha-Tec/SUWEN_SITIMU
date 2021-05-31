@@ -16,6 +16,7 @@ import RootStackScreen from "./StackNavigator";
 import PoliceStationsScreen from "../screens/PoliceStationsScreen";
 import VillegeServiceScreen from "../screens/VillegeServiceScreen";
 import HospitalsScreen from "../screens/HospitalsScreen";
+import PharmaciesScreen from "../screens/PharmaciesScreen";
 import TopTabScreen from "../screens/TopTabScreen";
 
 import {
@@ -176,6 +177,19 @@ const DrawerNavigator = () => {
           drawerIcon: ({ focused, size }) => (
             <FontAwesome5
               name="hospital-alt"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Osusal"
+        component={PharmaciesScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="local-hospital"
               size={23}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />

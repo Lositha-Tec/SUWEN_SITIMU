@@ -14,7 +14,7 @@ import {
   Fontisto,
 } from "@expo/vector-icons";
 
-const HospitalOpenItemScreen = ({ route, navigation }) => {
+const PharmacyOpenItemScreen = ({ route, navigation }) => {
   const { item } = route.params;
 
   return (
@@ -23,41 +23,41 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
         <View style={styles.detailContainer}>
           <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextOne}>Hospital</Text>
+              <Text style={styles.detailTitleTextOne}>Osusala</Text>
             </View>
             <View style={styles.detailDataRow}>
               <Text style={styles.detailDataField}>{item.name}</Text>
             </View>
           </View>
 
+          <View style={styles.rowSection}>
+            <View style={styles.detailsTitleRow}>
+              <Text style={styles.detailTitleTextTwo}>Address</Text>
+            </View>
+            <View style={styles.detailDataRow}>
+              <Text style={styles.detailDataField}>{item.address}</Text>
+            </View>
+          </View>
+
+          <View style={styles.rowSection}>
+            <View style={styles.detailsTitleRow}>
+              <Text style={styles.detailTitleTextThree}>Email Address</Text>
+            </View>
+            <View style={styles.detailDataRow}>
+              <Text style={styles.detailDataField}>{item.email}</Text>
+            </View>
+          </View>
+
+          <View style={styles.rowSection}>
+            <View style={styles.detailsTitleRow}>
+              <Text style={styles.detailTitleTextFour}>Fax Number</Text>
+            </View>
+            <View style={styles.detailDataRow}>
+              <Text style={styles.detailDataField}>{item.fax}</Text>
+            </View>
+          </View>
+
           {/* <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextTwo}>District</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.d_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextThree}>Divisional Secretariat</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.ds_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextFour}>Grama Niladhari Division</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.gn_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
               <Text style={styles.detailTitleTextFive}>GN Division Number</Text>
             </View>
@@ -76,47 +76,28 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
             <Text style={styles.detailText}>Contact Numbers</Text>
           </View>
 
-          {/* <TouchableOpacity
+          <TouchableOpacity
+            disabled={item.whats_app == "-"}
             onPress={() => {
-              Linking.openURL(`tel:${item.oic_mobile}`);
+              Linking.openURL(`whatsapp://send?phone=${item.whats_app}`);
             }}
           >
+            {/* http://api.whatsapp.com/send?phone=${item.whats_app} */}
             <View style={styles.contactGroup}>
-              <Fontisto
-                name="mobile-alt"
+              <FontAwesome5
+                name="whatsapp"
                 size={25}
                 color={"#1eae98"}
                 style={{ marginTop: 3 }}
               />
-              <Text style={styles.contactText}>
-                OIC Mobile: {item.oic_mobile}
-              </Text>
-            </View>
-          </TouchableOpacity> */}
-
-          <TouchableOpacity
-            disabled={item.land_one == "-"}
-            onPress={() => {
-              Linking.openURL(`tel:${item.land_one}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <MaterialCommunityIcons
-                name="phone-outgoing"
-                size={20}
-                color={"#1eae98"}
-                style={{ marginTop: 4 }}
-              />
-              <Text style={styles.contactText}>
-                Land Number : {item.land_one}
-              </Text>
+              <Text style={styles.contactText}>Whatsapp: {item.whats_app}</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            disabled={item.land_two == "-"}
+            disabled={item.telephone == "-"}
             onPress={() => {
-              Linking.openURL(`tel:${item.land_two}`);
+              Linking.openURL(`tel:${item.telephone}`);
             }}
           >
             <View style={styles.contactGroup}>
@@ -127,45 +108,7 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number : {item.land_two}
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            disabled={item.land_three == "-"}
-            onPress={() => {
-              Linking.openURL(`tel:${item.land_three}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <MaterialCommunityIcons
-                name="phone-outgoing"
-                size={20}
-                color={"#1eae98"}
-                style={{ marginTop: 4 }}
-              />
-              <Text style={styles.contactText}>
-                Land Number : {item.land_three}
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            disabled={item.land_four == "-"}
-            onPress={() => {
-              Linking.openURL(`tel:${item.land_four}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <MaterialCommunityIcons
-                name="phone-outgoing"
-                size={20}
-                color={"#1eae98"}
-                style={{ marginTop: 4 }}
-              />
-              <Text style={styles.contactText}>
-                Land Number : {item.land_four}
+                Land Number : {item.telephone}
               </Text>
             </View>
           </TouchableOpacity>
@@ -254,4 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HospitalOpenItemScreen;
+export default PharmacyOpenItemScreen;
