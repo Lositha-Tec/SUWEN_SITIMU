@@ -4,83 +4,89 @@
             "name": "Anamaduwa Rajaya Osu Sala",
             "address": "Opposite Bus Stand, Uswawa Road, Anamaduwa",
             "telephone": "032 2263999",
-            "whats_app": "070-1902774"
+            "whats_app": "070-1902774",
+            "email": "No email address",
+            "fax": "No fax number"
         },
         {
             "name": "Akkarepatthu Rajaya Osu Sala",
             "address": "No 74, TD/2, Main Street, Akkereipattu",
             "telephone": "067 2057625",
+            "whats_app": "070-1902756",
             "email": "spcakkaraipattu@gmail.com",
-            "whats_app": "070-1902756"
+            "fax": "No fax number"
         },
         {
             "name": "Ampara Rajaya Osu Sala",
             "address": "Temple Junction, D S Senanayake Veediya, Ampara.",
             "telephone": "063 2223088",
-            "fax": "064 2223088",
+            "whats_app": "070-1902754",
             "email": "ampara@spc.lk",
-            "whats_app": "070-1902754"
+            "fax": "064 2223088",
         },
         {
             "name": "Anuradhapura Rajaya Osu Sala",
             "address": "414/4, 2nd Stage, Godage Mawatha, Anuradhapura.",
             "telephone": "025 2222181 ",
-            "fax": "025 2222181",
+            "whats_app": "070-1902732",
             "email": "anupura@spc.lk",
-            "whats_app": "070-1902732"
+            "fax": "025 2222181",
         },
         {
             "name": "Avissawella Rajaya Osu Sala",
             "address": "40, Bus Stand, Avissawella.",
             "telephone": "036 2222501",
+            "whats_app": "070-1902750",
             "email": "avissawela@gmail.com",
-            "whats_app": "070-1902750"
+            "fax": "No fax number"
         },
         {
             "name": "Badulla Rajaya Osu Sala",
             "address": "CWE Building Bandarawela Road, Badulla.",
             "telephone": "055 2229837",
+            "whats_app": "070-1902757",
             "email": "badulla@spc.lk",
-            "whats_app": "070-1902757"
+            "fax": "No fax number"
         },
         {
             "name": "Bandaragama Rajaya Osu Sala",
             "address": "Hospital Premises, Horana Road, Bandaragama.",
             "telephone": "038 2288671",
+            "whats_app": "070-1902760",
             "email": "bandaragama@spc.lk",
-            "whats_app": "070-1902760"
+            "fax": "No fax number"
         },
         {
             "name": "Borella Rajaya Osu Sala",
             "address": "Lady Ridgway Premises, Borella.",
             "telephone": "011 2697660",
             "email": "borella@spc.lk",
-            "whats_app": "070-1902744"
+            "whats_app": "070-1902744",
+            "fax": "No fax number"
         },
         {
             "name": "Beruwala Rajaya Osu Sala",
             "address": "MPCS Building, Galle Road, Beruwala.",
             "telephone": "034 2278578",
             "email": "beruwalaros@gmail.com",
-            "whats_app": "070-1902764"
+            "whats_app": "070-1902764",
+            "fax": "No fax number"
         },
         {
             "name": "Colombo 01 Rajaya Osu Sala",
             "address": "63, Sir Baron Jayathilake Mawatha, Colombo 01.",
             "telephone": "011 2328046",
             "email": "col1@spc.lk",
-            "whats_app": "070-1902740"
+            "whats_app": "070-1902740",
+            "fax": "No fax number"
         },
         {
-            "name": "Colombo  Rajaya Osu Sala",
+            "name": "Colombo 04 Rajaya Osu Sala",
             "address": "85, Galle Road, Colombo 04.",
             "telephone": "011 2587128",
-            "fax": "col4@spc.lk",
-            "email": "070-1902741"
-        },
-        {
-            "email": "011 2559531",
-            "whats_app": "011 2559531"
+            "whats_app": "-",
+            "email": "070-1902741",
+            "fax": "col4@spc.lk"
         },
         {
             "name": "Colombo 07 Rajaya Osu Sala",
@@ -91,21 +97,20 @@
             "whats_app": "070-1902742"
         },
         {
-            "email": "011 2672293",
-            "whats_app": "012 2672293"
-        },
-        {
             "name": "Dambulla Rajaya Osu Sala",
             "address": "46/A, Kurunegala Junction, Dambulla",
             "telephone": "066 2285133",
-            "whats_app": "070-1902734"
+            "whats_app": "070-1902734",
+            "email" : "No email adress",
+            "fax": "No fax number"
         },
         {
             "name": "Diyathalawa Rajaya Osu Sala",
             "address": "New Bus Stand Premises, Main Street, Diyathalawa.",
             "telephone": "057 2227190",
             "fax": "058 2227190",
-            "whats_app": "070-1902759"
+            "whats_app": "070-1902759",
+            "email" : "No email adress"
         },
         {
             "name": "Embilipitiya Rajaya Osu Sala",
@@ -127,15 +132,17 @@
             "name": "Gampaha Rajaya Osu Sala",
             "address": "255, Colombo Road, Gampaha.",
             "telephone": "033 2234516",
-            "fax": "gampaharos@gmail.com",
-            "email": "070-1902773"
+            "email": "gampaharos@gmail.com",
+            "whats_app": "070-1902773",
+            "fax": "No fax number"
         },
         {
             "name": "Galle Rajaya Osu Sala",
             "address": "61 A, Wakwella Road, Galle.",
             "telephone": "091 2234726",
-            "fax": "galle@spc.lk",
-            "email": "070-1902765"
+            "email": "galle@spc.lk",
+            "whats_app": "070-1902765",
+            "fax": "No fax number"
         },
         {
             "name": "Hambantota Rajaya Osu Sala",
@@ -204,13 +211,18 @@
         {
             "name": "Mathale Rajaya Osu Sala",
             "address": "No 110, Darmapala Mw, Mathale",
-            "whats_app": "070-1902736"
+            "telephone": "-",
+            "whats_app": "070-1902736",
+            "email": "No email address",
+            "fax": "No fax number"
         },
         {
             "name": "Mathugama Rajaya Osu Sala",
             "address": "No 126, Kaluthara Road, Mathugama",
             "telephone": "No 126, Kaluthara Road, Mathugama",
-            "whats_app": "070-1902763"
+            "whats_app": "070-1902763",
+            "email": "No email address",
+            "fax": "No fax number"
         },
         {
             "name": "Maharagama Rajaya Osu Sala",
@@ -230,7 +242,7 @@
         },
         {
             "name": "Minuwangoda Rajaya Osu Sala",
-            "address": "Old U C Building, Colombo Rd., Minuwangoda.",
+            "address": "Old U C Building, Colombo Rd, Minuwangoda.",
             "telephone": "011 2295120",
             "fax": "012 2295120",
             "email": "minuwangoda@spc.lk",
@@ -289,7 +301,8 @@
             "address": "1A/21, Vidyala Mawatha, Piliyandala",
             "telephone": "011 2613640",
             "fax": "012 2613640",
-            "whats_app": "070-1902749"
+            "whats_app": "070-1902749",
+            "email": "No email address"
         },
         {
             "name": "Polonnaruwa Rajaya Osu Sala",
@@ -311,25 +324,32 @@
             "name": "Rathmalana Rajaya Osu Sala",
             "address": "Mega Sathosa, Golumadama Junction, Galle Road, Rathmalana.",
             "telephone": "011 3043789",
-            "whats_app": "070-1902748"
+            "whats_app": "070-1902748",
+            "email": "No email address",
+            "fax": "No fax number"
         },
         {
             "name": "Rathnapura Rajaya Osu Sala",
             "address": "32, Nanda Ellawala Mw, Rathnapura.",
             "telephone": "045 2223014",
             "email": "rpura@spc.lk",
-            "whats_app": "070-1902751"
+            "whats_app": "070-1902751",
+            "fax": "No fax number"
         },
         {
             "name": "Tangalle Rajaya Osu Sala",
             "address": "08, Indipokunagoda Road, Tangalle.",
             "telephone": "047 2241221",
             "email": "tgalle@spc.lk",
-            "whats_app": "070-1902768"
+            "whats_app": "070-1902768",
+            "fax": "No fax number"
         },
         {
             "name": "Werahara Rajaya Osu Sala",
             "address": "Kothalawala Difence Univercity Hospital Premises, Werahara",
-            "whats_app": "070-1902747"
+            "telephone": "-",
+            "whats_app": "070-1902747",
+            "email": "No email address",
+            "fax": "No fax number"
         }
     ]
