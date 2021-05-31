@@ -1,13 +1,21 @@
 // import React in our code
 import React, { useState, useEffect } from "react";
-import { useTheme, useNavigation } from "@react-navigation/native";
-import VillegeData from "../data/gramaniladari";
+import { useTheme } from "@react-navigation/native";
+import PharmacyData from "../data/osusal";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 // import all the components we are going to use
-import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
+import {
+  Alert,
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
-const VillegeServiceScreen = () => {
+const PharmaciesScreen = () => {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const [search, setSearch] = useState("");
@@ -15,8 +23,8 @@ const VillegeServiceScreen = () => {
   const [masterDataSource, setMasterDataSource] = useState([]);
 
   useEffect(() => {
-    setFilteredDataSource(VillegeData);
-    setMasterDataSource(VillegeData);
+    setFilteredDataSource(PharmacyData);
+    setMasterDataSource(PharmacyData);
   }, []);
 
   const searchFilterFunction = (text) => {
@@ -26,9 +34,7 @@ const VillegeServiceScreen = () => {
       // Filter the masterDataSource
       // Update FilteredDataSource
       const newData = masterDataSource.filter(function (item) {
-        const itemData = item.gn_name
-          ? item.gn_name.toUpperCase()
-          : "".toUpperCase();
+        const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
@@ -45,31 +51,15 @@ const VillegeServiceScreen = () => {
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <Text style={styles.itemStyle} onPress={() =>
-        navigation.navigate("Grama Niladhari Details", { item })
-      }>
-        {item.gn_name.toUpperCase()}
-      </Text>
+      <TouchableOpacity>
+        <Text
+          style={styles.itemStyle}
+          onPress={() => navigation.navigate("Osusala Details", { item })}
+        >
+          {item.name.toUpperCase()}
+        </Text>
+      </TouchableOpacity>
     );
-  };
-
-  const showAlert = (item) =>
-    Alert.alert(
-      "Grama Niladhari Details",
-      "\nProvince : " +
-        item.p_name +
-        "\n\nDistrict : " +
-        item.d_name +
-        "\n\nDivisional Secretariat : " +
-        item.ds_name +
-        "\n\nGrama Niladhari Division : " +
-        item.gn_name +
-        "\n\nGN Division Number : " +
-        item.gn_number
-    );
-
-  const getItem = (item) => {
-    showAlert(item);
   };
 
   return (
@@ -86,10 +76,12 @@ const VillegeServiceScreen = () => {
           name="arrow-back-ios"
           size={30}
           color="gray"
-          onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: "Home" }],
-          })}
+          onPress={() =>
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "Home" }],
+            })
+          }
         />
 
         <SearchBar
@@ -108,7 +100,7 @@ const VillegeServiceScreen = () => {
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction("")}
-          placeholder="Search Village"
+          placeholder="Search Osusal"
           placeholderTextColor={"black"}
           value={search}
         />
@@ -140,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VillegeServiceScreen;
+export default PharmaciesScreen;
