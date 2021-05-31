@@ -6,6 +6,7 @@ import {
 
 import OpenItemScreen from "../screens/OpenItemScreen";
 import VillageOpenItemScreen from "../screens/VillageOpenItemScreen";
+import HospitalOpenItemScreen from "../screens/HospitalOpenItemScreen";
 
 import TabNavigator from "./TabNavigator";
 
@@ -51,6 +52,20 @@ function RootStackScreen({ navigation }) {
               {...props}
               onPress={() => {
                 navigation.navigate("Grama Niladhari");
+              }}
+            />
+          ),
+        }}
+      />
+      <RootStack.Screen
+        name="Hospital Details"
+        component={HospitalOpenItemScreen}
+        options={{
+          headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => {
+                navigation.navigate("Hospitals");
               }}
             />
           ),

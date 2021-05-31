@@ -15,6 +15,7 @@ import RootStackScreen from "./StackNavigator";
 
 import PoliceStationsScreen from "../screens/PoliceStationsScreen";
 import VillegeServiceScreen from "../screens/VillegeServiceScreen";
+import HospitalsScreen from "../screens/HospitalsScreen";
 import TopTabScreen from "../screens/TopTabScreen";
 
 import {
@@ -163,6 +164,19 @@ const DrawerNavigator = () => {
             <MaterialCommunityIcons
               name="police-badge"
               size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Hospitals"
+        component={HospitalsScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="hospital-alt"
+              size={23}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
