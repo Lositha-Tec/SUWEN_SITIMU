@@ -20,7 +20,7 @@
     ],
     "android": {
       "package": "com.developers_in.strong_village",
-      "versionCode": 1.0,
+      "versionCode": 1.1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
