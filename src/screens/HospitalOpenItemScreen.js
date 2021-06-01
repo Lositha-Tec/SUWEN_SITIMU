@@ -95,7 +95,11 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity> */}
 
           <TouchableOpacity
-            style={item.land_one == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.land_one == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.land_one == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_one}`);
@@ -109,13 +113,17 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number 1 : {item.land_one}
+                Telephone : {item.land_one}
               </Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={item.land_two == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.land_two == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.land_two == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_two}`);
@@ -129,13 +137,17 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number 2 : {item.land_two}
+                Telephone : {item.land_two}
               </Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={item.land_three == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.land_three == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.land_three == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_three}`);
@@ -149,13 +161,17 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number 3 : {item.land_three}
+                Telephone : {item.land_three}
               </Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={item.land_four == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.land_four == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.land_four == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_four}`);
@@ -169,7 +185,7 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number 4 : {item.land_four}
+                Telephone : {item.land_four}
               </Text>
             </View>
           </TouchableOpacity>

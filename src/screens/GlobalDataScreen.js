@@ -143,9 +143,9 @@ export default function GlobalDataScreen(props) {
               selectedValue={selectedCountry}
               style={styles.countryPicker}
               onValueChange={(itemValue, itemIndex) => {
-                setSelectedCountry(itemValue)
-                setTitleFunc(itemIndex - 1)
-                fetchData(itemValue)
+                setSelectedCountry(itemValue);
+                setTitleFunc(itemIndex - 1);
+                fetchData(itemValue);
               }}
               mode="dialog"
             >
@@ -155,18 +155,63 @@ export default function GlobalDataScreen(props) {
           </View>
         </View>
 
-        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>{title}</Text>
+        <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>
+          {title}
+        </Text>
 
-        {loading ? <ActivityIndicator size="large" color="#cc0000" style={styles.activityIndicator} /> : null}
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color="#cc0000"
+            style={styles.activityIndicator}
+          />
+        ) : null}
 
         <View style={styles.tileParent}>
           <View style={{ flexDirection: "row" }}>
-            <Tile heading={'Total Confirmed Cases'} iconComponent={<FontAwesome5 name="hospital" size={30} color="white" />} count={covidData.global_confirmed_cases} tileBackgroundColor={{ backgroundColor: '#fdb01a' }} />
-            <Tile heading={'Active Cases'} iconComponent={<FontAwesome5 name="procedures" size={30} color="white" />} count={covidData.global_active_cases} tileBackgroundColor={{ backgroundColor: '#e3342f' }} />
+            <Tile
+              heading={"Total Confirmed Cases"}
+              iconComponent={
+                <FontAwesome5 name="hospital" size={30} color="white" />
+              }
+              count={covidData.global_confirmed_cases}
+              tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
+            />
+            <Tile
+              heading={"Active Cases"}
+              iconComponent={
+                <FontAwesome5 name="procedures" size={30} color="white" />
+              }
+              count={covidData.global_active_cases}
+              tileBackgroundColor={{ backgroundColor: "#e3342f" }}
+            />
           </View>
           <View style={{ flexDirection: "row" }}>
-            <Tile heading={'Recovered & Discharged'} iconComponent={<FontAwesome5 name="running" size={30} color="white" />} count={covidData.global_recovered} tileBackgroundColor={{ backgroundColor: '#50cd8a' }} />
-            <Tile heading={'Deaths'} iconComponent={<FontAwesome5 name="bed" size={30} color="white" />} count={covidData.global_deaths} tileBackgroundColor={{ backgroundColor: '#f64a8f' }} />
+            <Tile
+              heading={"Recovered & Discharged"}
+              iconComponent={
+                <FontAwesome5 name="running" size={30} color="white" />
+              }
+              count={covidData.global_recovered}
+              tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
+            />
+            <Tile
+              heading={"Deaths"}
+              iconComponent={
+                <FontAwesome5 name="bed" size={30} color="white" />
+              }
+              count={covidData.global_deaths}
+              tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
+            />
+          </View>
+
+          <View style={{ marginTop: 50 }}>
+            <Text style={{ color: "gray" }}>
+              Data Source: https://www.hpb.health.gov.lk
+            </Text>
+            <Text style={{ color: "gray" }}>
+              Data Source:  https://api.covid19api.com
+            </Text>
           </View>
         </View>
       </ScrollView>

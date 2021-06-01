@@ -110,7 +110,7 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number : {item.telephone}
+                Telephone : {item.telephone}
               </Text>
             </View>
           </TouchableOpacity>

@@ -100,7 +100,7 @@ const PharmaciesScreen = () => {
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction("")}
-          placeholder="Search Osusal"
+          placeholder="Search Osusala"
           placeholderTextColor={"black"}
           value={search}
         />

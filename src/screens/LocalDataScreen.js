@@ -63,6 +63,11 @@ export default function LocalDataScreen(props) {
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         <Tile heading={'New Deaths'} iconComponent={<FontAwesome5 name="bed" size={30} color="white" />} count={covidData.local_new_deaths} tileBackgroundColor={{ backgroundColor: '#f57b25' }} />
                     </View>
+
+                    <View style={{alignItems:"center", marginTop:10}}>
+                        <Text style={{color:"gray"}}>Data Source: https://www.hpb.health.gov.lk</Text>
+                    </View>
+
                 </View>
             </ScrollView>
         </View>
