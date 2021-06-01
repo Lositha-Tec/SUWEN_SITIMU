@@ -78,7 +78,8 @@ const OpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            disabled={item.office_number == "-"}
+            style={item.office_number == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            //disabled={item.office_number == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.office_number}`);
             }}
@@ -165,7 +166,12 @@ const styles = StyleSheet.create({
     color: "black",
     paddingLeft: 20,
   },
-
+  buttonDisplay: {
+    display: "flex",
+  },
+  buttonNotDisplay: {
+    display: "none",
+  },
 });
 
 export default OpenItemScreen;

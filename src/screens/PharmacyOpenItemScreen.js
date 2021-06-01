@@ -77,7 +77,8 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
           </View>
 
           <TouchableOpacity
-            disabled={item.whats_app == "-"}
+            style={item.whats_app == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            //disabled={item.whats_app == "-"}
             onPress={() => {
               Linking.openURL(`whatsapp://send?phone=${item.whats_app}`);
             }}
@@ -95,6 +96,7 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
+            style={item.telephone == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
             disabled={item.telephone == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.telephone}`);
@@ -108,7 +110,7 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
                 style={{ marginTop: 4 }}
               />
               <Text style={styles.contactText}>
-                Land Number : {item.telephone}
+                Telephone : {item.telephone}
               </Text>
             </View>
           </TouchableOpacity>
@@ -194,6 +196,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     paddingLeft: 20,
+  },
+  buttonDisplay: {
+    display: "flex",
+  },
+  buttonNotDisplay: {
+    display: "none",
   },
 });
 
