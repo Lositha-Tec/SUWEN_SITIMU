@@ -129,6 +129,7 @@ const DrawerNavigator = () => {
             />
           ),
           headerShown: true,
+          headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
