@@ -128,16 +128,9 @@
     },
     {
       "name": "Anuradhapura Teaching Hospital - Government - Hospital",
-      "land_one": "0252222266",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
-      "name": "Anuradhapura Teaching Hospital - Government - Hospital",
-      "land_one": "0252222262",
-      "land_two": "0252222261",
-      "land_three": "-",
+      "land_one": "0252222261",
+      "land_two": "0252222262",
+      "land_three": "0252222266",
       "land_four": "-"
     },
     {
@@ -188,10 +181,9 @@
       "land_two": "-",
       "land_three": "-",
       "land_four": "-"
-      
     },
     {
-      "name": "Kurunegala  Ayurveda Hospital - Government - Hospital",
+      "name": "Kurunegala Ayurveda Hospital - Government - Hospital",
       "land_one": "0372222724",
       "land_two": "-",
       "land_three": "-",
@@ -215,13 +207,7 @@
       "name": "Badulla General Hospital - Government - Hospital",
       "land_one": "0552222261",
       "land_two": "0552222262",
-      "land_four": "-"
-    },
-    {
-      "name": "Badulla Provincial General Hospital - Government - Hospital",
-      "land_one": "0552222261",
-      "land_two": "0552222263",
-      "land_three": "-",
+      "land_three": "0552222263",
       "land_four": "-"
     },
     {
@@ -421,13 +407,6 @@
       "land_four": "-"
     },
     {
-      "name": "Castle St Hospital For Women Colombo 08 - Government - Hospital",
-      "land_one": "0112696231",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
       "name": "Central Chest Clinic Colombo - Government - Hospital",
       "land_one": "0112675274",
       "land_two": "-",
@@ -545,7 +524,6 @@
       "land_two": "-",
       "land_three": "-",
       "land_four": "-"
-      
     },
     {
       "name": "Deiyandara Rural Hospital - Government - Hospital",
@@ -849,13 +827,6 @@
       "land_four": "-"
     },
     {
-      "name": "General Hospital - Government - Hospital",
-      "land_one": "0272222261",
-      "land_two": "0272225779",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
       "name": "Gileemale Rural Hospital - Government - Hospital",
       "land_one": "0452224434",
       "land_two": "-",
@@ -1073,13 +1044,6 @@
       "land_four": "-"
     },
     {
-      "name": "Hopton Divisional Hospital - Government - Hospital",
-      "land_one": "0553561335",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
       "name": "Horana Base Hospital - Government - Hospital",
       "land_one": "0342261261",
       "land_two": "0342262379",
@@ -1243,13 +1207,6 @@
     {
       "name": "Kalpitiya District Hospital - Government - Hospital",
       "land_one": "0322260261",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
-      "name": "Kalubowila Teaching Hospital (Colombo South) - Government - Hospital",
-      "land_one": "0112763063",
       "land_two": "-",
       "land_three": "-",
       "land_four": "-"
@@ -1538,15 +1495,8 @@
       "name": "Kurunegala Teaching Hospital - Government - Hospital",
       "land_one": "0372222261",
       "land_two": "0372222262",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
-      "name": "Kurunegala Teaching Hospital - Government - Hospital",
-      "land_one": "0372222261",
-      "land_two": "0372222263",
-      "land_three": "0372233906",
-      "land_four": "-"
+      "land_three": "0372222263",
+      "land_four": "0372233906"
     },
     {
       "name": "Lady Ridgeway Hospital Colombo 08 - Government - Hospital",
@@ -1599,13 +1549,6 @@
     },
     {
       "name": "Leprosy Hospital - Government - Hospital",
-      "land_one": "0112930211",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
-      "name": "Leprosy Hospital Hendala - Government - Hospital",
       "land_one": "0112930211",
       "land_two": "-",
       "land_three": "-",
@@ -1845,13 +1788,6 @@
     {
       "name": "Meda Mahanuwara Rural Hospital - Government - Hospital",
       "land_one": "0812402261",
-      "land_two": "-",
-      "land_three": "-",
-      "land_four": "-"
-    },
-    {
-      "name": "Medagama - Government - Hospital",
-      "land_one": "0552266462",
       "land_two": "-",
       "land_three": "-",
       "land_four": "-"
@@ -2293,8 +2229,8 @@
     {
       "name": "Polonnaruwa General Hospital - Government - Hospital",
       "land_one": "0272222261",
-      "land_two": "272223095",
-      "land_three": "-",
+      "land_two": "0272223095",
+      "land_three": "0272225779",
       "land_four": "-"
     },
     {
