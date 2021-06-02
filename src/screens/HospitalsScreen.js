@@ -94,7 +94,7 @@ const HospitalsScreen = () => {
         }}
       >
         <MaterialIcons
-          name="arrow-back-ios"
+          name="arrow-back"
           size={30}
           color="gray"
           onPress={() =>
