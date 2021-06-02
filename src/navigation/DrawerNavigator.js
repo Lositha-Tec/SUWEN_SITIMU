@@ -8,6 +8,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
+  HeaderBackButton,
 } from "@react-navigation/drawer";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -143,6 +144,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+           headerShown: true,
+           headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -156,6 +159,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          //headerShown: true,
+          //headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -169,6 +174,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          // headerShown: true,
+          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -182,6 +189,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          // headerShown: true,
+          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -195,6 +204,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          // headerShown: true,
+          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -208,6 +219,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          headerShown: true,
+          headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -221,6 +234,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          headerShown: true,
+          headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -234,6 +249,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
+          headerShown: true,
+          headerTintColor: "gray"
         }}
       />
     </Drawer.Navigator>
