@@ -7,14 +7,17 @@ function WHOImageComponent(props) {
   return (
     <View style={styles.mainContainer}>
       <Image source={props.image} style={styles.imageContainer} />
-      <Text style={[styles.textContainer,{color:colors.WHOAdviceTextColor}]}>{props.text}</Text>
+      <Text
+        style={[styles.textContainer, { color: colors.WHOAdviceTextColor }]}
+      >
+        {props.text}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    //borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 30,

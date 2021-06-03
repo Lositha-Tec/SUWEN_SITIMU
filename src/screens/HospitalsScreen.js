@@ -1,11 +1,4 @@
-// import React in our code
 import React, { useState, useEffect } from "react";
-import { useTheme } from "@react-navigation/native";
-import HospitalData from "../data/hospital";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-
-// import all the components we are going to use
 import {
   Alert,
   Text,
@@ -14,7 +7,15 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+
+import { useTheme, useNavigation } from "@react-navigation/native";
+
 import { SearchBar } from "react-native-elements";
+
+import HospitalData from "../data/hospital";
+
+import { MaterialIcons } from "@expo/vector-icons";
+
 const HospitalsScreen = () => {
   const { colors } = useTheme();
   const navigation = useNavigation();
@@ -54,33 +55,12 @@ const HospitalsScreen = () => {
       <TouchableOpacity>
         <Text
           style={styles.itemStyle}
-          onPress={() =>
-            navigation.navigate("Hospital Details", { item })
-          } /*onPress={() => getItem(item)}*/
+          onPress={() => navigation.navigate("Hospital Details", { item })}
         >
           {item.name.toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
-  };
-
-  const showAlert = (item) =>
-    Alert.alert(
-      "Police Station Details",
-      "\nProvince : " +
-        item.province +
-        "\n\nDivision : " +
-        item.police_division +
-        "\n\nStation : " +
-        item.police_station +
-        "\n\nOIC Mobile Number : " +
-        item.oic_mobile +
-        "\n\nOffice Number : " +
-        item.office_number
-    );
-
-  const getItem = (item) => {
-    showAlert(item);
   };
 
   return (
@@ -139,7 +119,6 @@ const HospitalsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingTop: 20,
     paddingHorizontal: 20,
   },
   itemStyle: {

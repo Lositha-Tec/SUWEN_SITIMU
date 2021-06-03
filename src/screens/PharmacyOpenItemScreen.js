@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import {
   MaterialCommunityIcons,
-  FontAwesome,
   FontAwesome5,
   Fontisto,
 } from "@expo/vector-icons";
@@ -57,15 +56,6 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
             </View>
           </View>
 
-          {/* <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextFive}>GN Division Number</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.gn_number}</Text>
-            </View>
-          </View> */}
-
           <View style={[styles.detailGroup, { marginTop: 30 }]}>
             <Fontisto
               name="phone"
@@ -77,7 +67,11 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
           </View>
 
           <TouchableOpacity
-            style={item.whats_app == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.whats_app == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.whats_app == "-"}
             onPress={() => {
               Linking.openURL(`whatsapp://send?phone=${item.whats_app}`);
@@ -96,7 +90,11 @@ const PharmacyOpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={item.telephone == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.telephone == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             disabled={item.telephone == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.telephone}`);
