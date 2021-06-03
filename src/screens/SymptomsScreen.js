@@ -7,6 +7,7 @@ import {
   Linking,
   TouchableOpacity,
 } from "react-native";
+
 import { MaterialIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
@@ -24,7 +25,14 @@ function SymptomsScreen() {
             }}
           >
             <FontAwesome name="certificate" size={30} color="#FF0000" />
-            <Text style={[styles.headerText,{color:colors.symptomHeaderTextColor}]}>Serious symptoms:</Text>
+            <Text
+              style={[
+                styles.headerText,
+                { color: colors.symptomHeaderTextColor },
+              ]}
+            >
+              Serious symptoms:
+            </Text>
           </View>
           <View
             style={{
@@ -40,7 +48,9 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
               Difficulty breathing or shortness of breath
             </Text>
           </View>
@@ -58,7 +68,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Chest pain or pressure</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Chest pain or pressure
+            </Text>
           </View>
           <View
             style={{
@@ -74,7 +88,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Loss of speech or movement</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Loss of speech or movement
+            </Text>
           </View>
         </View>
 
@@ -88,7 +106,14 @@ function SymptomsScreen() {
             }}
           >
             <FontAwesome name="certificate" size={30} color="#DF8B0C" />
-            <Text style={[styles.headerText,{color:colors.symptomHeaderTextColor}]}>Most common symptoms:</Text>
+            <Text
+              style={[
+                styles.headerText,
+                { color: colors.symptomHeaderTextColor },
+              ]}
+            >
+              Most common symptoms:
+            </Text>
           </View>
           <View
             style={{
@@ -104,7 +129,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Fever</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Fever
+            </Text>
           </View>
           <View
             style={{
@@ -120,7 +149,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Dry Cough</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Dry Cough
+            </Text>
           </View>
           <View
             style={{
@@ -136,7 +169,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Tiredness</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Tiredness
+            </Text>
           </View>
         </View>
 
@@ -150,7 +187,14 @@ function SymptomsScreen() {
             }}
           >
             <FontAwesome name="certificate" size={30} color="#FCF209" />
-            <Text style={[styles.headerText,{color:colors.symptomHeaderTextColor}]}>Less common symptoms:</Text>
+            <Text
+              style={[
+                styles.headerText,
+                { color: colors.symptomHeaderTextColor },
+              ]}
+            >
+              Less common symptoms:
+            </Text>
           </View>
           <View
             style={{
@@ -166,7 +210,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Aches and pains</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Aches and pains
+            </Text>
           </View>
           <View
             style={{
@@ -182,7 +230,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Sore throat</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Sore throat
+            </Text>
           </View>
           <View
             style={{
@@ -198,7 +250,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Diarrhoea</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Diarrhoea
+            </Text>
           </View>
           <View
             style={{
@@ -214,7 +270,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Conjunctivitis</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Conjunctivitis
+            </Text>
           </View>
           <View
             style={{
@@ -230,7 +290,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Headache</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Headache
+            </Text>
           </View>
           <View
             style={{
@@ -246,7 +310,11 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>Loss of taste or smell</Text>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
+              Loss of taste or smell
+            </Text>
           </View>
           <View
             style={{
@@ -262,7 +330,9 @@ function SymptomsScreen() {
               color={colors.symptomTextIconColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.symptomsText,{color:colors.symptomTextColor}]}>
+            <Text
+              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
+            >
               A rash on skin, or discolouration of fingers or toes
             </Text>
           </View>
@@ -282,7 +352,7 @@ function SymptomsScreen() {
               color={colors.paraTextColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
+            <Text style={[styles.adviceText, { color: colors.paraTextColor }]}>
               Seek immediate medical attention if you have serious symptoms.
               Always call before visiting your doctor or health facility.
             </Text>
@@ -301,7 +371,7 @@ function SymptomsScreen() {
               color={colors.paraTextColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
+            <Text style={[styles.adviceText, { color: colors.paraTextColor }]}>
               People with mild symptoms who are otherwise healthy should manage
               their symptoms at home.
             </Text>
@@ -320,7 +390,7 @@ function SymptomsScreen() {
               color={colors.paraTextColor}
               style={{ marginTop: 3 }}
             />
-            <Text style={[styles.adviceText,{color:colors.paraTextColor}]}>
+            <Text style={[styles.adviceText, { color: colors.paraTextColor }]}>
               On average it takes 5–6 days from when someone is infected with
               the virus for symptoms to show, however it can take up to 14 days.
             </Text>
@@ -365,7 +435,6 @@ const styles = StyleSheet.create({
   },
   symptomsText: {
     paddingLeft: 10,
-    //color: "#2B2727",
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -377,7 +446,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 18,
     marginBottom: 15,
-    //color: "#454141",
   },
   linkContainer: {
     flex: 1,

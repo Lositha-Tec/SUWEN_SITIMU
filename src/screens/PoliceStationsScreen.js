@@ -1,11 +1,8 @@
-// import React in our code
 import React, { useState, useEffect } from "react";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import DATA from "../data/data";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 
-// import all the components we are going to use
 import {
   Alert,
   Text,
@@ -14,7 +11,9 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+
 import { SearchBar } from "react-native-elements";
+
 const PoliceStationsScreen = () => {
   const { colors } = useTheme();
   const navigation = useNavigation();
@@ -141,7 +140,6 @@ const PoliceStationsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingTop: 20,
     paddingHorizontal: 20,
   },
   itemStyle: {

@@ -7,12 +7,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  FontAwesome5,
-  Fontisto,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
 
 const HospitalOpenItemScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -30,42 +25,6 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
             </View>
           </View>
 
-          {/* <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextTwo}>District</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.d_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextThree}>Divisional Secretariat</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.ds_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextFour}>Grama Niladhari Division</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.gn_name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rowSection}>
-            <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextFive}>GN Division Number</Text>
-            </View>
-            <View style={styles.detailDataRow}>
-              <Text style={styles.detailDataField}>{item.gn_number}</Text>
-            </View>
-          </View> */}
-
           <View style={[styles.detailGroup, { marginTop: 30 }]}>
             <Fontisto
               name="phone"
@@ -75,24 +34,6 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
             />
             <Text style={styles.detailText}>Contact Numbers</Text>
           </View>
-
-          {/* <TouchableOpacity
-            onPress={() => {
-              Linking.openURL(`tel:${item.oic_mobile}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <Fontisto
-                name="mobile-alt"
-                size={25}
-                color={"#1eae98"}
-                style={{ marginTop: 3 }}
-              />
-              <Text style={styles.contactText}>
-                OIC Mobile: {item.oic_mobile}
-              </Text>
-            </View>
-          </TouchableOpacity> */}
 
           <TouchableOpacity
             style={
@@ -124,7 +65,6 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 ? styles.buttonNotDisplay
                 : styles.buttonDisplay
             }
-            //disabled={item.land_two == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_two}`);
             }}
@@ -148,7 +88,6 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 ? styles.buttonNotDisplay
                 : styles.buttonDisplay
             }
-            //disabled={item.land_three == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_three}`);
             }}
@@ -172,7 +111,6 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
                 ? styles.buttonNotDisplay
                 : styles.buttonDisplay
             }
-            //disabled={item.land_four == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.land_four}`);
             }}

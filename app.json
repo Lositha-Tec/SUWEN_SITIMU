@@ -6,9 +6,9 @@
     "sdkVersion": "41.0.0",
     "version": "1.0.4",
     "orientation": "portrait",
-    "icon": "./assets/icon01.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash11.png",
+      "image": "./assets/splash1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
