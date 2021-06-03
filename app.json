@@ -22,7 +22,7 @@
       "package": "com.developers_in.strong_village",
       "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon01.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
