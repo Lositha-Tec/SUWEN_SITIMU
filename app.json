@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Strong Village",
-    "slug": "strong_village",
+    "name": "Covistatica",
+    "slug": "Covistatica",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "orientation": "portrait",
-    "icon": "./assets/icon01.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash11.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
