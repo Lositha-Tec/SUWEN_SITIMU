@@ -1,5 +1,3 @@
-// ./navigation/DrawerNavigator.js
-
 import React, { Component } from "react";
 import { WebView } from "react-native-webview";
 
@@ -8,8 +6,8 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
-  HeaderBackButton,
 } from "@react-navigation/drawer";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import RootStackScreen from "./StackNavigator";
@@ -130,7 +128,7 @@ const DrawerNavigator = () => {
             />
           ),
           headerShown: true,
-          headerTintColor: "gray"
+          headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -144,8 +142,8 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
-           headerShown: true,
-           headerTintColor: "gray"
+          headerShown: true,
+          headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -159,8 +157,6 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
-          //headerShown: true,
-          //headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -174,8 +170,6 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
-          // headerShown: true,
-          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -189,8 +183,6 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
-          // headerShown: true,
-          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -204,8 +196,6 @@ const DrawerNavigator = () => {
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
           ),
-          // headerShown: true,
-          // headerTintColor: "gray"
         }}
       />
       <Drawer.Screen
@@ -220,7 +210,7 @@ const DrawerNavigator = () => {
             />
           ),
           headerShown: true,
-          headerTintColor: "gray"
+          headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -235,7 +225,7 @@ const DrawerNavigator = () => {
             />
           ),
           headerShown: true,
-          headerTintColor: "gray"
+          headerTintColor: "gray",
         }}
       />
       <Drawer.Screen
@@ -250,7 +240,7 @@ const DrawerNavigator = () => {
             />
           ),
           headerShown: true,
-          headerTintColor: "gray"
+          headerTintColor: "gray",
         }}
       />
     </Drawer.Navigator>

@@ -1,18 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  FontAwesome5,
-  Fontisto,
-} from "@expo/vector-icons";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 const VillageOpenItemScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -21,7 +8,6 @@ const VillageOpenItemScreen = ({ route, navigation }) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.detailContainer}>
-
           <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
               <Text style={styles.detailTitleTextOne}>Province</Text>
@@ -42,7 +28,9 @@ const VillageOpenItemScreen = ({ route, navigation }) => {
 
           <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextThree}>Divisional Secretariat</Text>
+              <Text style={styles.detailTitleTextThree}>
+                Divisional Secretariat
+              </Text>
             </View>
             <View style={styles.detailDataRow}>
               <Text style={styles.detailDataField}>{item.ds_name}</Text>
@@ -51,7 +39,9 @@ const VillageOpenItemScreen = ({ route, navigation }) => {
 
           <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
-              <Text style={styles.detailTitleTextFour}>Grama Niladhari Division</Text>
+              <Text style={styles.detailTitleTextFour}>
+                Grama Niladhari Division
+              </Text>
             </View>
             <View style={styles.detailDataRow}>
               <Text style={styles.detailDataField}>{item.gn_name}</Text>
@@ -66,54 +56,6 @@ const VillageOpenItemScreen = ({ route, navigation }) => {
               <Text style={styles.detailDataField}>{item.gn_number}</Text>
             </View>
           </View>
-
-          {/* <View style={[styles.detailGroup, { marginTop: 30 }]}>
-            <Fontisto
-              name="phone"
-              size={20}
-              color={"gray"}
-              style={{ marginTop: 5 }}
-            />
-            <Text style={styles.detailText}>Contact Numbers</Text>
-          </View> */}
-
-          {/* <TouchableOpacity
-            onPress={() => {
-              Linking.openURL(`tel:${item.oic_mobile}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <Fontisto
-                name="mobile-alt"
-                size={25}
-                color={"#1eae98"}
-                style={{ marginTop: 3 }}
-              />
-              <Text style={styles.contactText}>
-                OIC Mobile: {item.oic_mobile}
-              </Text>
-            </View>
-          </TouchableOpacity> */}
-
-          {/* <TouchableOpacity
-            disabled={item.office_number == "-"}
-            onPress={() => {
-              Linking.openURL(`tel:${item.office_number}`);
-            }}
-          >
-            <View style={styles.contactGroup}>
-              <MaterialCommunityIcons
-                name="phone-outgoing"
-                size={20}
-                color={"#1eae98"}
-                style={{ marginTop: 4 }}
-              />
-              <Text style={styles.contactText}>
-                Office Number : {item.office_number}
-              </Text>
-            </View>
-          </TouchableOpacity> */}
-
         </View>
       </View>
     </ScrollView>
@@ -157,19 +99,19 @@ const styles = StyleSheet.create({
     color: "#344fa1",
     fontWeight: "bold",
     fontSize: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   detailTitleTextFour: {
     color: "#007580",
     fontWeight: "bold",
     fontSize: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   detailTitleTextFive: {
     color: "#de8971",
     fontWeight: "bold",
     fontSize: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   detailGroup: {
     flexDirection: "row",
@@ -196,7 +138,6 @@ const styles = StyleSheet.create({
     color: "black",
     paddingLeft: 20,
   },
-
 });
 
 export default VillageOpenItemScreen;

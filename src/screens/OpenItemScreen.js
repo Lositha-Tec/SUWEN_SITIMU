@@ -7,12 +7,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  FontAwesome5,
-  Fontisto,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
 
 const OpenItemScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -21,7 +16,6 @@ const OpenItemScreen = ({ route, navigation }) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.detailContainer}>
-
           <View style={styles.rowSection}>
             <View style={styles.detailsTitleRow}>
               <Text style={styles.detailTitleTextOne}>Province</Text>
@@ -78,7 +72,11 @@ const OpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={item.office_number == "-" ? styles.buttonNotDisplay : styles.buttonDisplay}
+            style={
+              item.office_number == "-"
+                ? styles.buttonNotDisplay
+                : styles.buttonDisplay
+            }
             //disabled={item.office_number == "-"}
             onPress={() => {
               Linking.openURL(`tel:${item.office_number}`);
@@ -96,7 +94,6 @@ const OpenItemScreen = ({ route, navigation }) => {
               </Text>
             </View>
           </TouchableOpacity>
-
         </View>
       </View>
     </ScrollView>

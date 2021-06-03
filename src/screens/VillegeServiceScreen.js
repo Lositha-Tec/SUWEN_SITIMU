@@ -1,11 +1,12 @@
-// import React in our code
 import React, { useState, useEffect } from "react";
+import { Text, StyleSheet, View, FlatList } from "react-native";
+
 import { useTheme, useNavigation } from "@react-navigation/native";
-import VillegeData from "../data/gramaniladari";
+
 import { MaterialIcons } from "@expo/vector-icons";
 
-// import all the components we are going to use
-import { Alert, Text, StyleSheet, View, FlatList } from "react-native";
+import VillegeData from "../data/gramaniladari";
+
 import { SearchBar } from "react-native-elements";
 const VillegeServiceScreen = () => {
   const { colors } = useTheme();
@@ -51,25 +52,6 @@ const VillegeServiceScreen = () => {
         {item.gn_name.toUpperCase()}
       </Text>
     );
-  };
-
-  const showAlert = (item) =>
-    Alert.alert(
-      "Grama Niladhari Details",
-      "\nProvince : " +
-        item.p_name +
-        "\n\nDistrict : " +
-        item.d_name +
-        "\n\nDivisional Secretariat : " +
-        item.ds_name +
-        "\n\nGrama Niladhari Division : " +
-        item.gn_name +
-        "\n\nGN Division Number : " +
-        item.gn_number
-    );
-
-  const getItem = (item) => {
-    showAlert(item);
   };
 
   return (
@@ -126,7 +108,6 @@ const VillegeServiceScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingTop: 20,
     paddingHorizontal: 20,
   },
   itemStyle: {
