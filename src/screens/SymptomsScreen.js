@@ -11,6 +11,8 @@ import {
 import { MaterialIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
+import SymptomsImageComponent from "../components/SymptomsImageComponent";
+
 function SymptomsScreen() {
   const { colors } = useTheme();
   return (
@@ -21,7 +23,7 @@ function SymptomsScreen() {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              marginBottom: 20,
+              marginBottom: 5,
             }}
           >
             <FontAwesome name="certificate" size={30} color="#FF0000" />
@@ -34,66 +36,19 @@ function SymptomsScreen() {
               Serious symptoms:
             </Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Difficulty breathing or shortness of breath
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Chest pain or pressure
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Loss of speech or movement
-            </Text>
-          </View>
+
+          <SymptomsImageComponent
+          image={require("../../assets/Symptoms/shortness_breath.jpg")}
+          text="Difficulty breathing or shortness of breath"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/chest_pain.jpg")}
+          text="Chest pain or pressure"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/loss_of_speech.jpg")}
+          text="Loss of speech or movement"
+        />
         </View>
 
         <View style={styles.symptomsContainer}>
@@ -115,66 +70,19 @@ function SymptomsScreen() {
               Most common symptoms:
             </Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Fever
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Dry Cough
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Tiredness
-            </Text>
-          </View>
+
+          <SymptomsImageComponent
+          image={require("../../assets/Symptoms/fever.jpg")}
+          text="Fever"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/dry_cough.jpg")}
+          text="Dry Cough"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/tiredness.jpg")}
+          text="Tiredness"
+        />
         </View>
 
         <View style={styles.symptomsContainer}>
@@ -196,146 +104,35 @@ function SymptomsScreen() {
               Less common symptoms:
             </Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Aches and pains
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Sore throat
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Diarrhoea
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Conjunctivitis
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Headache
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              Loss of taste or smell
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginLeft: 40,
-              marginBottom: 10,
-            }}
-          >
-            <FontAwesome
-              name="circle"
-              size={16}
-              color={colors.symptomTextIconColor}
-              style={{ marginTop: 3 }}
-            />
-            <Text
-              style={[styles.symptomsText, { color: colors.symptomTextColor }]}
-            >
-              A rash on skin, or discolouration of fingers or toes
-            </Text>
-          </View>
+          <SymptomsImageComponent
+          image={require("../../assets/Symptoms/aches.jpg")}
+          text="Aches and pains"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/sore_throte.jpg")}
+          text="Sore throat"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/diarrhoea.jpg")}
+          text="Diarrhoea"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/conjunctivitis.png")}
+          text="Conjunctivitis"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/headache.jpg")}
+          text="Headache"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/taste_and_smell.jpg")}
+          text="Loss of taste or smell"
+        />
+        <SymptomsImageComponent
+          image={require("../../assets/Symptoms/rash.jpg")}
+          text="A rash on skin, or discolouration of fingers or toes"
+        />
+          
         </View>
 
         <View style={styles.adviceContainer}>
