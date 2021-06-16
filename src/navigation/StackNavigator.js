@@ -9,6 +9,7 @@ import VillageOpenItemScreen from "../screens/VillageOpenItemScreen";
 import HospitalOpenItemScreen from "../screens/HospitalOpenItemScreen";
 import PharmacyOpenItemScreen from "../screens/PharmacyOpenItemScreen";
 
+import MessageServiceScreen from "../screens/MessageServiceScreen";
 import TabNavigator from "./TabNavigator";
 
 const MainStack = createStackNavigator();
@@ -85,6 +86,11 @@ function RootStackScreen({ navigation }) {
             />
           ),
         }}
+      />
+      <RootStack.Screen
+        name="Message"
+        component={MessageServiceScreen}
+        options={{headerShown: false}}
       />
     </RootStack.Navigator>
   );

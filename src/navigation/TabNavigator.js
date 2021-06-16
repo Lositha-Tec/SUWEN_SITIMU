@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import GlobalDataScreen from "../screens/GlobalDataScreen";
+import LoginScreen from "../screens/LoginScreen";
 import MessageServiceScreen from "../screens/MessageServiceScreen";
 
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -26,6 +27,8 @@ const BottomTabNavigator = () => {
             iconName = "history";
           } else if (route.name === "Message") {
             iconName = "facebook-messenger";
+          } else if (route.name === "Profile") {
+            iconName = "user-alt";
           }
 
           return <FontAwesome5 name={iconName} size={24} color={color} />;
@@ -40,6 +43,7 @@ const BottomTabNavigator = () => {
       <Tabs.Screen name="Sri Lanka" component={LocalDataScreen} />
       <Tabs.Screen name="Global" component={GlobalDataScreen} />
       <Tabs.Screen name="Your history" component={TimelineScreen} />
+      <Tabs.Screen name="Profile" component={LoginScreen} />
       {/* <Tabs.Screen name="Message" component={MessageServiceScreen} /> */}
     </Tabs.Navigator>
   );

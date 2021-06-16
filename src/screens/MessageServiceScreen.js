@@ -1,30 +1,48 @@
 import React from 'react';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import firebase from 'firebase';
-import { firebaseConfig } from './../../config';
-
-import LoadingScreen from './LoadingScreen';
-import LoginScreen from './LoginScreen';
-import MessageScreen from './MessageScreen';
-
-firebase.initializeApp(firebaseConfig)
-
-const MessageServiceScreen = () => {
+const MessageServiceScreen = ({ navigation, route }) => {
+  const { name, email, photoUrl } = route.params;
+  const AvatarImg = photoUrl ? { uri: photoUrl } : require('../../assets/img/logo.png');
   return (
-    <AppNavigator />
+    <View style={{ flex: 1, alignItems: "center", marginTop: 50 }}>
+      <Text style={styles.WelcomeText}>Welcome {name}</Text>
+      <Text style={styles.EmailText}>{email || 'nimal@gmail.com'}</Text>
+      <Image style={styles.userImg} source={AvatarImg} />
+      <TouchableOpacity style={styles.googleLoginButton} onPress={() => navigation.navigate("Profile")}>
+        <Text style={styles.googleLoginButtonText}>Logout</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-const AppSwitchNavigator = createSwitchNavigator({
-  LoadingScreen: LoadingScreen,
-  LoginScreen: LoginScreen,
-  MessageScreen: MessageScreen
-});
+const styles = StyleSheet.create({
+  WelcomeText: {
+    fontSize: 25,
+    marginBottom: 10
+  },
+  EmailText: {
+    fontSize: 20,
+    marginBottom: 150
+  },
+  userImg: {
+    width: 100,
+    height: 100,
+    borderRadius: 50
+  },
+  googleLoginButton: {
+    marginTop: 250,
+    backgroundColor: "purple",
+    padding: 18,
+    width: "50%",
+    borderRadius: 3,
+    alignItems: "center"
 
-const AppNavigator = createAppContainer(AppSwitchNavigator)
-
-const styles = StyleSheet.create({});
+  },
+  googleLoginButtonText: {
+    color: "white",
+    //paddingLeft: 10
+  }
+})
 
 export default MessageServiceScreen;
