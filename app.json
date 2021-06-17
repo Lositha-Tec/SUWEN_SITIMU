@@ -4,7 +4,7 @@
     "slug": "strong_village",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -20,7 +20,7 @@
     ],
     "android": {
       "package": "com.developers_in.strong_village",
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
