@@ -1,80 +1,80 @@
-import React from "react";
-import { StyleSheet, StatusBar } from "react-native";
+import React, { useState } from 'react';
+import { StatusBar } from 'react-native';
 
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+//React Navigation Stack
+import RootStackNavigator from './src/navigators/RootStackNavigator';
 
-import DrawerNavigator from "./src/navigation/DrawerNavigator";
+//App loading
+import AppLoading from 'expo-app-loading';
+
+//async storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+//import NetInfo from '@react-native-community/netinfo';
+
+//credentials context
+import { CredentialsContext } from './src/components/CredentialsContext';
+import { LanguageContext } from './src/components/LanguageContext';
 
 import { themeReducer } from "./src/reducers/themeReducer";
-import { useSelector } from "react-redux";
-import { Provider } from "react-redux";
+
 import { createStore } from "redux";
-
-const customDarkTheme = {
-  ...DarkTheme,
-  colors: {
-    ...DarkTheme.colors,
-    headerColor: "#3b3b3b",
-    fontColor: "white",
-    menuIconColor: "white",
-    msgTxtColor: "white",
-    screenBgColor: "black",
-    subTitleColor: "black",
-    paraTextColor: "white",
-    WHOAdviceTextColor: "white",
-    symptomTextIconColor: "white",
-    symptomTextColor: "white",
-    symptomHeaderTextColor: "white",
-    dateColor: "white",
-  },
-};
-
-const customDefaultTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    headerColor: "white",
-    fontColor: "black",
-    menuIconColor: "gray",
-    msgTxtColor: "black",
-    screenBgColor: "white",
-    subTitleColor: "black",
-    paraTextColor: "#454141",
-    WHOAdviceTextColor: "black",
-    symptomTextIconColor: "black",
-    symptomTextColor: "#2B2727",
-    symptomHeaderTextColor: "#000000",
-    dateColor: "#737373",
-  },
-};
+import { Provider } from 'react-redux';
+import { sn, en, tn } from './src/i18n/SupportedLanguages';
 
 const store = createStore(themeReducer);
 
-export default App = () => {
-  return (
-    <Provider store={store}>
-      <StatusBar backgroundColor="gray" />
-      <Navigation />
-    </Provider>
-  );
-};
+export default function App() {
+  const [appReady, setAppReady] = useState(false);
+  const [storedCredentials, setStoredCredentials] = useState("");
+  const [storedLanguage, setStoredLanguage] = useState(en);
 
-export function Navigation() {
-  let currentTheme = useSelector((state) => {
-    return state;
-  });
+  const checkLoginCredentials = () => {
+    AsyncStorage.getItem('covistaticaCredentials').then((result) => {
+      if (result !== null) {
+        setStoredCredentials(JSON.parse(result));
+      } else {
+        setStoredCredentials(null);
+      }
+    }).catch(error => console.log(error))
+  }
+
+  const checkStoredLanguage = () => {
+    AsyncStorage.getItem('chosenLanguage').then((result) => {
+      if (result !== null) {
+        setStoredLanguage(result);
+        console.log("selected language is " + result);
+      } else {
+        setStoredLanguage(null);
+      }
+    }).catch(error => console.log(error))
+  }
+
+  if (!appReady) {
+    return (
+      <>
+        <AppLoading
+          startAsync={checkLoginCredentials}
+          onFinish={() => setAppReady(true)}
+          onError={console.warn}
+        />
+        <AppLoading
+          startAsync={checkStoredLanguage}
+          onFinish={() => setAppReady(true)}
+          onError={console.warn}
+        />
+      </>
+    )
+  }
 
   return (
-    <NavigationContainer
-      theme={currentTheme ? customDarkTheme : customDefaultTheme}
-    >
-      <DrawerNavigator />
-    </NavigationContainer>
+    <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
+      <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}>
+        <Provider store={store}>
+          <StatusBar backgroundColor="gray" />
+          <RootStackNavigator />
+        </Provider>
+      </LanguageContext.Provider>
+    </CredentialsContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({});

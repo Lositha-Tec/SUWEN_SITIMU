@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Covistatica",
-    "slug": "strong_village",
+    "name": "Suwen Sitimu",
+    "slug": "suwen sitimu",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.5",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -18,15 +18,18 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "supportsTablet": true
+    },
     "android": {
-      "package": "com.developers_in.strong_village",
-      "versionCode": 5,
+      "package": "com.developers_in.suwen_sitimu",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "description": "",
-    "githubUrl": "https://github.com/Developers-In/covid19_updates.git"
+    "githubUrl": "https://github.com/Developers-In/SUWEN_SITIMU.git"
   }
 }

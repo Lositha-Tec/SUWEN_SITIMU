@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export default function MessageServiceScreen() {
+export default function SampleScreen() {
     return (
         <View>
-            <Text>Message</Text>
+            <Text>This is sample</Text>
         </View>
     )
 }
