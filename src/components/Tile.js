@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   imageIcon: {
     backgroundColor: "#7052fb",
-    width: wp("15%"),
-    height: hp("8%"),
+    width: wp("13%"),
+    height: hp("7%"),
     borderRadius: 15,
     padding: 10,
     marginBottom: 5,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   count: {
-    fontSize: RFPercentage(3),
+    fontSize: RFPercentage(3.5),
     color: "#000",
   },
 });
