@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "Suwen Sitimu",
-    "slug": "suwen sitimu",
+    "slug": "suwen_sitimu",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
