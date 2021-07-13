@@ -22,6 +22,35 @@ import Tile from "../components/Tile";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
 
+import { LanguageContext } from '../components/LanguageContext';
+
+import i18n from 'i18n-js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { si, en, ta } from '../i18n/SupportedLanguages';
+
+
+i18n.translations = {
+  si, en, ta
+}
+
+// async function getLanguage() {
+//   const choice = await AsyncStorage.getItem('setLanguage')
+//   i18n.locale = choice
+//   i18n.fallbacks = true
+//   console.log('selected ' + choice);
+
+//   console.log("aaaaaaa"+ i18n.currentLocale())
+// }
+
+// getLanguage()
+
+// export function t(name) {
+//   return i18n.t(name)
+// }
+
+//i18n.locale = Localization.locale;
+//i18n.fallbacks = true;
+
 export default function LocalDataScreen(props) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -66,7 +95,7 @@ export default function LocalDataScreen(props) {
           showsVerticalScrollIndicator={false}
         >
           <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>
-            Sri Lanka
+          {i18n.t('countryName')}
           </Text>
 
           {loading ? (

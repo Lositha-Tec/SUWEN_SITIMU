@@ -19,8 +19,9 @@ const { primary, secondary, tertiary, darklight, brand, green, red } = Colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
-    padding: 25px;
-    padding-top: ${StatusBarHeight + 40}px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
     background-color: ${primary};
 `
 

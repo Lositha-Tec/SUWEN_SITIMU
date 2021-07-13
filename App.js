@@ -20,7 +20,13 @@ import { themeReducer } from "./src/reducers/themeReducer";
 
 import { createStore } from "redux";
 import { Provider } from 'react-redux';
-import { sn, en, tn } from './src/i18n/SupportedLanguages';
+
+import i18n from 'i18n-js';
+import { si, en, ta } from './src/i18n/SupportedLanguages';
+i18n.translations = { si, en, ta };
+
+i18n.locale = 'en'
+//console.log(i18n.locale);
 
 const store = createStore(themeReducer);
 
@@ -30,24 +36,27 @@ export default function App() {
   const [storedLanguage, setStoredLanguage] = useState(en);
 
   const checkLoginCredentials = () => {
-    AsyncStorage.getItem('covistaticaCredentials').then((result) => {
+    AsyncStorage.getItem('suwenSitimuCredentials').then((result) => {
       if (result !== null) {
         setStoredCredentials(JSON.parse(result));
       } else {
         setStoredCredentials(null);
       }
     }).catch(error => console.log(error))
+    //console.log(storedCredentials);
   }
 
   const checkStoredLanguage = () => {
     AsyncStorage.getItem('chosenLanguage').then((result) => {
       if (result !== null) {
         setStoredLanguage(result);
-        console.log("selected language is " + result);
+        //i18n.fallbacks = true;
+        
       } else {
         setStoredLanguage(null);
       }
     }).catch(error => console.log(error))
+    //onsole.log(storedLanguage);
   }
 
   if (!appReady) {

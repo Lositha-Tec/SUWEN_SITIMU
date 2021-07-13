@@ -9,11 +9,11 @@ const {primary} = Colors;
 const KeyboardAvoidingWrapper = ({children}) => {
     return (
         <KeyboardAvoidingView style={{flex:1, backgroundColor: primary}}>
-            <ScrollView>
+            {/* <ScrollView> */}
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
                     {children}
                 </TouchableWithoutFeedback>
-            </ScrollView>
+            {/* </ScrollView> */}
 
         </KeyboardAvoidingView>
     )

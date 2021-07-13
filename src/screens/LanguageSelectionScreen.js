@@ -5,26 +5,26 @@ import i18n from 'i18n-js';
 
 //async storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { LanguageContext } from '../components/LanguageContext';
 
-import { sn, en, tn } from '../i18n/SupportedLanguages';
+import { si, en, ta } from '../i18n/SupportedLanguages';
 
-i18n.translations = { sn, en, tn };
+i18n.translations = { si, en, ta };
 
 const LanguageSelectionScreen = () => {
-
     const { storedLanguage, setStoredLanguage } = useContext(LanguageContext);
 
     const selectLanguage = (language) => {
+        //console.log(language);
         AsyncStorage.setItem('chosenLanguage', JSON.stringify(language))
             .then(() => {
                 setStoredLanguage(language);
-                console.log(setStoredLanguage);
-
+                console.log("aaaa "+ setStoredLanguage);
             }).catch((error) => {
                 console.log(error);
             })
+            console.log("bbbb "+ storedLanguage);
+            
     }
 
     return (
@@ -32,13 +32,13 @@ const LanguageSelectionScreen = () => {
             <View>
                 <Text>Please select your preferred language</Text>
             </View>
-            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => { selectLanguage("sn") }}>
+            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => selectLanguage("si")}>
                 <Text style={styles.languageBtnText}>Sinhala</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => { selectLanguage("en") }}>
+            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => selectLanguage("en")}>
                 <Text style={styles.languageBtnText}>English</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => { selectLanguage("tn") }}>
+            <TouchableOpacity style={styles.languageBtnContainer} onPress={() => selectLanguage("ta")}>
                 <Text style={styles.languageBtnText}>Tamil</Text>
             </TouchableOpacity>
         </View>

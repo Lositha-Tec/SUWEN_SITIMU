@@ -69,7 +69,7 @@ export const PrivacyPolicyScreen = (props) => {
   })
   return (
     connectStatus ? (
-      <WebView source={{ uri: "http://developers-in.com/covistatica/privacy.html" }} />
+      <WebView source={{ uri: "http://developers-in.com/suwensitimu/privacy.html" }} />
     ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
   );
 }
@@ -81,7 +81,7 @@ export const TermsConditionScreen = (props) => {
   })
   return (
     connectStatus ? (
-      <WebView source={{ uri: "http://developers-in.com/covistatica/terms.html" }} />
+      <WebView source={{ uri: "http://developers-in.com/suwensitimu/terms.html" }} />
     ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
   );
 }

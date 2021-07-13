@@ -119,7 +119,7 @@ const LoginScreen = (props) => {
     }
 
     const persistLogin = (credentials) => {
-        AsyncStorage.setItem('covistaticaCredentials', JSON.stringify(credentials))
+        AsyncStorage.setItem('suwenSitimuCredentials', JSON.stringify(credentials))
             .then(() => {
                 setStoredCredentials(credentials);
 
@@ -127,10 +127,8 @@ const LoginScreen = (props) => {
                 console.log(error);
                 handleMessage('Persisting login failed');
             })
+            
     }
-
-
-
 
     return (
         connectStatus ? (
@@ -139,7 +137,7 @@ const LoginScreen = (props) => {
 
                     <InnerContainer>
                         <PageLogo resizeMode="cover" source={require('../../assets/img/logo.png')} />
-                        <PageTitle>Covistatica</PageTitle>
+                        <PageTitle>Suwen Sitimu</PageTitle>
                         <SubTitle>Account Login</SubTitle>
 
                         <StyledFormArea>

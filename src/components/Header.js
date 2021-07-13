@@ -11,6 +11,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //credentials context
 import { CredentialsContext } from './../components/CredentialsContext';
 import { LanguageContext } from '../components/LanguageContext';
+import * as Localization from 'expo-localization';
+import { si, en, ta } from '../i18n/SupportedLanguages';
+import i18n from 'i18n-js';
+
+i18n.translations = {
+  si, en, ta
+}
+
+i18n.locale = Localization.locale;
+i18n.fallbacks = true;
 
 export default function Header(props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
@@ -20,7 +30,7 @@ export default function Header(props) {
 
   //Logout Function
   const clearLogin = () => {
-    AsyncStorage.removeItem('covistaticaCredentials').then(() => {
+    AsyncStorage.removeItem('suwenSitimuCredentials').then(() => {
       setStoredCredentials("");
     }).catch(error => console.log(error))
   }
@@ -38,7 +48,7 @@ export default function Header(props) {
           />
         </View>
         <View style={styles.content}>
-          <Text style={styles.title}>COVID-19 UPDATES</Text>
+          <Text style={styles.title}>{i18n.t('header')}</Text>
           <Text style={[styles.lastUpdateTime, { color: colors.dateColor }]}>
             Last Updated: {props.dateAndTime}
           </Text>

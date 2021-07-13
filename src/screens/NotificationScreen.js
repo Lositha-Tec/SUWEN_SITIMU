@@ -31,7 +31,6 @@ const ActivityIndicatorElement = () => {
     );
 };
 
-
 const NotificationScreen = (props) => {
     const [loading, setLoading] = useState(false);
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
