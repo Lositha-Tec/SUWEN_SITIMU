@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Animated, StyleSheet, View, } from "react-native";
 import { StatusBar } from 'react-native';
-
+import * as SplashScreen from "expo-splash-screen";
 //React Navigation Stack
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 
@@ -30,6 +31,8 @@ i18n.locale = 'en'
 
 const store = createStore(themeReducer);
 
+SplashScreen.preventAutoHideAsync().catch(() => { });
+
 export default function App() {
   const [appReady, setAppReady] = useState(false);
   const [storedCredentials, setStoredCredentials] = useState("");
@@ -51,7 +54,7 @@ export default function App() {
       if (result !== null) {
         setStoredLanguage(result);
         //i18n.fallbacks = true;
-        
+
       } else {
         setStoredLanguage(null);
       }
@@ -77,13 +80,100 @@ export default function App() {
   }
 
   return (
-    <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
-      <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}>
-        <Provider store={store}>
-          <StatusBar backgroundColor="gray" />
-          <RootStackNavigator />
-        </Provider>
-      </LanguageContext.Provider>
-    </CredentialsContext.Provider>
+    <AnimatedAppLoader image={require("./assets/Covid.gif")}>
+      <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
+        <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}>
+          <Provider store={store}>
+            <StatusBar backgroundColor="gray" />
+            <RootStackNavigator />
+          </Provider>
+        </LanguageContext.Provider>
+      </CredentialsContext.Provider>
+    </AnimatedAppLoader>
+  );
+}
+
+function AnimatedAppLoader({ children, image }) {
+  const [isSplashReady, setSplashReady] = React.useState(false);
+
+  const startAsync = React.useMemo(
+    () => () => Asset.fromURI(image).downloadAsync(),
+    [image]
+  );
+
+  const onFinish = React.useMemo(() => setSplashReady(true), []);
+
+  if (!isSplashReady) {
+    return (
+      <AppLoading
+        autoHideSplash={false}
+        startAsync={startAsync}
+        onError={console.error}
+        onFinish={onFinish}
+      />
+    );
+  }
+  return <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>;
+}
+
+function AnimatedSplashScreen({ children, image }) {
+  const animation = React.useMemo(() => new Animated.Value(1), []);
+  const [isAppReady, setAppReady] = React.useState(false);
+  const [isSplashAnimationComplete, setAnimationComplete] = React.useState(
+    false
+  );
+
+  React.useEffect(() => {
+    if (isAppReady) {
+      Animated.timing(animation, {
+        toValue: 0,
+        duration: 6000,
+        useNativeDriver: true,
+      }).start(() => setAnimationComplete(true));
+    }
+  }, [isAppReady]);
+
+  const onImageLoaded = React.useMemo(() => async () => {
+    try {
+      await SplashScreen.hideAsync();
+      await Promise.all([]);
+    } catch (e) {
+    } finally {
+      setAppReady(true);
+    }
+  });
+
+  return (
+    <View style={{ flex: 1 }}>
+      {isAppReady && children}
+      {!isSplashAnimationComplete && (
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            StyleSheet.absoluteFill,
+            {
+              // backgroundColor: "#ffffff",
+              // opacity: animation,
+            },
+          ]}
+        >
+          <Animated.Image
+            style={{
+              width: "100%",
+              height: "100%",
+              resizeMode: "contain",
+              transform: [
+                {
+                  scale: animation,
+                },
+              ],
+            }}
+            source={image}
+            onLoadEnd={onImageLoaded}
+            fadeDuration={0}
+          />
+        </Animated.View>
+      )}
+    </View>
   );
 }
