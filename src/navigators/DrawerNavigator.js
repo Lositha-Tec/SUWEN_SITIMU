@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { WebView } from "react-native-webview";
 
+import { config } from '../components/Configurations'
+
 //React Navigation
 import {
   createDrawerNavigator, DrawerContentScrollView,
@@ -86,6 +88,23 @@ export const TermsConditionScreen = (props) => {
   );
 }
 
+export const TelltoPresidentScreen = (props) => {
+  const [connectStatus, setConnectStatus] = useState(false)
+  checkConnected().then(res => {
+    setConnectStatus(res)
+  })
+  return (
+    connectStatus ? (
+      <WebView
+        source={{ uri: "https://tell.president.gov.lk/" }}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        injectedJavaScript={config}
+      />
+    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
+  );
+}
+
 function CustomDrawerContent(props) {
   const dispatch = useDispatch();
   const currentTheme = useSelector((state) => {
@@ -128,6 +147,9 @@ export default function DrawerNavigator() {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
         labelStyle: { fontWeight: "bold", fontSize: 15 },
+      }}
+      drawerStyle={{
+        //width: 300,
       }}
     >
       <Drawer.Screen
@@ -226,6 +248,21 @@ export default function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
+        name="Tell to President"
+        component={TelltoPresidentScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="user-tie"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
         name="Rate Us"
         component={RateUsScreen}
         options={{
@@ -275,8 +312,8 @@ export default function DrawerNavigator() {
         component={SettingScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <Ionicons
-              name="md-document-text"
+            <FontAwesome5
+              name="cog"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
@@ -286,7 +323,7 @@ export default function DrawerNavigator() {
         }}
       />
     </Drawer.Navigator>
-    
+
     // )}
     // </NoConnectionComponent.Consumer>
 

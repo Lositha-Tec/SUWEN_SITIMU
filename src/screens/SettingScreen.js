@@ -15,9 +15,8 @@ const SettingScreen = () => {
         }).catch(error => console.log(error))
     }
     return (
-        <View>
-            <Text>Settings</Text>
-            <Button title="Remove Language" onPress={clearLanguage} />
+        <View style={{flex: 1, paddingHorizontal: 20, marginTop: 10}}>
+            <Button title="Change Language" onPress={clearLanguage} />
         </View>
     )
 }

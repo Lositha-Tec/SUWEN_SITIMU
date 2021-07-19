@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
   View,
+  Alert,
   ActivityIndicator,
 } from "react-native";
+import * as Location from 'expo-location';
 
 import { WebView } from "react-native-webview";
 
@@ -27,6 +29,20 @@ const TimelineScreen = (props) => {
     setConnectStatus(res)
   })
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      (async () => {
+        const res = await Location.hasServicesEnabledAsync();
+        if (!res) {
+          Alert.alert("Please enable your device location!!")
+        }
+      })();
+    }, 5000);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
   return (
     connectStatus ? (
       <SafeAreaView style={{ flex: 1 }}>
@@ -44,6 +60,7 @@ const TimelineScreen = (props) => {
           />
           {visible ? <ActivityIndicatorElement /> : null}
         </View>
+
       </SafeAreaView>
     ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
   );
@@ -66,6 +83,10 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     justifyContent: "center",
+  },
+  paragraph: {
+    fontSize: 18,
+    textAlign: 'center',
   },
 });
 
