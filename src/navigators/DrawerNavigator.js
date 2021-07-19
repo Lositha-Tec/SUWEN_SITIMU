@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { WebView } from "react-native-webview";
 
-import config from '../components/Configurations'
+import { config } from '../components/Configurations'
 
 //React Navigation
 import {
@@ -88,29 +88,6 @@ export const TermsConditionScreen = (props) => {
   );
 }
 
-export const SearchGramaNiladhariScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "http://apps.moha.gov.lk:8090/lifecode/home" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-export const ContactGramaNiladhariScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "http://apps.moha.gov.lk:8090/officerinfo/" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-
 export const TelltoPresidentScreen = (props) => {
   const [connectStatus, setConnectStatus] = useState(false)
   checkConnected().then(res => {
@@ -118,7 +95,12 @@ export const TelltoPresidentScreen = (props) => {
   })
   return (
     connectStatus ? (
-      <WebView source={{ uri: "https://tell.president.gov.lk/" }} injectedJavaScript={config} />
+      <WebView
+        source={{ uri: "https://tell.president.gov.lk/" }}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        injectedJavaScript={config}
+      />
     ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
   );
 }
@@ -167,7 +149,7 @@ export default function DrawerNavigator() {
         labelStyle: { fontWeight: "bold", fontSize: 15 },
       }}
       drawerStyle={{
-        width: 315,
+        //width: 300,
       }}
     >
       <Drawer.Screen
@@ -266,6 +248,21 @@ export default function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
+        name="Tell to President"
+        component={TelltoPresidentScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="user-tie"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
         name="Rate Us"
         component={RateUsScreen}
         options={{
@@ -315,53 +312,8 @@ export default function DrawerNavigator() {
         component={SettingScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <Ionicons
-              name="md-document-text"
-              size={24}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
-      <Drawer.Screen
-        name="Gramaniladhari Divisions"
-        component={SearchGramaNiladhariScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <MaterialIcons
-              name="privacy-tip"
-              size={24}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
-      <Drawer.Screen
-        name="Contact Gramaniladhari"
-        component={ContactGramaNiladhariScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <MaterialIcons
-              name="privacy-tip"
-              size={24}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
-      <Drawer.Screen
-        name="Tell to President"
-        component={TelltoPresidentScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <MaterialIcons
-              name="privacy-tip"
+            <FontAwesome5
+              name="cog"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
@@ -371,7 +323,7 @@ export default function DrawerNavigator() {
         }}
       />
     </Drawer.Navigator>
-    
+
     // )}
     // </NoConnectionComponent.Consumer>
 

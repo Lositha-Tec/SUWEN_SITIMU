@@ -3,10 +3,9 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
+  Alert,
   ActivityIndicator,
 } from "react-native";
-import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 
 import { WebView } from "react-native-webview";
@@ -24,8 +23,6 @@ const ActivityIndicatorElement = () => {
 
 const TimelineScreen = (props) => {
   const [visible, setVisible] = useState(true);
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
 
   const [connectStatus, setConnectStatus] = useState(false)
   checkConnected().then(res => {
@@ -33,51 +30,21 @@ const TimelineScreen = (props) => {
   })
 
   useEffect(() => {
-    checkLocation();
-    // (async () => {
-    //   let { status } = await Location.requestForegroundPermissionsAsync();
-    //   console.log("Status " + status);
-    //   if (status !== 'granted') {
-    //     setErrorMsg('Permission to access location was denied');
-    //     return;
-    //   }
+    const interval = setInterval(() => {
+      (async () => {
+        const res = await Location.hasServicesEnabledAsync();
+        if (!res) {
+          Alert.alert("Please enable your device location!!")
+        }
+      })();
+    }, 5000);
 
-    //   let location = await Location.getCurrentPositionAsync({});
-    //   setLocation(location);
-    // })();
+    return () => clearInterval(interval);
+
   }, []);
-
-  async function checkLocation() {
-    setLocation(null);
-    setErrorMsg(null);
-    try {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      console.log("Before click permission alert : " + status);
-      if (status !== "granted") {
-        console.log("No Permision : " + status);
-        setErrorMsg("Permission is needed to access the location");
-        return;
-      }
-
-      const location = await Location.getCurrentPositionAsync();
-      setLocation(location);
-      console.log(location);
-    } catch (error) {
-      setErrorMsg("Catch " + error.message);
-    }
-  }
-
-  let text = '';
-  if (errorMsg) {
-    console.log("error " + errorMsg);
-    text = errorMsg;
-  } else if (location) {
-    //console.log(location);
-  }
 
   return (
     connectStatus ? (
-      location ? ( 
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
           <WebView
@@ -95,11 +62,7 @@ const TimelineScreen = (props) => {
         </View>
 
       </SafeAreaView>
-    ) : (
-    <View>
-      <Text style={styles.paragraph}>{text}</Text>
-    </View>)
-  ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
+    ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
   );
 };
 
