@@ -59,7 +59,7 @@ export const RateUsScreen = (props) => {
   })
   return (
     connectStatus ? (
-      <WebView source={{ uri: "https://play.google.com/store/apps/details?id=com.developers_in.strong_village" }} />
+      <WebView source={{ uri: "https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu" }} />
     ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
   );
 }
