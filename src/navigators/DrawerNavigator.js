@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { WebView } from "react-native-webview";
 
+import config from '../components/Configurations'
+
 //React Navigation
 import {
   createDrawerNavigator, DrawerContentScrollView,
@@ -86,6 +88,41 @@ export const TermsConditionScreen = (props) => {
   );
 }
 
+export const SearchGramaNiladhariScreen = (props) => {
+  const [connectStatus, setConnectStatus] = useState(false)
+  checkConnected().then(res => {
+    setConnectStatus(res)
+  })
+  return (
+    connectStatus ? (
+      <WebView source={{ uri: "http://apps.moha.gov.lk:8090/lifecode/home" }} />
+    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
+  );
+}
+export const ContactGramaNiladhariScreen = (props) => {
+  const [connectStatus, setConnectStatus] = useState(false)
+  checkConnected().then(res => {
+    setConnectStatus(res)
+  })
+  return (
+    connectStatus ? (
+      <WebView source={{ uri: "http://apps.moha.gov.lk:8090/officerinfo/" }} />
+    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
+  );
+}
+
+export const TelltoPresidentScreen = (props) => {
+  const [connectStatus, setConnectStatus] = useState(false)
+  checkConnected().then(res => {
+    setConnectStatus(res)
+  })
+  return (
+    connectStatus ? (
+      <WebView source={{ uri: "https://tell.president.gov.lk/" }} injectedJavaScript={config} />
+    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
+  );
+}
+
 function CustomDrawerContent(props) {
   const dispatch = useDispatch();
   const currentTheme = useSelector((state) => {
@@ -128,6 +165,9 @@ export default function DrawerNavigator() {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
         labelStyle: { fontWeight: "bold", fontSize: 15 },
+      }}
+      drawerStyle={{
+        width: 315,
       }}
     >
       <Drawer.Screen
@@ -277,6 +317,51 @@ export default function DrawerNavigator() {
           drawerIcon: ({ focused, size }) => (
             <Ionicons
               name="md-document-text"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Gramaniladhari Divisions"
+        component={SearchGramaNiladhariScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="privacy-tip"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Contact Gramaniladhari"
+        component={ContactGramaNiladhariScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="privacy-tip"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Tell to President"
+        component={TelltoPresidentScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="privacy-tip"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
