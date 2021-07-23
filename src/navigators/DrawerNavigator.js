@@ -1,5 +1,6 @@
 //React
 import React, { useState } from 'react';
+import { Share } from 'react-native';
 import { WebView } from "react-native-webview";
 
 import { config } from '../components/Configurations'
@@ -105,6 +106,26 @@ export const TelltoPresidentScreen = (props) => {
   );
 }
 
+const onShare = async () => {
+  try {
+    const result = await Share.share({
+      message:
+        'https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu',
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
 function CustomDrawerContent(props) {
   const dispatch = useDispatch();
   const currentTheme = useSelector((state) => {
@@ -126,6 +147,18 @@ function CustomDrawerContent(props) {
         onPress={() =>
           dispatch({ type: "change_theme", payload: !currentTheme })
         }
+        labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
+      />
+      <DrawerItem
+        icon={({ focused, color, size }) => (
+          <FontAwesome5
+            color={"#5c5c5c"}
+            size={size}
+            name={focused ? "share" : "share"}
+          />
+        )}
+        label="Share App"
+        onPress={onShare}
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
       />
     </DrawerContentScrollView>
