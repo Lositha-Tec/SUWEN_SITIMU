@@ -54,21 +54,9 @@ import {
 //import SearchableDropdown component
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
-const DATA_ARRAY = [];
-
-function gramaniladariArray() {
-    for (let i = 0; i < villageData.length; i++) {
-        let gramaniladari = {};
-        gramaniladari.id = i;
-        gramaniladari.name = villageData[i].gn_name + ' ' + villageData[i].gn_number;
-        DATA_ARRAY.push(gramaniladari);
-    }
-}
-
-
-
 const UserProfileScreen = (props) => {
     const navigation = useNavigation();
+
     //Logout Function
     const clearLogin = () => {
         AsyncStorage.removeItem('suwenSitimuCredentials').then(() => {
@@ -80,37 +68,59 @@ const UserProfileScreen = (props) => {
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
     const { name, email, photoUrl, mobile, gramaNiladhariDivision } = storedCredentials;
 
+    //console.log(storedCredentials);
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
 
     const [selectedGgramaNiladhariDivision, setSelectedGgramaNiladhariDivision] = useState("");
-
-
-    function gramaniladari() {
-        let gramaobj = {};
-        for (let i = 0; i < DATA_ARRAY.length; i++) {
-            if (DATA_ARRAY[i].name === selectedGgramaNiladhariDivision) {
-                gramaobj.id = i;
-                gramaobj.name = DATA_ARRAY[i].name;
-                break;
-            }
-        }
-        return gramaobj;
-    }
+    const [gramaNiladhariDivisionOne, setGramaNiladhariDivision] = useState(gramaNiladhariDivision);
 
     const DB_URL = 'https://dry-waters-33546.herokuapp.com/user/';
 
-    // set village data to villages array in loading screen
-    useEffect(() => {
+    let DATA_ARRAY = [];
+
+
+
+    const gramaniladariArray = () => {
+        for (let i = 0; i < villageData.length; i++) {
+            let gramaniladari = {};
+            gramaniladari.id = i;
+            gramaniladari.name = villageData[i].gn_name + ' ' + villageData[i].gn_number;
+            DATA_ARRAY.push(gramaniladari);
+        }
+    }
+
+    const gramaniladari = () => {
+        DATA_ARRAY = [];
         gramaniladariArray();
-        console.log(DATA_ARRAY.length);
-    }, []);
+        if (selectedGgramaNiladhariDivision) {
+            setGramaNiladhariDivision(selectedGgramaNiladhariDivision);
+        }
+        if (gramaNiladhariDivision && mobile) {
+            if (gramaNiladhariDivision === selectedGgramaNiladhariDivision) {
+                return gramaNilaObject(selectedGgramaNiladhariDivision);
+            } else {
+                return gramaNilaObject(selectedGgramaNiladhariDivision);
+            }
+        } else {
+            return gramaNilaObject(selectedGgramaNiladhariDivision);
+        }
+    };
 
-    //form handling
+    const gramaNilaObject = (gramaniladariDevision) => {
+        let gramaobj = {};
+        for (let i = 0; i < DATA_ARRAY.length; i++) {
+            if (DATA_ARRAY[i].name === gramaniladariDevision) {
+                gramaobj.id = i;
+                gramaobj.name = DATA_ARRAY[i].name;
+                return gramaobj;
+            }
+        }
+    };
+
+
     const handleAddData = (values, setSubmitting) => {
-
         handleMessage(null);
-        //if
         if (!(mobile && gramaNiladhariDivision)) {
             axios.post(DB_URL + "add", values).then((response) => {
                 const result = response.data;
@@ -119,17 +129,9 @@ const UserProfileScreen = (props) => {
                 if (status !== 'SUCCESS') {
                     handleMessage(message, status);
                 } else {
-                    const SaveUser = {
-                        'email': email,
-                        'name': name,
-                        'photoUrl': photoUrl,
-                        'mobile': data.mobile,
-                        'gramaNiladhariDivision': data.gramaNiladhariDivision
-                    };
-                    persistLogin(SaveUser);
+                    persistLogin(SaveUser(data.mobile,data.gramaNiladhariDivision));
                     handleMessage(message, status);
-                    //navigation.navigate("Notifications");
-
+                    navigation.navigate("Notifications");
                 }
                 setSubmitting(false);
             }).catch(error => {
@@ -141,24 +143,12 @@ const UserProfileScreen = (props) => {
             axios.put(DB_URL + "add", values).then((response) => {
                 const result = response.data;
                 const { message, status, data } = result;
-
                 if (status !== 'SUCCESS') {
                     handleMessage(message, status);
-                } else {
-                    const SaveUser = {
-                        'email': email,
-                        'name': name,
-                        'photoUrl': photoUrl,
-                        'mobile': data.mobile,
-                        'gramaNiladhariDivision': data.gramaNiladhariDivision
-                    };
-                    persistLogin(SaveUser);
-
-                    console.log("Put mapping");
-
+                } else {                  
+                    persistLogin(SaveUser(values.mobile,values.gramaNiladhariDivision));
                     handleMessage(message, status);
-                    //navigation.navigate("Notifications");
-
+                    navigation.navigate("Notifications");
                 }
                 setSubmitting(false);
             }).catch(error => {
@@ -168,6 +158,17 @@ const UserProfileScreen = (props) => {
             });
         }
 
+    };
+
+    const SaveUser = (mobile, gramaNiladhariDivision) => {
+        let user = {
+            'email': email,
+            'name': name,
+            'photoUrl': photoUrl,
+            'mobile': mobile,
+            'gramaNiladhariDivision': gramaNiladhariDivision
+        }
+        return user;
     };
 
     const persistLogin = (data) => {
@@ -185,7 +186,6 @@ const UserProfileScreen = (props) => {
     };
 
     return (
-
         <KeyboardAvoidingWrapper>
             <StyledContainer>
                 <InnerContainer>
@@ -195,25 +195,39 @@ const UserProfileScreen = (props) => {
                         onSubmit={(values, { setSubmitting }) => {
                             values = { ...values };
                             values.gramaNiladhariDivision = selectedGgramaNiladhariDivision;
-                            console.log(values);
-                            if (values.name === '' || values.email === '' ||  values.mobile === '' || values.gramaNiladhariDivision === '') {
+                            if (values.name) {//TODO
                                 handleMessage('Please fill all the fields');
                                 setSubmitting(false);
                             }
-                            else {
+                            if (values.email) {
+//TODO
+                            }
+                            if (values.mobile) {
+
+                            }
+                            if (values.gramaNiladhariDivision) {
+
+                            }
+                            if (values.name && values.email && values.mobile && values.gramaNiladhariDivision) {
                                 handleAddData(values, setSubmitting);
                             }
                         }}
-                    >
-                        {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (<StyledFormArea>
 
+                    >
+                        {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) =>
+                        (<StyledFormArea>
                             <View>
                                 <Text style={styles.headingText}>
                                     Grama Niladhari Division
                                 </Text>
+                                <Text style={styles.headingText}>
+                                    {gramaNiladhariDivisionOne}
+                                </Text>
                                 <SearchableDropdown
                                     onTextChange={(text) => { }}
-                                    onItemSelect={(item) => { setSelectedGgramaNiladhariDivision(item.name);}}
+                                    onItemSelect={(item) => {
+                                        setSelectedGgramaNiladhariDivision(item.name);
+                                    }}
                                     containerStyle={{ padding: 5 }}
                                     selectedItems={gramaniladari()}
                                     textInputStyle={{
@@ -243,9 +257,8 @@ const UserProfileScreen = (props) => {
                                         //to restrict the items dropdown hieght
                                         maxHeight: '60%',
                                     }}
+                                    defaultIndex={1}
                                     items={DATA_ARRAY}
-                                    //mapping of item array
-                                    //defaultIndex={7}
                                     //default selected item index
                                     placeholder="placeholder"
                                     //place holder for the search input
@@ -298,15 +311,14 @@ const UserProfileScreen = (props) => {
                             {isSubmitting && <StyledButton disabled={true}>
                                 <ActivityIndicator size="large" color={primary} />
                             </StyledButton>}
-
+                            <Line />
+                            <StyledButton onPress={clearLogin}>
+                                <ButtonText>Logout</ButtonText>
+                            </StyledButton>
                         </StyledFormArea>
                         )}
 
                     </Formik>
-                    <Line />
-                    <StyledButton onPress={clearLogin}>
-                        <ButtonText>Logout</ButtonText>
-                    </StyledButton>
                 </InnerContainer>
             </StyledContainer>
         </KeyboardAvoidingWrapper>
