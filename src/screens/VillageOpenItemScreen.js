@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
-const VillageOpenItemScreen = ({ route, navigation }) => {
+const VillageOpenItemScreen = ({ route }) => {
   const { item } = route.params;
 
   return (
@@ -58,6 +59,7 @@ const VillageOpenItemScreen = ({ route, navigation }) => {
           </View>
         </View>
       </View>
+      <AdMobBannerComponent />
     </ScrollView>
   );
 };

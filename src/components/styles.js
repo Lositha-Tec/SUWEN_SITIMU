@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
 
-const StatusBarHeight = Constants.statusBarHeight;
-
-//colors
 export const Colors = {
     primary: '#ffffff',
     secondary: '#E5E7EB',
@@ -12,7 +7,9 @@ export const Colors = {
     darklight: '#9CA3AF',
     brand: '#6D28D9',
     green: '#10B981',
-    red: '#EF4444'
+    red: '#EF4444',
+    activityIndicatorColor: '#EF4444',
+    activityIndicatorBackgroundColor: 'rgba(0,0,0, 0.2)',
 };
 
 const { primary, secondary, tertiary, darklight, brand, green, red } = Colors;

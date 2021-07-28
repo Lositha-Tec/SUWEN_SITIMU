@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions, ActivityIndicator, } from "react-native";
 import { useTheme } from "@react-navigation/native";
-
 import { RFPercentage } from "react-native-responsive-fontsize";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import { Picker } from "@react-native-picker/picker";
-
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
-
+import { ActivityIndicatorComponent } from "../components/ActivityIndicatorComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
 
@@ -35,11 +22,7 @@ export default function GlobalDataScreen(props) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [errMsg, setErrMsg] = useState(null);
   const [title, setTitle] = useState("Global");
-
   const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
 
   // set country data to countries array in loading screen
   useEffect(() => {
@@ -55,8 +38,15 @@ export default function GlobalDataScreen(props) {
     } catch (err) {
       setErrMsg(err.message);
     }
-
     setCountries(countryData);
+
+    const interval = setInterval(() => {
+      checkConnected().then(res => {
+        setConnectStatus(res)
+      })
+    }, 10);
+    return () => clearInterval(interval);
+
   }, []);
 
   // fill countries into dropdown
@@ -149,6 +139,7 @@ export default function GlobalDataScreen(props) {
   return (
     connectStatus ? (
       <View style={styles.fullPage}>
+        {loading ? <ActivityIndicatorComponent /> : null}
         <Header
           navigation={props.navigation}
           dateAndTime={covidData.update_date_time}
@@ -178,14 +169,6 @@ export default function GlobalDataScreen(props) {
           <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>
             {title}
           </Text>
-
-          {loading ? (
-            <ActivityIndicator
-              size="large"
-              color="#cc0000"
-              style={styles.activityIndicator}
-            />
-          ) : null}
 
           <View style={styles.tileParent}>
             <View style={{ flexDirection: "row" }}>
@@ -236,7 +219,7 @@ export default function GlobalDataScreen(props) {
           </View>
         </ScrollView>
       </View>
-    ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
+    ) : (<NoNetworkConnection navigation={props.navigation} />)
   );
 }
 
@@ -259,9 +242,9 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height / 20,
     width: wp("90%"),
   },
-  activityIndicator: {
-    marginTop: "10%",
-  },
+  // activityIndicator: {
+  //   marginTop: "10%",
+  // },
   subTitle: {
     fontSize: RFPercentage(3),
     marginBottom: 10,

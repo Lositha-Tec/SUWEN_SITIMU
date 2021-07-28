@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, View, FlatList } from "react-native";
-
 import { useTheme, useNavigation } from "@react-navigation/native";
-
 import { MaterialIcons } from "@expo/vector-icons";
+import { SearchBar } from "react-native-elements";
 
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import VillegeData from "../data/gramaniladari";
 
-import { SearchBar } from "react-native-elements";
 const VillegeServiceScreen = () => {
   const { colors } = useTheme();
   const navigation = useNavigation();
@@ -101,6 +100,7 @@ const VillegeServiceScreen = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={ItemView}
       />
+      <AdMobBannerComponent />
     </View>
   );
 };

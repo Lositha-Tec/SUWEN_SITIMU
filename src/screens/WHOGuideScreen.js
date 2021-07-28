@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 import WHOImageComponent from "../components/WHOImageComponent";
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
-function WHOGuideScreen({ navigation }) {
+function WHOGuideScreen() {
   const { colors } = useTheme();
   return (
     <ScrollView>
@@ -81,6 +74,7 @@ function WHOGuideScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
+      <AdMobBannerComponent />
     </ScrollView>
   );
 }

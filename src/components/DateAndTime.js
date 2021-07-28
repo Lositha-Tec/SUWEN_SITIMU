@@ -1,24 +1,22 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+// import React from "react";
+// import { StyleSheet, View, Text } from "react-native";
+// import { RFPercentage } from "react-native-responsive-fontsize";
 
-import { RFPercentage } from "react-native-responsive-fontsize";
+// export const TileParent = (props) => {
+//   return (
+//     <View style={styles.tileParent}>
+//       <Text style={styles.date}>{props.dateAndTime}</Text>
+//     </View>
+//   );
+// };
 
-const TileParent = (props) => {
-  return (
-    <View style={styles.tileParent}>
-      <Text style={styles.date}>{props.dateAndTime}</Text>
-    </View>
-  );
-};
+// const styles = StyleSheet.create({
+//   tileParent: {
+//     flex: 1,
+//     marginBottom: 30,
 
-const styles = StyleSheet.create({
-  tileParent: {
-    flex: 1,
-    marginBottom: 30,
-  },
-  date: {
-    fontSize: RFPercentage(2),
-  },
-});
-
-export default TileParent;
+//   },
+//   date: {
+//     fontSize: RFPercentage(2),
+//   },
+// });

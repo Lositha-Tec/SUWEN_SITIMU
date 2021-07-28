@@ -1,110 +1,24 @@
-//React
-import React, { useState } from 'react';
-import { Share } from 'react-native';
-import { WebView } from "react-native-webview";
-
-import { config } from '../components/Configurations'
-
-//React Navigation
-import {
-  createDrawerNavigator, DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
-
+import React from 'react';
+import { Share, Linking } from 'react-native';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem, } from '@react-navigation/drawer';
 import { useSelector, useDispatch } from "react-redux";
-
-//Screens
-import PoliceStationsScreen from '../screens/PoliceStationsScreen';
-import VillegeServiceScreen from "../screens/VillegeServiceScreen";
-import HospitalsScreen from "../screens/HospitalsScreen";
-import PharmaciesScreen from "../screens/PharmaciesScreen";
-import TopTabScreen from "../screens/TopTabScreen";
-import SettingScreen from "../screens/SettingScreen";
-
-import { NoConnectionComponent } from '../components/NoConnectionComponent.js';
-
-//Icons
-import {
-  Ionicons,
-  FontAwesome5,
-  MaterialIcons,
-  MaterialCommunityIcons,
-  FontAwesome,
-} from "@expo/vector-icons";
-
-import { checkConnected } from '../components/CheckConnectedComponent';
-import NoNetworkConnection from "../components/NoNetworkConnection";
-
-//Bottom Tab Navigator
+import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, MaterialCommunityIcons, Fontisto  } from "@expo/vector-icons";
 import BottomTabNavigator from './TabNavigator';
 
-const Drawer = createDrawerNavigator();
+import TopTabScreen from "../screens/TopTabScreen";
+import HealthGuidelineScreen from "../screens/HealthGuidelineScreen";
+import PrivacyPolicyScreen from "../screens/PrivacyPolicyScreen";
+import TermsConditionScreen from "../screens/TermsConditionScreen";
+import TelltoPresidentScreen from "../screens/TelltoPresidentScreen";
+import VillegeServiceScreen from "../screens/VillegeServiceScreen";
+import PoliceStationsScreen from '../screens/PoliceStationsScreen';
+import HospitalsScreen from "../screens/HospitalsScreen";
+import PharmacyWebScreen from "../screens/PharmacyWebScreen";
+import VaccinationScreen from "../screens/VaccinationScreen";
+import PharmaciesScreen from "../screens/PharmaciesScreen";
+import SettingScreen from "../screens/SettingScreen";
 
-export const HealthGuidlineScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "https://covid19.gov.lk/guidelines.html" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-
-export const RateUsScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-
-export const PrivacyPolicyScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "http://developers-in.com/mobile_app/suwensitimu/privacy.html" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-
-export const TermsConditionScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView source={{ uri: "http://developers-in.com/mobile_app/suwensitimu/terms.html" }} />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
-
-export const TelltoPresidentScreen = (props) => {
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-  return (
-    connectStatus ? (
-      <WebView
-        source={{ uri: "https://tell.president.gov.lk/" }}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        injectedJavaScript={config}
-      />
-    ) : (<NoNetworkConnection navigation={false} onCheck={checkConnected} />)
-  );
-}
+const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
 
 const onShare = async () => {
   try {
@@ -126,6 +40,8 @@ const onShare = async () => {
   }
 };
 
+const Drawer = createDrawerNavigator();
+
 function CustomDrawerContent(props) {
   const dispatch = useDispatch();
   const currentTheme = useSelector((state) => {
@@ -135,6 +51,31 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
+
+      <DrawerItem
+        icon={({ focused, color, size }) => (
+          <MaterialIcons
+            color={"#5c5c5c"}
+            size={size}
+            name={focused ? "star-rate" : "star-rate"}
+          />
+        )}
+        label="Rate Us"
+        onPress={() => Linking.openURL(`${rateUsURl}`)}
+        labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
+      />
+      <DrawerItem
+        icon={({ focused, color, size }) => (
+          <FontAwesome
+            color={"#5c5c5c"}
+            size={size}
+            name={focused ? "share-alt" : "share-alt"}
+          />
+        )}
+        label="Share App"
+        onPress={onShare}
+        labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
+      />
       <DrawerItem
         icon={({ focused, color, size }) => (
           <Ionicons
@@ -149,31 +90,13 @@ function CustomDrawerContent(props) {
         }
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
       />
-      <DrawerItem
-        icon={({ focused, color, size }) => (
-          <FontAwesome5
-            color={"#5c5c5c"}
-            size={size}
-            name={focused ? "share" : "share"}
-          />
-        )}
-        label="Share App"
-        onPress={onShare}
-        labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
-      />
+
     </DrawerContentScrollView>
   );
 }
 
-//Drawer Navigator (This is the 2nd Navigator function connected with Root Stack Navigator function)
 export default function DrawerNavigator() {
-  // const [connectStatus, setConnectStatus] = useState(false)
-  // checkConnected().then(res => {
-  //   setConnectStatus(false)
-  // })
   return (
-    // <NoConnectionComponent.Consumer>
-    // {({ connectionStatus }) => (
     <Drawer.Navigator
       backBehavior="initialRoute"
       initialRouteName="Home"
@@ -215,7 +138,7 @@ export default function DrawerNavigator() {
       />
       <Drawer.Screen
         name="Health Guidelines"
-        component={HealthGuidlineScreen}
+        component={HealthGuidelineScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
             <FontAwesome5
@@ -268,6 +191,36 @@ export default function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
+        name="Pharmacies"
+        component={PharmacyWebScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="local-hospital"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Vaccination Program"
+        component={VaccinationScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Fontisto 
+              name="injection-syringe"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      {/* <Drawer.Screen
         name="Osusal"
         component={PharmaciesScreen}
         options={{
@@ -279,7 +232,7 @@ export default function DrawerNavigator() {
             />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Tell to President"
         component={TelltoPresidentScreen}
@@ -287,21 +240,6 @@ export default function DrawerNavigator() {
           drawerIcon: ({ focused, size }) => (
             <FontAwesome5
               name="user-tie"
-              size={24}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
-      <Drawer.Screen
-        name="Rate Us"
-        component={RateUsScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <MaterialIcons
-              name="star-rate"
               size={24}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
@@ -340,7 +278,7 @@ export default function DrawerNavigator() {
           headerTintColor: "gray",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Settings"
         component={SettingScreen}
         options={{
@@ -354,11 +292,8 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
+      /> */}
     </Drawer.Navigator>
-
-    // )}
-    // </NoConnectionComponent.Consumer>
 
   );
 }

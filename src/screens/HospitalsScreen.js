@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  Text,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-
+import { Text, StyleSheet, View, FlatList, TouchableOpacity, } from "react-native";
 import { useTheme, useNavigation } from "@react-navigation/native";
-
+import { MaterialIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
 
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import HospitalData from "../data/hospital";
-
-import { MaterialIcons } from "@expo/vector-icons";
 
 const HospitalsScreen = () => {
   const { colors } = useTheme();
@@ -112,6 +103,7 @@ const HospitalsScreen = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={ItemView}
       />
+      <AdMobBannerComponent />
     </View>
   );
 };

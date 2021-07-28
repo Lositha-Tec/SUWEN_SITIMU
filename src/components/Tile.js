@@ -1,11 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-
 import { RFPercentage } from "react-native-responsive-fontsize";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp,heightPercentageToDP as hp,} from "react-native-responsive-screen";
 
 const Tile = (props) => {
   return (

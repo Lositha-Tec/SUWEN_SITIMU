@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Alert, Text, StyleSheet, View, FlatList, TouchableOpacity, } from "react-native";
 import { useTheme, useNavigation } from "@react-navigation/native";
-import DATA from "../data/data";
 import { MaterialIcons } from "@expo/vector-icons";
-
-import {
-  Alert,
-  Text,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-
 import { SearchBar } from "react-native-elements";
+
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
+import policeData from "../data/policedata";
 
 const PoliceStationsScreen = () => {
   const { colors } = useTheme();
@@ -22,8 +15,8 @@ const PoliceStationsScreen = () => {
   const [masterDataSource, setMasterDataSource] = useState([]);
 
   useEffect(() => {
-    setFilteredDataSource(DATA);
-    setMasterDataSource(DATA);
+    setFilteredDataSource(policeData);
+    setMasterDataSource(policeData);
   }, []);
 
   const searchFilterFunction = (text) => {
@@ -69,15 +62,15 @@ const PoliceStationsScreen = () => {
     Alert.alert(
       "Police Station Details",
       "\nProvince : " +
-        item.province +
-        "\n\nDivision : " +
-        item.police_division +
-        "\n\nStation : " +
-        item.police_station +
-        "\n\nOIC Mobile Number : " +
-        item.oic_mobile +
-        "\n\nOffice Number : " +
-        item.office_number
+      item.province +
+      "\n\nDivision : " +
+      item.police_division +
+      "\n\nStation : " +
+      item.police_station +
+      "\n\nOIC Mobile Number : " +
+      item.oic_mobile +
+      "\n\nOffice Number : " +
+      item.office_number
     );
 
   const getItem = (item) => {
@@ -133,6 +126,7 @@ const PoliceStationsScreen = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={ItemView}
       />
+      <AdMobBannerComponent />
     </View>
   );
 };

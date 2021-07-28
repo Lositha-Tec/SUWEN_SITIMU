@@ -1,12 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { useNavigation, useTheme } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function HeaderNoNetwork(props) {
-  const navigation = useNavigation();
   const { colors } = useTheme();
   return (
     <View style={{ backgroundColor: colors.headerColor }}>
@@ -18,12 +17,6 @@ export default function HeaderNoNetwork(props) {
           onPress={() => props.navigation.openDrawer()}
         />
       </View>
-      {/* <View style={styles.content}>
-        <Text style={styles.title}>COVID-19 UPDATES</Text>
-        <Text style={[styles.lastUpdateTime, { color: colors.dateColor }]}>
-          Last Updated: {props.dateAndTime}
-        </Text>
-      </View> */}
     </View>
   );
 }
