@@ -8,11 +8,12 @@ export const Colors = {
     brand: '#6D28D9',
     green: '#10B981',
     red: '#EF4444',
+    validationColor: 'green',
     activityIndicatorColor: '#EF4444',
     activityIndicatorBackgroundColor: 'rgba(0,0,0, 0.2)',
 };
 
-const { primary, secondary, tertiary, darklight, brand, green, red } = Colors;
+const { primary, secondary, tertiary, darklight, brand, green, red, validationColor } = Colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
@@ -93,6 +94,8 @@ export const StyledTextInput = styled.TextInput`
     padding-left: 55px;
     padding-right: 55px;
     border-radius: 5px;
+    border-width: 1px;
+    border-color: ${props => (props.isError ? red : green)};
     font-size: 16px;
     height: 60px;
     margin-vertical: 3px;

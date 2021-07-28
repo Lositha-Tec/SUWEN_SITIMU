@@ -15,9 +15,6 @@ const DB_URL = 'https://dry-waters-33546.herokuapp.com/notification/';
 //import for the animation of Collapse and Expand
 import * as Animatable from 'react-native-animatable';
 
-//import for the collapsible/Expandable view
-import Collapsible from 'react-native-collapsible';
-
 //import for the Accordion view
 import Accordion from 'react-native-collapsible/Accordion';
 

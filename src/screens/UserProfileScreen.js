@@ -1,39 +1,24 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { View, ActivityIndicator, StyleSheet, Dimensions, Text, TextInput } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-import { View, ActivityIndicator, StyleSheet, Dimensions, Text } from 'react-native';
-
-//formik
 import { Formik } from 'formik';
-
-//icons
 import { Octicons } from '@expo/vector-icons';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 
-//keyboard avoiding view
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CredentialsContext } from './../components/CredentialsContext';
+import SearchableDropdown from 'react-native-searchable-dropdown';
 import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper';
 
-//API Client
-import axios from 'axios';
-
-//async storage
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-//credentials context
-import { CredentialsContext } from './../components/CredentialsContext';
-
-//colors
 const { brand, darkLight, primary } = Colors;
 
-//Picker
-import { Picker } from "@react-native-picker/picker";
-
-//Picker Data
 import villageData from "../data/gramaniladari";
 
 import {
     StyledContainer,
     InnerContainer,
-    PageTitle,
     SubTitle,
     StyledFormArea,
     LeftIcon,
@@ -46,14 +31,6 @@ import {
     Colors,
 } from './../components/styles';
 
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-
-//import SearchableDropdown component
-import SearchableDropdown from 'react-native-searchable-dropdown';
-
 const UserProfileScreen = (props) => {
     const navigation = useNavigation();
 
@@ -63,7 +40,6 @@ const UserProfileScreen = (props) => {
             setStoredCredentials("");
         }).catch(error => console.log(error))
     }
-
 
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
     const { name, email, photoUrl, mobile, gramaNiladhariDivision } = storedCredentials;
@@ -78,8 +54,6 @@ const UserProfileScreen = (props) => {
     const DB_URL = 'https://dry-waters-33546.herokuapp.com/user/';
 
     let DATA_ARRAY = [];
-
-
 
     const gramaniladariArray = () => {
         for (let i = 0; i < villageData.length; i++) {
@@ -129,7 +103,7 @@ const UserProfileScreen = (props) => {
                 if (status !== 'SUCCESS') {
                     handleMessage(message, status);
                 } else {
-                    persistLogin(SaveUser(data.mobile,data.gramaNiladhariDivision));
+                    persistLogin(SaveUser(data.mobile, data.gramaNiladhariDivision));
                     handleMessage(message, status);
                     navigation.navigate("Notifications");
                 }
@@ -145,8 +119,8 @@ const UserProfileScreen = (props) => {
                 const { message, status, data } = result;
                 if (status !== 'SUCCESS') {
                     handleMessage(message, status);
-                } else {                  
-                    persistLogin(SaveUser(values.mobile,values.gramaNiladhariDivision));
+                } else {
+                    persistLogin(SaveUser(values.mobile, values.gramaNiladhariDivision));
                     handleMessage(message, status);
                     navigation.navigate("Notifications");
                 }
@@ -195,18 +169,29 @@ const UserProfileScreen = (props) => {
                         onSubmit={(values, { setSubmitting }) => {
                             values = { ...values };
                             values.gramaNiladhariDivision = selectedGgramaNiladhariDivision;
-                            if (values.name) {//TODO
-                                handleMessage('Please fill all the fields');
+                            if (values.name == "") {
+                                //TODO
+                                handleMessage('Please fill name');
                                 setSubmitting(false);
+                                console.log(values.name)
                             }
-                            if (values.email) {
-//TODO
+                            if (values.email == "") {
+                                handleMessage('Please fill email');
+                                setSubmitting(false);
+                                console.log(values.email)
+                                //TODO
                             }
-                            if (values.mobile) {
+                            if (values.mobile == "") {
+                                handleMessage('Please fill mobile number');
+                                setSubmitting(false);
+                                console.log(values.mobile)
 
                             }
-                            if (values.gramaNiladhariDivision) {
+                            if (values.gramaNiladhariDivision == "") {
 
+                                handleMessage('Please select Grama Niladhari Division');
+                                setSubmitting(false);
+                                console.log(values.gramaNiladhariDivision)
                             }
                             if (values.name && values.email && values.mobile && values.gramaNiladhariDivision) {
                                 handleAddData(values, setSubmitting);
@@ -232,35 +217,36 @@ const UserProfileScreen = (props) => {
                                     selectedItems={gramaniladari()}
                                     textInputStyle={{
                                         //inserted text style
-                                        padding: 12,
-                                        borderWidth: 1,
-                                        borderColor: '#ccc',
-                                        backgroundColor: '#FAF7F6',
-                                        color: '#774645',
-                                        fontSize: 24,
+                                        padding: 15,
+                                        //borderWidth: 1,
+                                        borderRadius: 5,
+                                        backgroundColor: '#E5E7EB',
+                                        color: '#1F2937',
+                                        fontSize: 16,
                                     }}
                                     itemStyle={{
                                         //single dropdown item style
-                                        padding: 10,
+                                        padding: 18,
                                         marginTop: 2,
+                                        borderRadius: 5,
                                         backgroundColor: '#FAF9F8',
                                         borderColor: '#bbb',
                                         borderWidth: 1,
-                                        color: 'red',
                                     }}
                                     itemTextStyle={{
                                         //text style of a single dropdown item
-                                        color: 'green',
+                                        color: 'black',
+                                        fontSize: 16
                                     }}
                                     itemsContainerStyle={{
                                         //items container style you can pass maxHeight
                                         //to restrict the items dropdown hieght
                                         maxHeight: '60%',
                                     }}
-                                    defaultIndex={1}
+                                    //defaultIndex={1}
                                     items={DATA_ARRAY}
                                     //default selected item index
-                                    placeholder="placeholder"
+                                    placeholder="Select Grama Niladhari Division"
                                     //place holder for the search input
                                     resetValue={false}
                                 />
