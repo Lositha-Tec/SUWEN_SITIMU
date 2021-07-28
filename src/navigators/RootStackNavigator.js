@@ -1,28 +1,17 @@
-//React
-import * as React from 'react';
-
-//React Navigation
+import React from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme, } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import DrawerNavigator from './DrawerNavigator';
 
-import { LanguageContext } from '../components/LanguageContext';
-
-//import SampleScreen from '../screens/SampleScreen';
-import OpenItemScreen from "../screens/OpenItemScreen";
+import PoliceOpenItemScreen from "../screens/PoliceOpenItemScreen";
 import VillageOpenItemScreen from "../screens/VillageOpenItemScreen";
 import HospitalOpenItemScreen from "../screens/HospitalOpenItemScreen";
 import PharmacyOpenItemScreen from "../screens/PharmacyOpenItemScreen";
-import SaveGNDivisionScreen from '../screens/SaveGNDivisionScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
-import NotificationScreen from '../screens/NotificationScreen';
 
-//Drawer Navigator
-import DrawerNavigator from './DrawerNavigator';
-
-const Stack = createStackNavigator();
-
+//import { LanguageContext } from '../components/LanguageContext';
+//import LanguageSelectionScreen from '../screens/LanguageSelectionScreen';
 import { useSelector } from "react-redux";
-import LanguageSelectionScreen from '../screens/LanguageSelectionScreen';
 
 const customDarkTheme = {
     ...DarkTheme,
@@ -62,7 +51,8 @@ const customDefaultTheme = {
     },
 };
 
-//Root Stak Navigator (This is the main navigator function connected with App.js)
+const Stack = createStackNavigator();
+
 const RootStackNavigator = ({ navigation }) => {
 
     let currentTheme = useSelector((state) => {
@@ -70,28 +60,28 @@ const RootStackNavigator = ({ navigation }) => {
     });
 
     return (
-        <LanguageContext.Consumer>
-            {({ storedLanguage }) => (
+        // <LanguageContext.Consumer>
+        //     {({ storedLanguage }) => (
                 <NavigationContainer theme={currentTheme ? customDarkTheme : customDefaultTheme}>
                     <Stack.Navigator>
-                        {storedLanguage ? (
+                        {/* {storedLanguage ? ( */}
                             <>
                                 <Stack.Screen name="Home" component={DrawerNavigator} options={{ headerShown: false }} />
                                 <Stack.Screen name="Grama Niladhari Details" component={VillageOpenItemScreen} options={{ headerShown: true }} />
-                                <Stack.Screen name="Police Station Details" component={OpenItemScreen} options={{ headerShown: true }} />
+                                <Stack.Screen name="Police Station Details" component={PoliceOpenItemScreen} options={{ headerShown: true }} />
                                 <Stack.Screen name="Hospital Details" component={HospitalOpenItemScreen} options={{ headerShown: true }} />
                                 <Stack.Screen name="Osusala Details" component={PharmacyOpenItemScreen} options={{ headerShown: true }} />
                                 <Stack.Screen name="Profile" component={UserProfileScreen} />
                             </>
-                        ) : (
+                        {/* ) : (
                             <>
                                 <Stack.Screen name="Language" component={LanguageSelectionScreen} options={{ headerShown: false }} />
                             </>
-                        )}
+                        )} */}
                     </Stack.Navigator>
                 </NavigationContainer>
-            )}
-        </LanguageContext.Consumer>
+        //     )}
+        // </LanguageContext.Consumer>
     )
 
 }

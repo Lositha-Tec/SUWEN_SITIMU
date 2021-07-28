@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import {View,Text,StyleSheet,ScrollView,TouchableOpacity,Linking,} from "react-native";
 import { MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
-const HospitalOpenItemScreen = ({ route, navigation }) => {
+const HospitalOpenItemScreen = ({ route }) => {
   const { item } = route.params;
 
   return (
@@ -129,6 +123,7 @@ const HospitalOpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      <AdMobBannerComponent />
     </ScrollView>
   );
 };

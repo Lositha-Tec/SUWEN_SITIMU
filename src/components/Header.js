@@ -1,26 +1,22 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
-
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";
 
-//async storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-//credentials context
 import { CredentialsContext } from './../components/CredentialsContext';
-import { LanguageContext } from '../components/LanguageContext';
-import * as Localization from 'expo-localization';
-import { si, en, ta } from '../i18n/SupportedLanguages';
-import i18n from 'i18n-js';
+// import { LanguageContext } from '../components/LanguageContext';
+// import * as Localization from 'expo-localization';
+// import { si, en, ta } from '../i18n/SupportedLanguages';
+// import i18n from 'i18n-js';
 
-i18n.translations = {
-  si, en, ta
-}
+// i18n.translations = {
+//   si, en, ta
+// }
 
-i18n.locale = Localization.locale;
-i18n.fallbacks = true;
+// i18n.locale = Localization.locale;
+// i18n.fallbacks = true;
 
 export default function Header(props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
@@ -28,17 +24,16 @@ export default function Header(props) {
   const navigation = useNavigation();
   const { colors } = useTheme();
 
-  //Logout Function
   const clearLogin = () => {
     AsyncStorage.removeItem('suwenSitimuCredentials').then(() => {
       setStoredCredentials("");
     }).catch(error => console.log(error))
   }
 
-
   return (
     <View style={{ backgroundColor: colors.headerColor }}>
-      {props.dateAndTime ? (<>
+      {props.dateAndTime ? (
+      <>
         <View style={styles.menuIcon}>
           <Ionicons
             name="menu-outline"
@@ -48,7 +43,8 @@ export default function Header(props) {
           />
         </View>
         <View style={styles.content}>
-          <Text style={styles.title}>{i18n.t('header')}</Text>
+          {/* <Text style={styles.title}>{i18n.t('header')}</Text> */}
+          <Text style={styles.title}>COVID-19 UPDATES</Text>
           <Text style={[styles.lastUpdateTime, { color: colors.dateColor }]}>
             Last Updated: {props.dateAndTime}
           </Text>
@@ -77,7 +73,6 @@ export default function Header(props) {
               animationType="fade"
               transparent={true}
               visible={modalVisible}>
-
               <TouchableOpacity style={styles.modalContainer} onPress={() => { setModalVisible(!modalVisible); }} activeOpacity={0}>
                 <View style={styles.modalView}>
                   <View style={styles.logIcons}>
@@ -87,7 +82,7 @@ export default function Header(props) {
                         name="person-circle"
                         size={50}
                         color={colors.menuIconColor}
-                        onPress={() => { setModalVisible(!modalVisible); navigation.navigate("Profile");}}
+                        onPress={() => { setModalVisible(!modalVisible); navigation.navigate("Profile"); }}
                       />
                       <Text>Profile</Text>
                     </View>
@@ -103,13 +98,10 @@ export default function Header(props) {
                   </View>
                 </View>
               </TouchableOpacity>
-
             </Modal>
           </View>
         </>
-      )
-      }
-
+      )}
     </View>
   );
 }

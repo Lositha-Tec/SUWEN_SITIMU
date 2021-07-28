@@ -1,37 +1,24 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  ActivityIndicator,
-} from "react-native";
-
+import { View, Text, StyleSheet, ScrollView, } from "react-native";
 import { useTheme } from "@react-navigation/native";
-
 import { FontAwesome5 } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
-
+import { ActivityIndicatorComponent } from "../components/ActivityIndicatorComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
 
-import { LanguageContext } from '../components/LanguageContext';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+//import { LanguageContext } from '../components/LanguageContext';
+//import i18n from 'i18n-js';
+//import { si, en, ta } from '../i18n/SupportedLanguages';
 
-import i18n from 'i18n-js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { si, en, ta } from '../i18n/SupportedLanguages';
-
-
-i18n.translations = {
-  si, en, ta
-}
+// i18n.translations = {
+//   si, en, ta
+// }
 
 // async function getLanguage() {
 //   const choice = await AsyncStorage.getItem('setLanguage')
@@ -53,20 +40,25 @@ i18n.translations = {
 
 export default function LocalDataScreen(props) {
   const [loading, setLoading] = useState(false);
+  const [connectStatus, setConnectStatus] = useState(false)
   const [data, setData] = useState([]);
   const { colors } = useTheme();
 
-  const [connectStatus, setConnectStatus] = useState(false)
-  checkConnected().then(res => {
-    setConnectStatus(res)
-  })
-
   useEffect(() => {
+    setLoading(true);
     fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
+
+      const interval = setInterval(() => {
+        checkConnected().then(res => {
+          setConnectStatus(res)
+        })
+      }, 10);
+      return () => clearInterval(interval);
+
   }, []);
 
   let covidData = {};
@@ -86,6 +78,7 @@ export default function LocalDataScreen(props) {
   return (
     connectStatus ? (
       <View style={styles.fullPage}>
+        {loading ? <ActivityIndicatorComponent /> : null}
         <Header
           navigation={props.navigation}
           dateAndTime={covidData.update_date_time}
@@ -94,17 +87,7 @@ export default function LocalDataScreen(props) {
           contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
           showsVerticalScrollIndicator={false}
         >
-          <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>
-          {i18n.t('countryName')}
-          </Text>
-
-          {loading ? (
-            <ActivityIndicator
-              size="large"
-              color="#cc0000"
-              style={styles.activityIndicator}
-            />
-          ) : null}
+          <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
 
           <View style={styles.tileParent}>
             <View style={{ flexDirection: "row" }}>
@@ -164,7 +147,7 @@ export default function LocalDataScreen(props) {
               />
             </View>
 
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: "row", }}>
               <Tile
                 heading={"New Deaths"}
                 iconComponent={
@@ -183,17 +166,15 @@ export default function LocalDataScreen(props) {
           </View>
         </ScrollView>
       </View>
-    ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
+    ) : (<NoNetworkConnection navigation={props.navigation} />)
   );
 }
 
 const styles = StyleSheet.create({
-  subTitle: {
-    fontSize: RFPercentage(3),
-    marginBottom: 10,
-    fontWeight: "bold",
+  fullPage: {
+    flex: 1,
+    backgroundColor: "white",
   },
-
   tileParent: {
     width: wp("90%"),
     marginBottom: 10,
@@ -202,8 +183,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  fullPage: {
-    flex: 1,
-    backgroundColor: "white",
+  subTitle: {
+    fontSize: RFPercentage(3),
+    marginBottom: 10,
+    fontWeight: "bold",
   },
 });

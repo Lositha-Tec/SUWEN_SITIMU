@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, } from "react-native";
 import { MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
-const OpenItemScreen = ({ route, navigation }) => {
+const PoliceOpenItemScreen = ({ route }) => {
   const { item } = route.params;
 
   return (
@@ -96,6 +90,7 @@ const OpenItemScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      <AdMobBannerComponent />
     </ScrollView>
   );
 };
@@ -171,4 +166,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OpenItemScreen;
+export default PoliceOpenItemScreen;

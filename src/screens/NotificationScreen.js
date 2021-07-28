@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { SafeAreaView, View, StyleSheet, Text, ScrollView, ActivityIndicator, TouchableOpacity, } from 'react-native'
 import Header from "../components/Header";
+import { checkConnected } from '../components/CheckConnectedComponent';
+import NoNetworkConnection from "../components/NoNetworkConnection";
 
 //API Client
 import axios from 'axios';
@@ -12,9 +14,6 @@ const DB_URL = 'https://dry-waters-33546.herokuapp.com/notification/';
 
 //import for the animation of Collapse and Expand
 import * as Animatable from 'react-native-animatable';
-
-//import for the collapsible/Expandable view
-import Collapsible from 'react-native-collapsible';
 
 //import for the Accordion view
 import Accordion from 'react-native-collapsible/Accordion';
@@ -33,6 +32,7 @@ const ActivityIndicatorElement = () => {
 
 const NotificationScreen = (props) => {
     const [loading, setLoading] = useState(false);
+    const [connectStatus, setConnectStatus] = useState(false)
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
     const { gramaNiladhariDivision } = storedCredentials;
 
@@ -40,6 +40,12 @@ const NotificationScreen = (props) => {
     useEffect(() => {
         setLoading(true);
         getNotification();
+        const interval = setInterval(() => {
+            checkConnected().then(res => {
+                setConnectStatus(res)
+            })
+        }, 100);
+        return () => clearInterval(interval);
     }, []);
 
     const getNotification = () => {
@@ -110,6 +116,7 @@ const NotificationScreen = (props) => {
         };
 
         return (
+            connectStatus ? (
             <SafeAreaView style={{ flex: 1 }}>
                 <Header
                     navigation={props.navigation}
@@ -145,6 +152,7 @@ const NotificationScreen = (props) => {
                     {loading ? <ActivityIndicatorElement /> : null}
                 </View>
             </SafeAreaView>
+            ) : (<NoNetworkConnection navigation={props.navigation} />)
         );
     };
 }
@@ -169,7 +177,7 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 20,
-        borderRadius:10,
+        borderRadius: 10,
     },
     active: {
         backgroundColor: '#3c6c91',

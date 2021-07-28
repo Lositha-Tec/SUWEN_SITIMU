@@ -8,8 +8,7 @@ function SymptomsImageComponent(props) {
     <View style={styles.mainContainer}>
       <Image source={props.image} style={styles.imageContainer} />
       <Text
-        style={[styles.textContainer, { color: colors.WHOAdviceTextColor }]}
-      >
+        style={[styles.textContainer, { color: colors.WHOAdviceTextColor }]}>
         {props.text}
       </Text>
     </View>

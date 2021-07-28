@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  TouchableOpacity,
-} from "react-native";
-
+import { View, Text, StyleSheet, ScrollView, Linking, TouchableOpacity, } from "react-native";
 import { MaterialIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 import SymptomsImageComponent from "../components/SymptomsImageComponent";
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
 function SymptomsScreen() {
   const { colors } = useTheme();
@@ -38,17 +31,17 @@ function SymptomsScreen() {
           </View>
 
           <SymptomsImageComponent
-          image={require("../../assets/Symptoms/shortness_breath.jpg")}
-          text="Difficulty breathing or shortness of breath"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/chest_pain.jpg")}
-          text="Chest pain or pressure"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/loss_of_speech.jpg")}
-          text="Loss of speech or movement"
-        />
+            image={require("../../assets/Symptoms/shortness_breath.jpg")}
+            text="Difficulty breathing or shortness of breath"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/chest_pain.jpg")}
+            text="Chest pain or pressure"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/loss_of_speech.jpg")}
+            text="Loss of speech or movement"
+          />
         </View>
 
         <View style={styles.symptomsContainer}>
@@ -72,17 +65,17 @@ function SymptomsScreen() {
           </View>
 
           <SymptomsImageComponent
-          image={require("../../assets/Symptoms/fever.jpg")}
-          text="Fever"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/dry_cough.jpg")}
-          text="Dry Cough"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/tiredness.jpg")}
-          text="Tiredness"
-        />
+            image={require("../../assets/Symptoms/fever.jpg")}
+            text="Fever"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/dry_cough.jpg")}
+            text="Dry Cough"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/tiredness.jpg")}
+            text="Tiredness"
+          />
         </View>
 
         <View style={styles.symptomsContainer}>
@@ -105,34 +98,34 @@ function SymptomsScreen() {
             </Text>
           </View>
           <SymptomsImageComponent
-          image={require("../../assets/Symptoms/aches.jpg")}
-          text="Aches and pains"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/sore_throte.jpg")}
-          text="Sore throat"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/diarrhoea.jpg")}
-          text="Diarrhoea"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/conjunctivitis.png")}
-          text="Conjunctivitis"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/headache.jpg")}
-          text="Headache"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/taste_and_smell.jpg")}
-          text="Loss of taste or smell"
-        />
-        <SymptomsImageComponent
-          image={require("../../assets/Symptoms/rash.jpg")}
-          text="A rash on skin, or discolouration of fingers or toes"
-        />
-          
+            image={require("../../assets/Symptoms/aches.jpg")}
+            text="Aches and pains"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/sore_throte.jpg")}
+            text="Sore throat"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/diarrhoea.jpg")}
+            text="Diarrhoea"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/conjunctivitis.png")}
+            text="Conjunctivitis"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/headache.jpg")}
+            text="Headache"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/taste_and_smell.jpg")}
+            text="Loss of taste or smell"
+          />
+          <SymptomsImageComponent
+            image={require("../../assets/Symptoms/rash.jpg")}
+            text="A rash on skin, or discolouration of fingers or toes"
+          />
+
         </View>
 
         <View style={styles.adviceContainer}>
@@ -211,6 +204,7 @@ function SymptomsScreen() {
           </View>
         </View>
       </View>
+      <AdMobBannerComponent />
     </ScrollView>
   );
 }
