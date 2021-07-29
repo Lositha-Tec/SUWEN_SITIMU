@@ -1,9 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet, Dimensions, Text, TextInput } from 'react-native';
+import React, { useState, useContext, useEffect, } from 'react';
+import { View, ActivityIndicator, StyleSheet, Dimensions, Text, } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 import { Formik } from 'formik';
-import { Octicons } from '@expo/vector-icons';
+import * as yup from 'yup';
+import TextInput from '../components/TextInput';
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 
 import axios from 'axios';
@@ -12,7 +14,7 @@ import { CredentialsContext } from './../components/CredentialsContext';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper';
 
-const { brand, darkLight, primary } = Colors;
+const { primary } = Colors;
 
 import villageData from "../data/gramaniladari";
 
@@ -21,15 +23,19 @@ import {
     InnerContainer,
     SubTitle,
     StyledFormArea,
-    LeftIcon,
-    StyledInputLabel,
-    StyledTextInput,
     StyledButton,
     ButtonText,
     MsgBox,
     Line,
     Colors,
 } from './../components/styles';
+
+const ProfileSchema = yup.object().shape({
+    mobile: yup
+        .string()
+        .matches(/(07)(\d){8}\b/, 'Enter a valid phone number')
+        .required('Phone number is required'),
+});
 
 const UserProfileScreen = (props) => {
     const navigation = useNavigation();
@@ -159,6 +165,8 @@ const UserProfileScreen = (props) => {
         setMessageType(type);
     };
 
+    const validationErrorMsg = selectedGgramaNiladhariDivision == '' ? 'Select Grama Niladhari Division' : '';
+
     return (
         <KeyboardAvoidingWrapper>
             <StyledContainer>
@@ -166,32 +174,31 @@ const UserProfileScreen = (props) => {
                     <SubTitle>Personal Details</SubTitle>
                     <Formik
                         initialValues={{ name: name, email: email, mobile: mobile, gramaNiladhariDivision: gramaNiladhariDivision }}
+                        validationSchema={ProfileSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             values = { ...values };
                             values.gramaNiladhariDivision = selectedGgramaNiladhariDivision;
                             if (values.name == "") {
-                                //TODO
-                                handleMessage('Please fill name');
+                                //handleMessage('Please fill name');
                                 setSubmitting(false);
                                 console.log(values.name)
                             }
                             if (values.email == "") {
-                                handleMessage('Please fill email');
+                                //handleMessage('Please fill email');
                                 setSubmitting(false);
                                 console.log(values.email)
-                                //TODO
                             }
                             if (values.mobile == "") {
-                                handleMessage('Please fill mobile number');
+                                //handleMessage('Please fill mobile number');
                                 setSubmitting(false);
                                 console.log(values.mobile)
 
                             }
                             if (values.gramaNiladhariDivision == "") {
-
-                                handleMessage('Please select Grama Niladhari Division');
+                                //handleMessage('Please select Grama Niladhari Division');
                                 setSubmitting(false);
-                                console.log(values.gramaNiladhariDivision)
+
+                                console.log("Grama Niladhari division" + values.gramaNiladhariDivision)
                             }
                             if (values.name && values.email && values.mobile && values.gramaNiladhariDivision) {
                                 handleAddData(values, setSubmitting);
@@ -199,14 +206,14 @@ const UserProfileScreen = (props) => {
                         }}
 
                     >
-                        {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) =>
+                        {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) =>
                         (<StyledFormArea>
                             <View>
                                 <Text style={styles.headingText}>
                                     Grama Niladhari Division
                                 </Text>
-                                <Text style={styles.headingText}>
-                                    {gramaNiladhariDivisionOne}
+                                <Text style={{ fontSize: 15, fontWeight: "bold", color: 'green' }}>
+                                    Selected Division: {gramaNiladhariDivisionOne}
                                 </Text>
                                 <SearchableDropdown
                                     onTextChange={(text) => { }}
@@ -216,13 +223,13 @@ const UserProfileScreen = (props) => {
                                     containerStyle={{ padding: 5 }}
                                     selectedItems={gramaniladari()}
                                     textInputStyle={{
+                                        borderColor: selectedGgramaNiladhariDivision == '' ? 'red' : 'green',
                                         //inserted text style
-                                        padding: 15,
-                                        //borderWidth: 1,
+                                        padding: 14,
+                                        borderWidth: 3,
                                         borderRadius: 5,
-                                        backgroundColor: '#E5E7EB',
-                                        color: '#1F2937',
-                                        fontSize: 16,
+                                        color: 'green',
+                                        fontSize: 15,
                                     }}
                                     itemStyle={{
                                         //single dropdown item style
@@ -247,45 +254,65 @@ const UserProfileScreen = (props) => {
                                     items={DATA_ARRAY}
                                     //default selected item index
                                     placeholder="Select Grama Niladhari Division"
+                                    placeholderTextColor="rgba(34, 62, 75, 0.7)"
                                     //place holder for the search input
                                     resetValue={false}
                                 />
+                                <Text style={{ color: 'red', fontSize: 12, fontWeight: 'bold' }}>
+                                    {validationErrorMsg}
+                                </Text>
                             </View>
 
-                            <MyTextInput
-                                label="Username"
-                                icon="person"
-                                placeholder="Enter Username"
-                                placeholderTextColor={darkLight}
-                                //onChangeText={handleChange('name')}
+                            <TextInput
+                                label='Username'
+                                icon='user'
+                                placeholder='Enter Username'
+                                returnKeyType='next'
+                                returnKeyLabel='next'
+                                name='name'
+                                onChangeText={handleChange('name')}
                                 onBlur={handleBlur('name')}
                                 editable={false}
                                 selectTextOnFocus={false}
+                                error={errors.name}
+                                touched={touched.name}
                                 value={name}
                             />
 
-                            <MyTextInput
-                                label="Email Address"
-                                icon="mail"
-                                placeholder="Enter email address"
-                                placeholderTextColor={darkLight}
-                                //onChangeText={handleChange('email')}
+                            <TextInput
+                                label='Email Address'
+                                icon='mail'
+                                placeholder='Enter email address'
+                                autoCapitalize='none'
+                                keyboardType='email-address'
+                                keyboardAppearance='dark'
+                                returnKeyType='next'
+                                returnKeyLabel='next'
+                                name='email'
+                                onChangeText={handleChange('email')}
                                 onBlur={handleBlur('email')}
                                 editable={false}
                                 selectTextOnFocus={false}
+                                error={errors.email}
+                                touched={touched.email}
                                 value={email}
-                                keyboardType="email-address"
                             />
 
-                            <MyTextInput
-                                label="Mobile Number"
-                                icon="device-mobile"
-                                placeholder="Enter mobile number"
-                                placeholderTextColor={darkLight}
+                            <TextInput
+                                label='Mobile Number'
+                                icon='mobile'
+                                placeholder='Enter your mobile'
+                                autoCapitalize='none'
+                                keyboardType='phone-pad'
+                                keyboardAppearance='dark'
+                                returnKeyType='go'
+                                returnKeyLabel='go'
+                                name='mobile'
                                 onChangeText={handleChange('mobile')}
                                 onBlur={handleBlur('mobile')}
+                                error={errors.mobile}
+                                touched={touched.mobile}
                                 value={values.mobile}
-                                keyboardType="phone-pad"
                             />
 
                             <MsgBox type={messageType}>{message}</MsgBox>
@@ -297,10 +324,10 @@ const UserProfileScreen = (props) => {
                             {isSubmitting && <StyledButton disabled={true}>
                                 <ActivityIndicator size="large" color={primary} />
                             </StyledButton>}
-                            <Line />
+                            {/* <Line />
                             <StyledButton onPress={clearLogin}>
                                 <ButtonText>Logout</ButtonText>
-                            </StyledButton>
+                            </StyledButton> */}
                         </StyledFormArea>
                         )}
 
@@ -311,18 +338,6 @@ const UserProfileScreen = (props) => {
 
     );
 };
-
-const MyTextInput = ({ label, icon, ...props }) => {
-    return (
-        <View>
-            <LeftIcon>
-                <Octicons name={icon} size={30} color={brand} />
-            </LeftIcon>
-            <StyledInputLabel>{label}</StyledInputLabel>
-            <StyledTextInput {...props} />
-        </View>
-    )
-}
 
 const styles = StyleSheet.create({
     lblTextContainer: {

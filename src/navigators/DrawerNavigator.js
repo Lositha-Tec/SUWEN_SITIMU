@@ -152,6 +152,64 @@ export default function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
+        name="Vaccination Program"
+        component={VaccinationScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Fontisto 
+              name="injection-syringe"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Pharmacies"
+        component={PharmacyWebScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <MaterialIcons
+              name="local-hospital"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Hospitals"
+        component={HospitalsScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="hospital-alt"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Tell to President"
+        component={TelltoPresidentScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="user-tie"
+              size={24}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
         name="Grama Niladhari"
         component={VillegeServiceScreen}
         options={{
@@ -177,49 +235,6 @@ export default function DrawerNavigator() {
           ),
         }}
       />
-      <Drawer.Screen
-        name="Hospitals"
-        component={HospitalsScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <FontAwesome5
-              name="hospital-alt"
-              size={23}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Pharmacies"
-        component={PharmacyWebScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <MaterialIcons
-              name="local-hospital"
-              size={23}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
-      <Drawer.Screen
-        name="Vaccination Program"
-        component={VaccinationScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <Fontisto 
-              name="injection-syringe"
-              size={23}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
       {/* <Drawer.Screen
         name="Osusal"
         component={PharmaciesScreen}
@@ -233,21 +248,6 @@ export default function DrawerNavigator() {
           ),
         }}
       /> */}
-      <Drawer.Screen
-        name="Tell to President"
-        component={TelltoPresidentScreen}
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <FontAwesome5
-              name="user-tie"
-              size={24}
-              color={focused ? "#3c6c91" : "#5c5c5c"}
-            />
-          ),
-          headerShown: true,
-          headerTintColor: "gray",
-        }}
-      />
       <Drawer.Screen
         name="Privacy Policy"
         component={PrivacyPolicyScreen}

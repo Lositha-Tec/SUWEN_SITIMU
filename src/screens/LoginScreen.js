@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 //icons
 import { Fontisto } from '@expo/vector-icons';
@@ -17,6 +17,9 @@ import {
     Colors,
 } from '../components/styles';
 import { ActivityIndicator } from 'react-native';
+
+import { checkConnected } from '../components/CheckConnectedComponent';
+import NoNetworkConnection from "../components/NoNetworkConnection";
 
 //colors
 const { primary } = Colors;
@@ -38,22 +41,23 @@ import axios from 'axios';
 //credentials context
 import { CredentialsContext } from '../components/CredentialsContext';
 
-import { checkConnected } from '../components/CheckConnectedComponent';
-import NoNetworkConnection from "../components/NoNetworkConnection";
-
-
 const DB_URL = 'https://dry-waters-33546.herokuapp.com/user/';
 
 const LoginScreen = (props) => {
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
     const [googleSubmitting, setGoogleSubmitting] = useState(false);
-
     const [connectStatus, setConnectStatus] = useState(false)
 
-    checkConnected().then(res => {
-        setConnectStatus(res)
-    })
+    useEffect(() => {
+        const interval = setInterval(() => {
+            checkConnected().then(res => {
+                setConnectStatus(res)
+            })
+        }, 10);
+        return () => clearInterval(interval);
+
+    }, []);
 
     //context
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
@@ -66,7 +70,7 @@ const LoginScreen = (props) => {
     const handleGoogleSignin = () => {
         setGoogleSubmitting(true);
         const config = {
-            iosClientId: `393101834710-eeue5tmj02o27hdmju5rl56dium3cr56.apps.googleusercontent.com`,
+            // iosClientId: `393101834710-eeue5tmj02o27hdmju5rl56dium3cr56.apps.googleusercontent.com`,
             androidClientId: `503174767857-jd18j33hb5ikfstodcq31pe7n1h47vpd.apps.googleusercontent.com`,
             scopes: ['profile', 'email']
         };
@@ -85,7 +89,7 @@ const LoginScreen = (props) => {
 
         }).catch(error => {
             console.log(error);
-            handleMessage("An error occured. Check your network and try again");
+            handleMessage("An error occured. Check your network and try again" + error.toString());
             setGoogleSubmitting(false);
         })
 
@@ -97,11 +101,11 @@ const LoginScreen = (props) => {
             const { user } = result;
             if (user) {
                 let User = {
-                    name: userGmail.name, 
+                    name: userGmail.name,
                     photoUrl: userGmail.photoUrl,
-                    email: userGmail.email, 
-                    mobile: user.mobile, 
-                    gramaNiladhariDivision: user.gramaNiladhariDivision, 
+                    email: userGmail.email,
+                    mobile: user.mobile,
+                    gramaNiladhariDivision: user.gramaNiladhariDivision,
                 }
                 persistLogin(User);
                 props.navigation.navigate("Notifications");
@@ -127,7 +131,7 @@ const LoginScreen = (props) => {
                 console.log(error);
                 handleMessage('Persisting login failed');
             })
-            
+
     }
 
     return (
@@ -158,7 +162,7 @@ const LoginScreen = (props) => {
                     </InnerContainer>
                 </StyledContainer>
             </KeyboardAvoidingWrapper>
-        ) : (<NoNetworkConnection navigation={props.navigation} onCheck={checkConnected} />)
+        ) : (<NoNetworkConnection navigation={props.navigation} />)
     );
 };
 export default LoginScreen;

@@ -65,8 +65,9 @@ const NotificationScreen = (props) => {
                     content: Notification[x].message
                 }
                 CONTENT.push(notificationNew);
-                setLoading(false);
+
             }
+            setLoading(false);
 
         }).catch(error => {
             console.log(error);
@@ -117,41 +118,45 @@ const NotificationScreen = (props) => {
 
         return (
             connectStatus ? (
-            <SafeAreaView style={{ flex: 1 }}>
-                <Header
-                    navigation={props.navigation}
-                //dateAndTime={covidData.update_date_time}
-                />
-                <View style={styles.container}>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <Header
+                        navigation={props.navigation}
+                    //dateAndTime={covidData.update_date_time}
+                    />
+                    <View style={styles.container}>
+                        {CONTENT.length > 0 ?
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                {/*Code for Accordion/Expandable List starts here*/}
+                                <Accordion
+                                    activeSections={activeSections}
+                                    //for any default active section
+                                    sections={CONTENT}
+                                    //title and content of accordion
+                                    touchableComponent={TouchableOpacity}
+                                    //which type of touchable component you want
+                                    //It can be the following Touchables
+                                    //TouchableHighlight, TouchableNativeFeedback
+                                    //TouchableOpacity , TouchableWithoutFeedback
+                                    expandMultiple={multipleSelect}
+                                    //Do you want to expand mutiple at a time or single at a time
+                                    renderHeader={renderHeader}
+                                    //Header Component(View) to render
+                                    renderContent={renderContent}
+                                    //Content Component(View) to render
+                                    duration={400}
+                                    //Duration for Collapse and expand
+                                    onChange={setSections}
+                                //setting the state of active sections
+                                />
+                            </ScrollView> : <View style={{ flex: 1, alignItems: "center", marginTop: "20%" }}>
+                                <Text style={{ color: "black", fontSize: 20 }}>No Notifications</Text>
+                            </View>
 
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        {/*Code for Accordion/Expandable List starts here*/}
-                        <Accordion
-                            activeSections={activeSections}
-                            //for any default active section
-                            sections={CONTENT}
-                            //title and content of accordion
-                            touchableComponent={TouchableOpacity}
-                            //which type of touchable component you want
-                            //It can be the following Touchables
-                            //TouchableHighlight, TouchableNativeFeedback
-                            //TouchableOpacity , TouchableWithoutFeedback
-                            expandMultiple={multipleSelect}
-                            //Do you want to expand mutiple at a time or single at a time
-                            renderHeader={renderHeader}
-                            //Header Component(View) to render
-                            renderContent={renderContent}
-                            //Content Component(View) to render
-                            duration={400}
-                            //Duration for Collapse and expand
-                            onChange={setSections}
-                        //setting the state of active sections
-                        />
+                        }
 
-                    </ScrollView>
-                    {loading ? <ActivityIndicatorElement /> : null}
-                </View>
-            </SafeAreaView>
+                        {loading ? <ActivityIndicatorElement /> : null}
+                    </View>
+                </SafeAreaView>
             ) : (<NoNetworkConnection navigation={props.navigation} />)
         );
     };

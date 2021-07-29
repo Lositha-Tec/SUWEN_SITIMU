@@ -41,6 +41,9 @@ const TimelineScreen = (props) => {
           <WebView
             style={{ flex: 1 }}
             source={{ uri: "https://www.google.com/maps/timeline?hl=en&authuser=0&ei=eOrRYInlB8u7rQHBlpTAAw%3A45&ved=1t%3A17706&pli=1&rapt=AEjHL4OkvJxhF4dqDRgSjqlJPbsaMgM6XIAcxpRrP5YI-5fGFErWtrD760jsXx4MKtn0K2A-EQOnDvK-2uZ5jNZhFhdfdKVgEg&pb" }}
+            userAgent={
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2564.109 Safari/537.36"
+            }
             javaScriptEnabled={true}
             domStorageEnabled={true}
             onLoadStart={() => setLoading(true)}
