@@ -72,17 +72,21 @@ const LoginScreen = (props) => {
         const config = {
             // iosClientId: `393101834710-eeue5tmj02o27hdmju5rl56dium3cr56.apps.googleusercontent.com`,
             androidClientId: `503174767857-jd18j33hb5ikfstodcq31pe7n1h47vpd.apps.googleusercontent.com`,
+            androidStandaloneAppClientId: `503174767857-7777dr3g1gtfr49t4hbgm7nnmv6r8ood.apps.googleusercontent.com`,
             scopes: ['profile', 'email']
         };
         Google.logInAsync(config).then((result) => {
-            const { type, user } = result;
-
+            const { type, accessToken, user } = result;
+            //console.log("Access Token : " + accessToken);
             if (type == 'success') {
+                //console.log("Access Token Success : " + accessToken);
+                //console.log("Result" + result);
                 const { email, name, photoUrl } = user;
                 if ({ email }) {
                     checkDataAlreadyExists(user, 'Google signin is successfull', 'SUCCESS');
                 }
-
+                console.log(result);
+                return result;
             } else {
                 handleMessage('Google signin was cancelled');
             }
