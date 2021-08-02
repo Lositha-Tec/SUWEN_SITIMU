@@ -57,8 +57,9 @@ const BottomTabNavigator = () => {
                             )}
                         </>
                     ) : (
-                        <></>
-                        // <Tabs.Screen name="Login" component={LoginScreen} />
+                        <>
+                            {/* <Tabs.Screen name="Login" component={LoginScreen} /> */}
+                        </>
                     )}
                 </Tabs.Navigator>
             )}

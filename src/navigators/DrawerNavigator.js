@@ -76,7 +76,7 @@ function CustomDrawerContent(props) {
         onPress={onShare}
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
       />
-      <DrawerItem
+      {/* <DrawerItem
         icon={({ focused, color, size }) => (
           <Ionicons
             color={"#5c5c5c"}
@@ -89,7 +89,7 @@ function CustomDrawerContent(props) {
           dispatch({ type: "change_theme", payload: !currentTheme })
         }
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
-      />
+      /> */}
 
     </DrawerContentScrollView>
   );

@@ -73,7 +73,8 @@ const LoginScreen = (props) => {
             // iosClientId: `393101834710-eeue5tmj02o27hdmju5rl56dium3cr56.apps.googleusercontent.com`,
             androidClientId: `503174767857-jd18j33hb5ikfstodcq31pe7n1h47vpd.apps.googleusercontent.com`,
             androidStandaloneAppClientId: `503174767857-7777dr3g1gtfr49t4hbgm7nnmv6r8ood.apps.googleusercontent.com`,
-            scopes: ['profile', 'email']
+            scopes: ['profile', 'email'],
+            //redirectUrl: 'https://developers-in.com/'
         };
         Google.logInAsync(config).then((result) => {
             const { type, accessToken, user } = result;
