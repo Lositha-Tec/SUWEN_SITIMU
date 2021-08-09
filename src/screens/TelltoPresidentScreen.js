@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, View, Text } from 'react-native'
 import { WebViewComponent } from "../components/WebViewComponent";
 import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import { config } from '../components/Configurations';
@@ -25,6 +25,11 @@ export default function TelltoPresidentScreen() {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <WebViewComponent source={{ uri: `${tellToPresidentURL}` }} injectedJavaScript={config} />
+                </View>
+                <View style={{ alignItems: "center", marginTop: 10 }}>
+                    <Text style={{ color: "gray" }}>
+                        Data Source: https://tell.president.gov.lk
+                    </Text>
                 </View>
                 <AdMobBannerComponent />
             </SafeAreaView>
