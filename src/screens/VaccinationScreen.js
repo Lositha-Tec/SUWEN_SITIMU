@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, View, Text } from 'react-native'
 import { WebViewComponent } from "../components/WebViewComponent";
 import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
@@ -24,6 +24,11 @@ export default function VaccinationScreen() {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <WebViewComponent source={{ uri: `${VaccinationURL}` }} />
+                </View>
+                <View style={{ alignItems: "center", marginTop: 10 }}>
+                    <Text style={{ color: "gray" }}>
+                        Data Source: https://vaccine.covid19.gov.lk
+                    </Text>
                 </View>
                 <AdMobBannerComponent />
             </SafeAreaView>

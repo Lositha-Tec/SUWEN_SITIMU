@@ -17,6 +17,7 @@ import PharmacyWebScreen from "../screens/PharmacyWebScreen";
 import VaccinationScreen from "../screens/VaccinationScreen";
 import PharmaciesScreen from "../screens/PharmaciesScreen";
 import SettingScreen from "../screens/SettingScreen";
+import PHIWebScreen from '../screens/PHIWebScreen';
 
 const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
 
@@ -173,6 +174,21 @@ export default function DrawerNavigator() {
           drawerIcon: ({ focused, size }) => (
             <MaterialIcons
               name="local-hospital"
+              size={23}
+              color={focused ? "#3c6c91" : "#5c5c5c"}
+            />
+          ),
+          headerShown: true,
+          headerTintColor: "gray",
+        }}
+      />
+      <Drawer.Screen
+        name="Find PHI"
+        component={PHIWebScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <FontAwesome5
+              name="user-nurse"
               size={23}
               color={focused ? "#3c6c91" : "#5c5c5c"}
             />
