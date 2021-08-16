@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView, Linking } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, Entypo  } from "@expo/vector-icons";
+import RNModal from 'react-native-modal';
+import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
+
+import { EContactItem } from '../components/EContactItem';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CredentialsContext } from './../components/CredentialsContext';
@@ -18,9 +22,22 @@ import { CredentialsContext } from './../components/CredentialsContext';
 // i18n.locale = Localization.locale;
 // i18n.fallbacks = true;
 
+const hospitalColombo = "0112691111";
+const suwaSariya = "1990";
+const police = "119";
+const qurantineUnit = "0112112705";
+const presidentTask = "117";
+const healthPromotion = "0710107107";
+const qurantineInfo1 = "0113090502";
+const qurantineInfo2 = "113";
+const accidentManagementNo = "0113071073";
+const covidSymptomsNo = "1390";
+const qurantineAntryNo = "0112860003";
+
 export default function Header(props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalEContactVisible, setModalEContactVisible] = useState(false);
   const navigation = useNavigation();
   const { colors } = useTheme();
 
@@ -33,23 +50,160 @@ export default function Header(props) {
   return (
     <View style={{ backgroundColor: colors.headerColor }}>
       {props.dateAndTime ? (
-      <>
-        <View style={styles.menuIcon}>
-          <Ionicons
-            name="menu-outline"
-            size={35}
-            color={colors.menuIconColor}
-            onPress={() => props.navigation.openDrawer()}
-          />
-        </View>
-        <View style={styles.content}>
-          {/* <Text style={styles.title}>{i18n.t('header')}</Text> */}
-          <Text style={styles.title}>COVID-19 UPDATES</Text>
-          <Text style={[styles.lastUpdateTime, { color: colors.dateColor }]}>
-            Last Updated: {props.dateAndTime}
-          </Text>
-        </View>
-      </>
+        <>
+          <View style={styles.userIcon}>
+            <Ionicons
+              name="menu-outline"
+              size={35}
+              color={colors.menuIconColor}
+              onPress={() => props.navigation.openDrawer()}
+            />
+            <Entypo 
+              name="old-phone"
+              size={35}
+              color={"red"}
+              onPress={() => {
+                setModalEContactVisible(true);
+              }}
+            />
+          </View>
+          <View style={styles.content}>
+            {/* <Text style={styles.title}>{i18n.t('header')}</Text> */}
+            <Text style={styles.title}>COVID-19 UPDATES</Text>
+            <Text style={[styles.lastUpdateTime, { color: colors.dateColor }]}>
+              Last Updated: {props.dateAndTime}
+            </Text>
+          </View>
+          <View>
+            <RNModal isVisible={modalEContactVisible}
+              transparent={true}
+              hideModalContentWhileAnimating={true}
+              onBackdropPress={() => setModalEContactVisible(false)}
+              backdropColor={'rgba(0,0,0,0.4)'}
+              backdropOpacity={1}
+              animationIn={'zoomInDown'}
+              animationOut={'zoomOutUp'}
+              animationInTiming={1000}
+              animationOutTiming={1000}
+              backdropTransitionInTiming={1000}
+              backdropTransitionOutTiming={1000}
+            >
+              <View style={styles.eContactModalView}>
+                <View style={{ flex: 1, alignItems: "flex-end", paddingBottom: 35 }}>
+                  <FontAwesome
+                    style={{ paddingRight: 15 }}
+                    name="close"
+                    size={30}
+                    color={colors.menuIconColor}
+                    onPress={() => { setModalEContactVisible(!modalEContactVisible); }}
+                  />
+                </View>
+                <View style={{ flex: 1, alignItems: "center", paddingBottom: 35 }}>
+                  <Text style={{fontWeight: "bold", fontSize: 20, color: "#DC143C"}}>Emergency Contact Numbers</Text>
+                </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center",marginBottom: 30 }}>
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${hospitalColombo}`)}
+                    imageSource={
+                      require("../../assets/contacts/hospital.png")
+                    }
+                    labelComponent={"011 269 1111"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${suwaSariya}`)}
+                    imageSource={
+                      require("../../assets/contacts/suwasariya.png")
+                    }
+                    labelComponent={"1990"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${police}`)}
+                    imageSource={
+                      require("../../assets/contacts/policeEmergency.png")
+                    }
+                    labelComponent={"119"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${qurantineUnit}`)}
+                    imageSource={
+                      require("../../assets/contacts/qurantine.png")
+                    }
+                    labelComponent={"011 211 2705"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${presidentTask}`)}
+                    imageSource={
+                      require("../../assets/contacts/presidentTask.png")
+                    }
+                    labelComponent={"117"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${healthPromotion}`)}
+                    imageSource={
+                      require("../../assets/contacts/healthPromotion.png")
+                    }
+                    labelComponent={"071 010 7107"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${accidentManagementNo}`)}
+                    imageSource={
+                      require("../../assets/contacts/accManagement.png")
+                    }
+                    labelComponent={"011307 1073"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false}
+                    onPressItem={() => Linking.openURL(`tel:${covidSymptomsNo}`)}
+                    imageSource={
+                      require("../../assets/contacts/covidSymptoms.png")
+                    }
+                    labelComponent={"1390"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={false} 
+                    onPressItem={() => Linking.openURL(`tel:${qurantineAntryNo}`)}
+                    imageSource={
+                      require("../../assets/contacts/qurantineAntry.png")
+                    }
+                    labelComponent={"011 286 0003"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                  <EContactItem
+                    displayStyle={true}
+                    onPressItem2={() => Linking.openURL(`tel:${qurantineInfo2}`)}
+                    onPressItem={() => Linking.openURL(`tel:${qurantineInfo1}`)}
+                    imageSource={
+                      require("../../assets/contacts/qurantineInfo.png")
+                    }
+                    labelComponent={"011 309 0502"}
+                    labelComponent2={"113"}
+                    style={{ width: 120, height: 120 }}
+                  />
+                </View>
+                </ScrollView>
+                {/* <View style={{borderWidth: 1, height:50}}>
+                    <AdMobBannerComponent/>
+                </View> */}
+              </View>
+            </RNModal>
+          </View>
+        </>
       ) : (
         <>
           <View style={styles.userIcon}>
@@ -68,7 +222,7 @@ export default function Header(props) {
               }}
             />
           </View>
-          <View >
+          <View>
             <Modal
               animationType="fade"
               transparent={true}
@@ -176,4 +330,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+
+  eContactModalView: {
+    flex: 1,
+    //borderWidth: 1,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 20
+  }
 });
