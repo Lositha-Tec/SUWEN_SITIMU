@@ -52,12 +52,12 @@ export default function LocalDataScreen(props) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
 
-      const interval = setInterval(() => {
-        checkConnected().then(res => {
-          setConnectStatus(res)
-        })
-      }, 10);
-      return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      checkConnected().then(res => {
+        setConnectStatus(res)
+      })
+    }, 10);
+    return () => clearInterval(interval);
 
   }, []);
 
@@ -92,12 +92,12 @@ export default function LocalDataScreen(props) {
           <View style={styles.tileParent}>
             <View style={{ flexDirection: "row" }}>
               <Tile
-                heading={"Total Confirmed Cases"}
+                heading={"Daily New Cases"}
                 iconComponent={
-                  <FontAwesome5 name="hospital" size={25} color="white" />
+                  <FontAwesome5 name="ambulance" size={25} color="white" />
                 }
-                count={covidData.local_total_cases}
-                tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
+                count={covidData.local_new_cases}
+                tileBackgroundColor={{ backgroundColor: "#7052fb" }}
               />
               <Tile
                 heading={"Active Cases"}
@@ -111,12 +111,12 @@ export default function LocalDataScreen(props) {
 
             <View style={{ flexDirection: "row" }}>
               <Tile
-                heading={"Daily New Cases"}
+                heading={"Total Confirmed Cases"}
                 iconComponent={
-                  <FontAwesome5 name="ambulance" size={25} color="white" />
+                  <FontAwesome5 name="hospital" size={25} color="white" />
                 }
-                count={covidData.local_new_cases}
-                tileBackgroundColor={{ backgroundColor: "#7052fb" }}
+                count={covidData.local_total_cases}
+                tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
               />
               <Tile
                 heading={"Currently in hospitals"}
@@ -130,15 +130,15 @@ export default function LocalDataScreen(props) {
 
             <View style={{ flexDirection: "row" }}>
               <Tile
-                heading={"Recovered & Discharged"}
+                heading={"New Deaths"}
                 iconComponent={
-                  <FontAwesome5 name="running" size={25} color="white" />
+                  <FontAwesome5 name="bed" size={25} color="white" />
                 }
-                count={covidData.local_recovered}
-                tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
+                count={covidData.local_new_deaths}
+                tileBackgroundColor={{ backgroundColor: "#f57b25" }}
               />
               <Tile
-                heading={"Deaths"}
+                heading={"Total Deaths"}
                 iconComponent={
                   <FontAwesome5 name="bed" size={25} color="white" />
                 }
@@ -149,12 +149,12 @@ export default function LocalDataScreen(props) {
 
             <View style={{ flexDirection: "row", }}>
               <Tile
-                heading={"New Deaths"}
+                heading={"Recovered & Discharged"}
                 iconComponent={
-                  <FontAwesome5 name="bed" size={25} color="white" />
+                  <FontAwesome5 name="running" size={25} color="white" />
                 }
-                count={covidData.local_new_deaths}
-                tileBackgroundColor={{ backgroundColor: "#f57b25" }}
+                count={covidData.local_recovered}
+                tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
               />
             </View>
 

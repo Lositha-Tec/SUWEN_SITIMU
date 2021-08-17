@@ -1,47 +1,47 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Button } from "react-native";
+import { Entypo } from '@expo/vector-icons';
 
 export const EContactItem = (props) => {
   return (
     <View>
       <View style={styles.contactItemContainer}>
-        <View style={styles.itemContainer}>
           <View style={styles.imageIcon}>
             <Image
               source={props.imageSource}
-              style={[styles.contactImg, props.style]}
+              style={styles.contactImg}
             />
           </View>
-          <View>
+          <View style={{flex: 1, marginTop: 20}}>
             {props.displayStyle ?
               <View>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem2}>
+                  <Entypo name="phone" size={24} color="white" style={{marginRight:5}} />
                   <Text style={styles.itemText}>{props.labelComponent2}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem}>
+                  <Entypo name="phone" size={24} color="white" />
                   <Text style={styles.itemText}>{props.labelComponent}</Text>
                 </TouchableOpacity>
               </View> :
-              <>
+              <View>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem}>
+                  <Entypo name="phone" size={24} color="white"  style={{marginRight:5}} />
                   <Text style={styles.itemText}>{props.labelComponent}</Text>
                 </TouchableOpacity>
-              </>
+              </View>
             }
           </View>
         </View>
       </View>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
   contactItemContainer: {
-    //flex: 1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 180,
-    width: 150,
     shadowColor: "#000",
     marginBottom: 30,
     shadowOffset: {
@@ -54,25 +54,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 5,
-    height: 220,
-    backgroundColor:"white"
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding:5,
     //borderWidth: 1
   },
-  itemContainer: {
-    //borderWidth: 1,
-    borderRadius: 15,
-    padding: 10,
-    marginTop: 25,
-    margin: 8,
-    justifyContent: "center",
-    alignItems: "center",
+  imageIcon: {
+    marginTop: 10,
+    //borderWidth:2,
   },
-  itemIcon: {},
   contactImg: {
-    width: 110,
+    width: 100,
     height: 100,
-    borderRadius: 10,
-    //marginBottom: 20
   },
   itemText: {
     marginTop: 5,
@@ -82,10 +75,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   btnContact: {
+    flex: 0.25,
+    flexDirection: "row",
     backgroundColor: "red",
-    width: 120,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 130,
     borderRadius: 5,
-    padding: 2,
+    padding: 5,
     margin: 5,
   }
 });
