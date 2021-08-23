@@ -4,7 +4,7 @@
     "slug": "suwen_sitimu",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -23,7 +23,7 @@
     },
     "android": {
       "package": "com.developers_in.suwen_sitimu",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
