@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme, } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import DrawerNavigator from './DrawerNavigator';
 import { useSelector } from "react-redux";
 
 import PoliceOpenItemScreen from "../screens/PoliceOpenItemScreen";

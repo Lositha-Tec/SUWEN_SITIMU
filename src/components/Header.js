@@ -364,11 +364,11 @@ export default function Header(props) {
         ) : (
           <>
             <View style={styles.userIcon}>
-              <Ionicons
-                name="menu-outline"
-                size={35}
-                color={colors.menuIconColor}
-                onPress={() => props.navigation.openDrawer()}
+            <AntDesign
+                name="appstore1"
+                size={40}
+                color="#355CB6"
+                onPress={() => { setMainModalVisible(true); }}
               />
               <Ionicons
                 name="person-circle"
