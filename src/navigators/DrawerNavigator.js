@@ -19,27 +19,27 @@ import PharmaciesScreen from "../screens/PharmaciesScreen";
 import SettingScreen from "../screens/SettingScreen";
 import PHIWebScreen from '../screens/PHIWebScreen';
 
-const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
+//const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
 
-const onShare = async () => {
-  try {
-    const result = await Share.share({
-      message:
-        'https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu',
-    });
-    if (result.action === Share.sharedAction) {
-      if (result.activityType) {
-        // shared with activity type of result.activityType
-      } else {
-        // shared
-      }
-    } else if (result.action === Share.dismissedAction) {
-      // dismissed
-    }
-  } catch (error) {
-    alert(error.message);
-  }
-};
+// const onShare = async () => {
+//   try {
+//     const result = await Share.share({
+//       message:
+//         'https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu',
+//     });
+//     if (result.action === Share.sharedAction) {
+//       if (result.activityType) {
+//         // shared with activity type of result.activityType
+//       } else {
+//         // shared
+//       }
+//     } else if (result.action === Share.dismissedAction) {
+//       // dismissed
+//     }
+//   } catch (error) {
+//     alert(error.message);
+//   }
+// };
 
 const Drawer = createDrawerNavigator();
 
@@ -53,7 +53,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
 
-      <DrawerItem
+      {/* <DrawerItem
         icon={({ focused, color, size }) => (
           <MaterialIcons
             color={"#5c5c5c"}
@@ -64,8 +64,8 @@ function CustomDrawerContent(props) {
         label="Rate Us"
         onPress={() => Linking.openURL(`${rateUsURl}`)}
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
-      />
-      <DrawerItem
+      /> */}
+      {/* <DrawerItem
         icon={({ focused, color, size }) => (
           <FontAwesome
             color={"#5c5c5c"}
@@ -76,7 +76,7 @@ function CustomDrawerContent(props) {
         label="Share App"
         onPress={onShare}
         labelStyle={{ fontSize: 15, fontWeight: "bold", paddingLeft: 1 }}
-      />
+      /> */}
       {/* <DrawerItem
         icon={({ focused, color, size }) => (
           <Ionicons
@@ -109,7 +109,7 @@ export default function DrawerNavigator() {
         //width: 300,
       }}
     >
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Home"
         component={BottomTabNavigator}
         options={{
@@ -121,7 +121,7 @@ export default function DrawerNavigator() {
             />
           ),
         }}
-      />
+      /> */}
       {/* <Drawer.Screen
         name="How to be Healthy"
         component={TopTabScreen}
@@ -152,7 +152,7 @@ export default function DrawerNavigator() {
           headerTintColor: "gray",
         }}
       /> */}
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Vaccination Program"
         component={VaccinationScreen}
         options={{
@@ -166,7 +166,7 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
+      /> */}
       {/* <Drawer.Screen
         name="Pharmacies"
         component={PharmacyWebScreen}
@@ -182,7 +182,7 @@ export default function DrawerNavigator() {
           headerTintColor: "gray",
         }}
       /> */}
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Find PHI"
         component={PHIWebScreen}
         options={{
@@ -196,8 +196,8 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Hospitals"
         component={HospitalsScreen}
         options={{
@@ -209,8 +209,8 @@ export default function DrawerNavigator() {
             />
           ),
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Tell to President"
         component={TelltoPresidentScreen}
         options={{
@@ -224,8 +224,8 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Grama Niladhari"
         component={VillegeServiceScreen}
         options={{
@@ -237,8 +237,8 @@ export default function DrawerNavigator() {
             />
           ),
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Police Stations"
         component={PoliceStationsScreen}
         options={{
@@ -250,7 +250,7 @@ export default function DrawerNavigator() {
             />
           ),
         }}
-      />
+      /> */}
       {/* <Drawer.Screen
         name="Osusal"
         component={PharmaciesScreen}
@@ -264,7 +264,7 @@ export default function DrawerNavigator() {
           ),
         }}
       /> */}
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Privacy Policy"
         component={PrivacyPolicyScreen}
         options={{
@@ -278,8 +278,8 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Terms & Conditions"
         component={TermsConditionScreen}
         options={{
@@ -293,7 +293,7 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
+      /> */}
       {/* <Drawer.Screen
         name="Settings"
         component={SettingScreen}

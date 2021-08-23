@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView, Linking, Image } from "react-native";
+import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView, Linking, Share, Image } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, FontAwesome5, AntDesign, Fontisto,MaterialIcons, MaterialCommunityIcons, } from "@expo/vector-icons";
 import RNModal from 'react-native-modal';
 
 import { EContactItem } from '../components/EContactItem';
+import { MainModalComponent } from '../components/MainModalComponent';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CredentialsContext } from './../components/CredentialsContext';
@@ -33,9 +34,13 @@ const accidentManagementNo = "0113071073";
 const covidSymptomsNo = "1390";
 const qurantineAntryNo = "0112860003";
 
+const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
+
+
 export default function Header(props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
   const [modalVisible, setModalVisible] = useState(false);
+  const [mainModalVisible, setMainModalVisible] = useState(false);
   const [modalEContactVisible, setModalEContactVisible] = useState(false);
   const navigation = useNavigation();
   const { colors } = useTheme();
@@ -46,35 +51,54 @@ export default function Header(props) {
     }).catch(error => console.log(error))
   }
 
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  
+
   return (
     <View style={{ backgroundColor: colors.headerColor }}>
       {props.dateAndTime ? (
         <>
           <View style={styles.userIcon}>
-            <Ionicons
+            {/* <Ionicons
               name="menu-outline"
               size={35}
               color={colors.menuIconColor}
               onPress={() => props.navigation.openDrawer()}
-            />
-            <FontAwesome5
-              name="hand-holding-heart"
-              size={30}
-              color={colors.menuIconColor}
-              onPress={() => navigation.navigate("How to be Healthy")}
-            />
-            <FontAwesome5
-              name="head-side-mask"
-              size={30}
-              color={colors.menuIconColor}
-              onPress={() => navigation.navigate("Health Guidelines")}
-            />
-            <MaterialIcons
-              name="local-hospital"
+            /> */}
+            <AntDesign
+              name="appstore1"
               size={35}
               color={colors.menuIconColor}
-              onPress={() => navigation.navigate("Pharmacies")}
+              onPress={() => { setMainModalVisible(true); }}
             />
+            <TouchableOpacity onPress={() => navigation.navigate("How to be Healthy")}>
+              <Image source={require('../../assets/img/heart.png')} style={{ width: 40, height: 40 }} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Health Guidelines")}>
+              <Image source={require('../../assets/img/mask.png')} style={{ width: 40, height: 40 }} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Pharmacies")}>
+              <Image source={require('../../assets/img/red-cross.png')} style={{ width: 40, height: 40 }} />
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => { setModalEContactVisible(true); }}>
               <Image source={require('../../assets/img/contactIcon.png')} style={{ width: 40, height: 40 }} />
             </TouchableOpacity>
@@ -205,6 +229,121 @@ export default function Header(props) {
               </View>
             </RNModal>
           </View>
+
+          {/* Main Modal Start */}
+          <View>
+            <RNModal isVisible={mainModalVisible}
+              transparent={true}
+              hideModalContentWhileAnimating={true}
+              onBackdropPress={() => setMainModalVisible(false)}
+              backdropColor={'rgba(0,0,0,0.4)'}
+              backdropOpacity={1}
+              animationIn={'zoomInDown'}
+              animationOut={'zoomOutUp'}
+              animationInTiming={1000}
+              animationOutTiming={1000}
+              backdropTransitionInTiming={1000}
+              backdropTransitionOutTiming={1000}
+            >
+              <View style={styles.eContactModalView}>
+                <View style={{ flex: 1, alignItems: "flex-end", paddingBottom: 35 }}>
+                  <FontAwesome
+                    style={{ paddingRight: 15 }}
+                    name="close"
+                    size={30}
+                    color={"#6666ff"}
+                    onPress={() => { setMainModalVisible(!mainModalVisible); }}
+                  />
+                </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Vaccination Program") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <Fontisto name="injection-syringe" size={55} color={"red"} />
+                        }
+                        pageName={"Vaccination Program"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Find PHI") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <FontAwesome5 name="user-nurse" size={55} color={"red"} />
+                        }
+                        pageName={"Find PHI"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Hospitals") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <FontAwesome5 name="hospital-alt" size={55} color={"red"} />
+                        }
+                        pageName={"Hospitals"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Tell to President") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <FontAwesome5 name="user-tie" size={55} color={"red"} />
+                        }
+                        pageName={"Tell to President"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Grama Niladhari") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <FontAwesome name="users" size={55} color={"red"} />
+                        }
+                        pageName={"Grama Niladhari"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Police Stations") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <MaterialCommunityIcons name="police-badge" size={55} color={"red"} />
+                        }
+                        pageName={"Police Stations"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Privacy Policy") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <MaterialIcons name="privacy-tip" size={55} color={"red"} />
+                        }
+                        pageName={"Privacy Policy"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Terms & Conditions") }} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <Ionicons name="md-document-text" size={55} color={"red"} />
+                        }
+                        pageName={"Terms & Conditions"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Linking.openURL(`${rateUsURl}`)} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <MaterialIcons name="star-rate" size={55} color={"red"} />
+                        }
+                        pageName={"Rate Us"}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={onShare} activeOpacity={0}>
+                      <MainModalComponent
+                        iconComponent={
+                          <FontAwesome name="share-alt" size={55} color={"red"} />
+                        }
+                        pageName={"Share App"}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
+              </View>
+            </RNModal>
+          </View>
+          {/* Main Modal End */}
+
         </>
       ) : (
         <>
