@@ -6,7 +6,11 @@ export const MainModalComponent = (props) => {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.itemIconContainer}>
-        <Text style={styles.itemIcon}>{props.iconComponent}</Text>
+        {/* <Text style={styles.itemIcon}>{props.iconComponent}</Text> */}
+        <Image
+              source={props.imageSource}
+              style={styles.itemIcon}
+            />
       </View>
       <View style={styles.itemTextContainer}>
         <Text style={styles.itemText} >{props.pageName}</Text>
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 150,
-    height: 180,
+    height: 200,
     marginBottom: 30,
     margin: 5,
     padding:10,
@@ -35,28 +39,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 0,
     elevation: 5,
-    //borderWidth: 1
   },
   itemIconContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    marginTop: 20,
     padding: 10,
     width: 100,
-    height: 100,
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 5,
-    // },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 0,
-    //elevation: 1,
-    borderWidth: 2,
+    height: 120,
+    //borderWidth: 1,
   },
   itemIcon: {
-    textAlign: "center",
+    width:100,
+    height:120,
   },
   itemTextContainer: {
     flex: 1,
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   itemText: {
-    color: "red",
+    color: "#505051",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold"

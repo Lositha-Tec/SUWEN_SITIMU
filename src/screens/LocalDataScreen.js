@@ -4,6 +4,18 @@ import { useTheme } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  ExpletusSans_400Regular,
+  ExpletusSans_400Regular_Italic,
+  ExpletusSans_500Medium,
+  ExpletusSans_500Medium_Italic,
+  ExpletusSans_600SemiBold,
+  ExpletusSans_600SemiBold_Italic,
+  ExpletusSans_700Bold,
+  ExpletusSans_700Bold_Italic,
+} from '@expo-google-fonts/expletus-sans';
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
@@ -37,6 +49,7 @@ import NoNetworkConnection from "../components/NoNetworkConnection";
 
 //i18n.locale = Localization.locale;
 //i18n.fallbacks = true;
+
 
 export default function LocalDataScreen(props) {
   const [loading, setLoading] = useState(false);
@@ -75,6 +88,19 @@ export default function LocalDataScreen(props) {
     covidData.local_new_deaths = data.data.local_new_deaths;
   }
 
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_400Regular,
+    ExpletusSans_400Regular_Italic,
+    ExpletusSans_500Medium,
+    ExpletusSans_500Medium_Italic,
+    ExpletusSans_600SemiBold,
+    ExpletusSans_600SemiBold_Italic,
+    ExpletusSans_700Bold,
+    ExpletusSans_700Bold_Italic,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
   return (
     connectStatus ? (
       <View style={styles.fullPage}>
@@ -167,7 +193,7 @@ export default function LocalDataScreen(props) {
         </ScrollView>
       </View>
     ) : (<NoNetworkConnection navigation={props.navigation} />)
-  );
+  );}
 }
 
 const styles = StyleSheet.create({
@@ -186,6 +212,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: RFPercentage(3),
     marginBottom: 10,
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    fontFamily: 'ExpletusSans_500Medium',
   },
 });

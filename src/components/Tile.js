@@ -2,8 +2,35 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import {widthPercentageToDP as wp,heightPercentageToDP as hp,} from "react-native-responsive-screen";
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  ExpletusSans_400Regular,
+  ExpletusSans_400Regular_Italic,
+  ExpletusSans_500Medium,
+  ExpletusSans_500Medium_Italic,
+  ExpletusSans_600SemiBold,
+  ExpletusSans_600SemiBold_Italic,
+  ExpletusSans_700Bold,
+  ExpletusSans_700Bold_Italic,
+} from '@expo-google-fonts/expletus-sans';
 
 const Tile = (props) => {
+
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_400Regular,
+    ExpletusSans_400Regular_Italic,
+    ExpletusSans_500Medium,
+    ExpletusSans_500Medium_Italic,
+    ExpletusSans_600SemiBold,
+    ExpletusSans_600SemiBold_Italic,
+    ExpletusSans_700Bold,
+    ExpletusSans_700Bold_Italic,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+
   return (
     <View style={styles.tile}>
       <View style={styles.headingTextParent}>
@@ -16,7 +43,7 @@ const Tile = (props) => {
         <Text style={styles.count}>{props.count}</Text>
       </View>
     </View>
-  );
+  );}
 };
 
 const styles = StyleSheet.create({
@@ -37,7 +64,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   headingText: {
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    fontFamily: 'ExpletusSans_500Medium',
     fontSize: RFPercentage(2),
     textAlign: "center",
     color: "black",
@@ -57,6 +85,7 @@ const styles = StyleSheet.create({
   count: {
     fontSize: RFPercentage(3.5),
     color: "#000",
+    fontFamily: 'ExpletusSans_400Regular',
   },
 });
 
