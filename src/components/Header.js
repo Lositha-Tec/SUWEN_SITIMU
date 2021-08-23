@@ -47,10 +47,10 @@ const accidentManagementNo = "0113071073";
 const covidSymptomsNo = "1390";
 const qurantineAntryNo = "0112860003";
 
-const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`
+const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`;
 
 
-export default function Header(props) {
+export default function Header (props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [mainModalVisible, setMainModalVisible] = useState(false);
@@ -61,8 +61,8 @@ export default function Header(props) {
   const clearLogin = () => {
     AsyncStorage.removeItem('suwenSitimuCredentials').then(() => {
       setStoredCredentials("");
-    }).catch(error => console.log(error))
-  }
+    }).catch(error => console.log(error));
+  };
 
   const onShare = async () => {
     try {
@@ -273,7 +273,7 @@ export default function Header(props) {
                   </View>
                   <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Vaccination Program") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Vaccination Program"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/syringe.png")
@@ -281,7 +281,7 @@ export default function Header(props) {
                           pageName={"Vaccination Program"}
                         />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Find PHI") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Find PHI"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/user-nurse.png")
@@ -289,7 +289,7 @@ export default function Header(props) {
                           pageName={"Find PHI"}
                         />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Hospitals") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Hospitals"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/hospital-alt.png")
@@ -297,7 +297,7 @@ export default function Header(props) {
                           pageName={"Hospitals"}
                         />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Tell to President") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Tell to President"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/user-tie.png")
@@ -305,7 +305,7 @@ export default function Header(props) {
                           pageName={"Tell to President"}
                         />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Grama Niladhari") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Grama Niladhari"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/users.png")
@@ -313,28 +313,12 @@ export default function Header(props) {
                           pageName={"Grama Niladhari"}
                         />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Police Stations") }} activeOpacity={0}>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Police Stations"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/police-badge.png")
                           }
                           pageName={"Police Stations"}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Privacy Policy") }} activeOpacity={0}>
-                        <MainModalComponent
-                          imageSource={
-                            require("../../assets/modalImg/privacy-tip.png")
-                          }
-                          pageName={"Privacy Policy"}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Terms & Conditions") }} activeOpacity={0}>
-                        <MainModalComponent
-                          imageSource={
-                            require("../../assets/modalImg/md-document-text.png")
-                          }
-                          pageName={"Terms & Conditions"}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => Linking.openURL(`${rateUsURl}`)} activeOpacity={0}>
@@ -353,6 +337,23 @@ export default function Header(props) {
                           pageName={"Share App"}
                         />
                       </TouchableOpacity>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Privacy Policy"); }} activeOpacity={0}>
+                        <MainModalComponent
+                          imageSource={
+                            require("../../assets/modalImg/privacy-tip.png")
+                          }
+                          pageName={"Privacy Policy"}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Terms & Conditions"); }} activeOpacity={0}>
+                        <MainModalComponent
+                          imageSource={
+                            require("../../assets/modalImg/md-document-text.png")
+                          }
+                          pageName={"Terms & Conditions"}
+                        />
+                      </TouchableOpacity>
+
                     </View>
                   </ScrollView>
                 </View>
@@ -364,7 +365,7 @@ export default function Header(props) {
         ) : (
           <>
             <View style={styles.userIcon}>
-            <AntDesign
+              <AntDesign
                 name="appstore1"
                 size={40}
                 color="#355CB6"
