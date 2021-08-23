@@ -122,7 +122,7 @@ export default function DrawerNavigator() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="How to be Healthy"
         component={TopTabScreen}
         options={{
@@ -136,8 +136,8 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         name="Health Guidelines"
         component={HealthGuidelineScreen}
         options={{
@@ -151,7 +151,7 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Vaccination Program"
         component={VaccinationScreen}
@@ -167,7 +167,7 @@ export default function DrawerNavigator() {
           headerTintColor: "gray",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Pharmacies"
         component={PharmacyWebScreen}
         options={{
@@ -181,7 +181,7 @@ export default function DrawerNavigator() {
           headerShown: true,
           headerTintColor: "gray",
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Find PHI"
         component={PHIWebScreen}

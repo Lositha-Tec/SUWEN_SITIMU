@@ -8,6 +8,9 @@ import VillageOpenItemScreen from "../screens/VillageOpenItemScreen";
 import HospitalOpenItemScreen from "../screens/HospitalOpenItemScreen";
 import PharmacyOpenItemScreen from "../screens/PharmacyOpenItemScreen";
 import UserProfileScreen from '../screens/UserProfileScreen';
+import TopTabScreen from "../screens/TopTabScreen";
+import HealthGuidelineScreen from "../screens/HealthGuidelineScreen";
+import PharmacyWebScreen from "../screens/PharmacyWebScreen";
 
 //import { LanguageContext } from '../components/LanguageContext';
 //import LanguageSelectionScreen from '../screens/LanguageSelectionScreen';
@@ -72,6 +75,9 @@ const RootStackNavigator = ({ navigation }) => {
                                 <Stack.Screen name="Hospital Details" component={HospitalOpenItemScreen} options={{ headerShown: true }} />
                                 <Stack.Screen name="Osusala Details" component={PharmacyOpenItemScreen} options={{ headerShown: true }} />
                                 <Stack.Screen name="Profile" component={UserProfileScreen} />
+                                <Stack.Screen name="How to be Healthy" component={TopTabScreen} />
+                                <Stack.Screen name="Health Guidelines" component={HealthGuidelineScreen} />
+                                <Stack.Screen name="Pharmacies" component={PharmacyWebScreen} />
                             </>
                         {/* ) : (
                             <>

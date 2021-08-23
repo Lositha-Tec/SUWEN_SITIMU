@@ -111,25 +111,6 @@ export default function LocalDataScreen(props) {
 
             <View style={{ flexDirection: "row" }}>
               <Tile
-                heading={"Total Confirmed Cases"}
-                iconComponent={
-                  <FontAwesome5 name="hospital" size={25} color="white" />
-                }
-                count={covidData.local_total_cases}
-                tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
-              />
-              <Tile
-                heading={"Currently in hospitals"}
-                iconComponent={
-                  <FontAwesome5 name="clinic-medical" size={25} color="white" />
-                }
-                count={covidData.local_total_number_of_individuals_in_hospitals}
-                tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
-              />
-            </View>
-
-            <View style={{ flexDirection: "row" }}>
-              <Tile
                 heading={"New Deaths"}
                 iconComponent={
                   <FontAwesome5 name="bed" size={25} color="white" />
@@ -144,6 +125,25 @@ export default function LocalDataScreen(props) {
                 }
                 count={covidData.local_deaths}
                 tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
+              />
+            </View>
+
+            <View style={{ flexDirection: "row" }}>
+              <Tile
+                heading={"Total Confirmed Cases"}
+                iconComponent={
+                  <FontAwesome5 name="hospital" size={25} color="white" />
+                }
+                count={covidData.local_total_cases}
+                tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
+              />
+              <Tile
+                heading={"Currently in hospitals"}
+                iconComponent={
+                  <FontAwesome5 name="clinic-medical" size={25} color="white" />
+                }
+                count={covidData.local_total_number_of_individuals_in_hospitals}
+                tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
               />
             </View>
 

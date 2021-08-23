@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView, Linking, Image } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import { Ionicons, FontAwesome, } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import RNModal from 'react-native-modal';
 
 import { EContactItem } from '../components/EContactItem';
@@ -56,6 +56,24 @@ export default function Header(props) {
               size={35}
               color={colors.menuIconColor}
               onPress={() => props.navigation.openDrawer()}
+            />
+            <FontAwesome5
+              name="hand-holding-heart"
+              size={30}
+              color={colors.menuIconColor}
+              onPress={() => navigation.navigate("How to be Healthy")}
+            />
+            <FontAwesome5
+              name="head-side-mask"
+              size={30}
+              color={colors.menuIconColor}
+              onPress={() => navigation.navigate("Health Guidelines")}
+            />
+            <MaterialIcons
+              name="local-hospital"
+              size={35}
+              color={colors.menuIconColor}
+              onPress={() => navigation.navigate("Pharmacies")}
             />
             <TouchableOpacity onPress={() => { setModalEContactVisible(true); }}>
               <Image source={require('../../assets/img/contactIcon.png')} style={{ width: 40, height: 40 }} />
