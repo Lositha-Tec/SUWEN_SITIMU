@@ -7,15 +7,7 @@ import { Picker } from "@react-native-picker/picker";
 import { FontAwesome5 } from "@expo/vector-icons";
 import AppLoading from 'expo-app-loading';
 import {
-  useFonts,
-  ExpletusSans_400Regular,
-  ExpletusSans_400Regular_Italic,
-  ExpletusSans_500Medium,
-  ExpletusSans_500Medium_Italic,
-  ExpletusSans_600SemiBold,
-  ExpletusSans_600SemiBold_Italic,
-  ExpletusSans_700Bold,
-  ExpletusSans_700Bold_Italic,
+  useFonts, ExpletusSans_500Medium,
 } from '@expo-google-fonts/expletus-sans';
 
 import Header from "../components/Header";
@@ -149,14 +141,7 @@ export default function GlobalDataScreen(props) {
   covidData.global_deaths = globalDeaths;
 
   let [fontsLoaded] = useFonts({
-    ExpletusSans_400Regular,
-    ExpletusSans_400Regular_Italic,
     ExpletusSans_500Medium,
-    ExpletusSans_500Medium_Italic,
-    ExpletusSans_600SemiBold,
-    ExpletusSans_600SemiBold_Italic,
-    ExpletusSans_700Bold,
-    ExpletusSans_700Bold_Italic,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -234,10 +219,10 @@ export default function GlobalDataScreen(props) {
               </View>
 
               <View style={{ marginTop: 50 }}>
-                <Text style={{ color: "gray", fontFamily:"ExpletusSans_500Medium" }}>
+                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
                   Data Source: https://www.hpb.health.gov.lk
                 </Text>
-                <Text style={{ color: "gray", fontFamily:"ExpletusSans_500Medium" }}>
+                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
                   Data Source: https://api.covid19api.com
                 </Text>
               </View>

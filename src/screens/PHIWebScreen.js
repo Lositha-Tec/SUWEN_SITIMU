@@ -6,6 +6,9 @@ import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
 
+import AppLoading from 'expo-app-loading';
+import { useFonts, ExpletusSans_500Medium, } from '@expo-google-fonts/expletus-sans';
+
 const phiURL = "https://c1aca754.caspio.com/dp/f2398000705cb9046a5f4f07a419"
 
 export default function PHIWebScreen() {
@@ -19,20 +22,24 @@ export default function PHIWebScreen() {
         }, 10);
         return () => clearInterval(interval);
     }, []);
-
-    return (
-        connectStatus ? (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                    <WebViewComponent source={{ uri: `${phiURL}` }} />
-                </View>
-                <View style={{ alignItems: "center", marginTop: 10 }}>
-                    <Text style={{ color: "gray" }}>
-                        Data Source: https://phi.lk
-                    </Text>
-                </View>
-                <AdMobBannerComponent />
-            </SafeAreaView>
-        ) : (<NoNetworkConnection navigation={false} />)
-    );
+    let [fontsLoaded] = useFonts({ ExpletusSans_500Medium });
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            connectStatus ? (
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={{ flex: 1 }}>
+                        <WebViewComponent source={{ uri: `${phiURL}` }} />
+                    </View>
+                    <View style={{ alignItems: "center", marginTop: 10 }}>
+                        <Text style={{ color: "gray", fontFamily: 'ExpletusSans_500Medium' }}>
+                            Data Source: https://phi.lk
+                        </Text>
+                    </View>
+                    <AdMobBannerComponent />
+                </SafeAreaView>
+            ) : (<NoNetworkConnection navigation={false} />)
+        );
+    }
 }

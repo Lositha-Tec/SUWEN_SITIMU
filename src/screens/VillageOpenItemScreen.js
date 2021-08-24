@@ -2,9 +2,21 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts, ExpletusSans_600SemiBold, ExpletusSans_700Bold,
+} from '@expo-google-fonts/expletus-sans';
+
 const VillageOpenItemScreen = ({ route }) => {
   const { item } = route.params;
 
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_600SemiBold,
+    ExpletusSans_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -61,7 +73,7 @@ const VillageOpenItemScreen = ({ route }) => {
       </View>
       <AdMobBannerComponent />
     </ScrollView>
-  );
+  );}
 };
 
 const styles = StyleSheet.create({
@@ -85,33 +97,33 @@ const styles = StyleSheet.create({
     color: "#87a7b3",
     fontSize: 20,
     marginTop: 5,
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
   },
   detailTitleTextOne: {
     color: "#007580",
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_700Bold',
     fontSize: 35,
   },
   detailTitleTextTwo: {
     color: "#de8971",
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_700Bold',
     fontSize: 35,
   },
   detailTitleTextThree: {
     color: "#344fa1",
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_700Bold',
     fontSize: 35,
     textAlign: "center",
   },
   detailTitleTextFour: {
     color: "#007580",
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_700Bold',
     fontSize: 35,
     textAlign: "center",
   },
   detailTitleTextFive: {
     color: "#de8971",
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_700Bold',
     fontSize: 35,
     textAlign: "center",
   },
@@ -122,7 +134,7 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
     color: "gray",
     paddingLeft: 10,
   },
@@ -136,7 +148,7 @@ const styles = StyleSheet.create({
   },
   contactText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
     color: "black",
     paddingLeft: 20,
   },

@@ -5,17 +5,7 @@ import { CredentialsContext } from './../components/CredentialsContext';
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import AppLoading from 'expo-app-loading';
-import {
-    useFonts,
-    ExpletusSans_400Regular,
-    ExpletusSans_400Regular_Italic,
-    ExpletusSans_500Medium,
-    ExpletusSans_500Medium_Italic,
-    ExpletusSans_600SemiBold,
-    ExpletusSans_600SemiBold_Italic,
-    ExpletusSans_700Bold,
-    ExpletusSans_700Bold_Italic,
-} from '@expo-google-fonts/expletus-sans';
+import { useFonts, ExpletusSans_700Bold, } from '@expo-google-fonts/expletus-sans';
 
 import LocalDataScreen from '../screens/LocalDataScreen';
 import GlobalDataScreen from '../screens/GlobalDataScreen';
@@ -28,14 +18,7 @@ const Tabs = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
     let [fontsLoaded] = useFonts({
-        ExpletusSans_400Regular,
-        ExpletusSans_400Regular_Italic,
-        ExpletusSans_500Medium,
-        ExpletusSans_500Medium_Italic,
-        ExpletusSans_600SemiBold,
-        ExpletusSans_600SemiBold_Italic,
         ExpletusSans_700Bold,
-        ExpletusSans_700Bold_Italic,
     });
     if (!fontsLoaded) {
         return <AppLoading />;

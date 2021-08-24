@@ -6,7 +6,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import RNModal from 'react-native-modal';
 import AppLoading from 'expo-app-loading';
-import { useFonts, ExpletusSans_500Medium, ExpletusSans_600SemiBold, } from '@expo-google-fonts/expletus-sans';
+import { useFonts, ExpletusSans_500Medium } from '@expo-google-fonts/expletus-sans';
 
 import { EContactItem } from '../components/EContactItem';
 import { MainModalComponent } from '../components/MainModalComponent';
@@ -53,7 +53,6 @@ export default function HeaderNoNetwork(props) {
 
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
-    ExpletusSans_600SemiBold,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -97,7 +96,7 @@ export default function HeaderNoNetwork(props) {
                 />
               </View>
               <View style={{ flex: 1, alignItems: "center", paddingBottom: 35, backgroundColor: "white", marginHorizontal: 20, marginBottom: 8, borderRadius: 7 }}>
-                <Text style={{ fontWeight: "bold", fontSize: 20, color: "#DC143C" }}>Emergency Contact Numbers</Text>
+                <Text style={{ fontWeight: "bold", fontSize: 20, color: "#DC143C", fontFamily: 'ExpletusSans_500Medium', textAlign:"center" }}>Emergency Contact Numbers</Text>
               </View>
               <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>

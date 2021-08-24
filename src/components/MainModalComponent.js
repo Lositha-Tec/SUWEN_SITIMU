@@ -3,26 +3,12 @@ import { StyleSheet, View, Text, Image, } from "react-native";
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
-  ExpletusSans_400Regular,
-  ExpletusSans_400Regular_Italic,
   ExpletusSans_500Medium,
-  ExpletusSans_500Medium_Italic,
-  ExpletusSans_600SemiBold,
-  ExpletusSans_600SemiBold_Italic,
-  ExpletusSans_700Bold,
-  ExpletusSans_700Bold_Italic,
 } from '@expo-google-fonts/expletus-sans';
 
 export const MainModalComponent = (props) => {
   let [fontsLoaded] = useFonts({
-    ExpletusSans_400Regular,
-    ExpletusSans_400Regular_Italic,
     ExpletusSans_500Medium,
-    ExpletusSans_500Medium_Italic,
-    ExpletusSans_600SemiBold,
-    ExpletusSans_600SemiBold_Italic,
-    ExpletusSans_700Bold,
-    ExpletusSans_700Bold_Italic,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -86,8 +72,7 @@ const styles = StyleSheet.create({
   itemText: {
     color: "#505051",
     textAlign: "center",
-    //fontSize: 20,
-    //fontWeight: "bold",
+    fontSize: 16,
     fontFamily: 'ExpletusSans_500Medium',
 
   },

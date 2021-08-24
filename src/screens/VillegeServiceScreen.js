@@ -4,6 +4,9 @@ import { useTheme, useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
 
+import AppLoading from 'expo-app-loading';
+import { useFonts, ExpletusSans_600SemiBold, } from '@expo-google-fonts/expletus-sans';
+
 import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import VillegeData from "../data/gramaniladari";
 
@@ -53,56 +56,54 @@ const VillegeServiceScreen = () => {
     );
   };
 
-  return (
-    <View style={[styles.container, { backgroundColor: colors.screenBgColor }]}>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: 35,
-        }}
-      >
-        <MaterialIcons
-          name="arrow-back"
-          size={30}
-          color="gray"
-          onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: "Home" }],
-          })}
-        />
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_600SemiBold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.screenBgColor }]}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 35,
+          }}
+        >
 
-        <SearchBar
-          platform="android"
-          cancelIcon={false}
-          inputStyle={{
-            backgroundColor: "#e6e6e6",
-            lineHeight: 26,
-            height: 12,
-          }}
-          containerStyle={{
-            backgroundColor: "transparent",
-            width: "90%",
-          }}
-          inputContainerStyle={{ backgroundColor: "#e6e6e6", borderRadius: 10 }}
-          searchIcon={{ size: 24 }}
-          onChangeText={(text) => searchFilterFunction(text)}
-          onClear={(text) => searchFilterFunction("")}
-          placeholder="Search Village"
-          placeholderTextColor={"black"}
-          value={search}
+          <SearchBar
+            platform="android"
+            cancelIcon={false}
+            inputStyle={{
+              backgroundColor: "#e6e6e6",
+              lineHeight: 26,
+              height: 12,
+            }}
+            containerStyle={{
+              backgroundColor: "transparent",
+              width: "95%",
+            }}
+            inputContainerStyle={{ backgroundColor: "#e6e6e6", borderRadius: 10 }}
+            searchIcon={{ size: 24 }}
+            onChangeText={(text) => searchFilterFunction(text)}
+            onClear={(text) => searchFilterFunction("")}
+            placeholder="Search Village"
+            placeholderTextColor={"black"}
+            value={search}
+          />
+        </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={filteredDataSource}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={ItemView}
         />
+        <AdMobBannerComponent />
       </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={filteredDataSource}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={ItemView}
-      />
-      <AdMobBannerComponent />
-    </View>
-  );
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#3c6c91",
     color: "white",
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
     marginBottom: 10,
     borderRadius: 10,
   },

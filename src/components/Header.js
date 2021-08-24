@@ -136,8 +136,8 @@ export default function Header(props) {
                       onPress={() => { setModalEContactVisible(!modalEContactVisible); }}
                     />
                   </View>
-                  <View style={{ flex: 1, alignItems: "center", paddingBottom: 35, backgroundColor: "white", marginHorizontal: 20, marginBottom: 8, borderRadius: 7 }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 20, color: "#DC143C" }}>Emergency Contact Numbers</Text>
+                  <View style={{ flex: 1, alignItems: "center", paddingBottom: 35, backgroundColor: "white", marginHorizontal: 20, marginBottom: 8, borderRadius: 7, }}>
+                    <Text style={{ fontSize: 20, color: "#DC143C", fontFamily: 'ExpletusSans_500Medium', textAlign:"center" }}>Emergency Contact Numbers</Text>
                   </View>
                   <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>

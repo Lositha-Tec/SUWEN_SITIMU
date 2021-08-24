@@ -5,17 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import AppLoading from 'expo-app-loading';
-import {
-  useFonts,
-  ExpletusSans_400Regular,
-  ExpletusSans_400Regular_Italic,
-  ExpletusSans_500Medium,
-  ExpletusSans_500Medium_Italic,
-  ExpletusSans_600SemiBold,
-  ExpletusSans_600SemiBold_Italic,
-  ExpletusSans_700Bold,
-  ExpletusSans_700Bold_Italic,
-} from '@expo-google-fonts/expletus-sans';
+import { useFonts, ExpletusSans_500Medium, } from '@expo-google-fonts/expletus-sans';
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
@@ -89,111 +79,105 @@ export default function LocalDataScreen(props) {
   }
 
   let [fontsLoaded] = useFonts({
-    ExpletusSans_400Regular,
-    ExpletusSans_400Regular_Italic,
     ExpletusSans_500Medium,
-    ExpletusSans_500Medium_Italic,
-    ExpletusSans_600SemiBold,
-    ExpletusSans_600SemiBold_Italic,
-    ExpletusSans_700Bold,
-    ExpletusSans_700Bold_Italic,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-  return (
-    connectStatus ? (
-      <View style={styles.fullPage}>
-        {loading ? <ActivityIndicatorComponent /> : null}
-        <Header
-          navigation={props.navigation}
-          dateAndTime={covidData.update_date_time}
-        />
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
-          showsVerticalScrollIndicator={false}
-        >
-          <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
+    return (
+      connectStatus ? (
+        <View style={styles.fullPage}>
+          {loading ? <ActivityIndicatorComponent /> : null}
+          <Header
+            navigation={props.navigation}
+            dateAndTime={covidData.update_date_time}
+          />
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+            showsVerticalScrollIndicator={false}
+          >
+            <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
 
-          <View style={styles.tileParent}>
-            <View style={{ flexDirection: "row" }}>
-              <Tile
-                heading={"Daily New Cases"}
-                iconComponent={
-                  <FontAwesome5 name="ambulance" size={25} color="white" />
-                }
-                count={covidData.local_new_cases}
-                tileBackgroundColor={{ backgroundColor: "#7052fb" }}
-              />
-              <Tile
-                heading={"Active Cases"}
-                iconComponent={
-                  <FontAwesome5 name="procedures" size={25} color="white" />
-                }
-                count={covidData.local_active_cases}
-                tileBackgroundColor={{ backgroundColor: "#e3342f" }}
-              />
-            </View>
+            <View style={styles.tileParent}>
+              <View style={{ flexDirection: "row" }}>
+                <Tile
+                  heading={"Daily New Cases"}
+                  iconComponent={
+                    <FontAwesome5 name="ambulance" size={25} color="white" />
+                  }
+                  count={covidData.local_new_cases}
+                  tileBackgroundColor={{ backgroundColor: "#7052fb" }}
+                />
+                <Tile
+                  heading={"Active Cases"}
+                  iconComponent={
+                    <FontAwesome5 name="procedures" size={25} color="white" />
+                  }
+                  count={covidData.local_active_cases}
+                  tileBackgroundColor={{ backgroundColor: "#e3342f" }}
+                />
+              </View>
 
-            <View style={{ flexDirection: "row" }}>
-              <Tile
-                heading={"New Deaths"}
-                iconComponent={
-                  <FontAwesome5 name="bed" size={25} color="white" />
-                }
-                count={covidData.local_new_deaths}
-                tileBackgroundColor={{ backgroundColor: "#f57b25" }}
-              />
-              <Tile
-                heading={"Total Deaths"}
-                iconComponent={
-                  <FontAwesome5 name="bed" size={25} color="white" />
-                }
-                count={covidData.local_deaths}
-                tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
-              />
-            </View>
+              <View style={{ flexDirection: "row" }}>
+                <Tile
+                  heading={"New Deaths"}
+                  iconComponent={
+                    <FontAwesome5 name="bed" size={25} color="white" />
+                  }
+                  count={covidData.local_new_deaths}
+                  tileBackgroundColor={{ backgroundColor: "#f57b25" }}
+                />
+                <Tile
+                  heading={"Total Deaths"}
+                  iconComponent={
+                    <FontAwesome5 name="bed" size={25} color="white" />
+                  }
+                  count={covidData.local_deaths}
+                  tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
+                />
+              </View>
 
-            <View style={{ flexDirection: "row" }}>
-              <Tile
-                heading={"Total Confirmed Cases"}
-                iconComponent={
-                  <FontAwesome5 name="hospital" size={25} color="white" />
-                }
-                count={covidData.local_total_cases}
-                tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
-              />
-              <Tile
-                heading={"Currently in hospitals"}
-                iconComponent={
-                  <FontAwesome5 name="clinic-medical" size={25} color="white" />
-                }
-                count={covidData.local_total_number_of_individuals_in_hospitals}
-                tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
-              />
-            </View>
+              <View style={{ flexDirection: "row" }}>
+                <Tile
+                  heading={"Total Confirmed Cases"}
+                  iconComponent={
+                    <FontAwesome5 name="hospital" size={25} color="white" />
+                  }
+                  count={covidData.local_total_cases}
+                  tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
+                />
+                <Tile
+                  heading={"Currently in hospitals"}
+                  iconComponent={
+                    <FontAwesome5 name="clinic-medical" size={25} color="white" />
+                  }
+                  count={covidData.local_total_number_of_individuals_in_hospitals}
+                  tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
+                />
+              </View>
 
-            <View style={{ flexDirection: "row", }}>
-              <Tile
-                heading={"Recovered & Discharged"}
-                iconComponent={
-                  <FontAwesome5 name="running" size={25} color="white" />
-                }
-                count={covidData.local_recovered}
-                tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
-              />
-            </View>
+              <View style={{ flexDirection: "row", }}>
+                <Tile
+                  heading={"Recovered & Discharged"}
+                  iconComponent={
+                    <FontAwesome5 name="running" size={25} color="white" />
+                  }
+                  count={covidData.local_recovered}
+                  tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
+                />
+              </View>
 
-            <View style={{ alignItems: "center", marginTop: 10 }}>
-              <Text style={{ color: "gray", fontFamily:"ExpletusSans_500Medium" }}>
-                Data Source: https://www.hpb.health.gov.lk
-              </Text>
+              <View style={{ alignItems: "center", marginTop: 10 }}>
+                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                  Data Source: https://www.hpb.health.gov.lk
+                </Text>
+              </View>
             </View>
-          </View>
-        </ScrollView>
-      </View>
-    ) : (<NoNetworkConnection navigation={props.navigation} />)
-  );}
+          </ScrollView>
+        </View>
+      ) : (<NoNetworkConnection navigation={props.navigation} />)
+    );
+  }
 }
 
 const styles = StyleSheet.create({

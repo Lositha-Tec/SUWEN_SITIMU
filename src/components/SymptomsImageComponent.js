@@ -2,17 +2,28 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
+import AppLoading from 'expo-app-loading';
+import { useFonts, ExpletusSans_600SemiBold, } from '@expo-google-fonts/expletus-sans';
+
 function SymptomsImageComponent(props) {
   const { colors } = useTheme();
-  return (
-    <View style={styles.mainContainer}>
-      <Image source={props.image} style={styles.imageContainer} />
-      <Text
-        style={[styles.textContainer, { color: colors.WHOAdviceTextColor }]}>
-        {props.text}
-      </Text>
-    </View>
-  );
+
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_600SemiBold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.mainContainer}>
+        <Image source={props.image} style={styles.imageContainer} />
+        <Text
+          style={[styles.textContainer, { color: colors.WHOAdviceTextColor }]}>
+          {props.text}
+        </Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -29,7 +40,8 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontSize: 18,
-    fontWeight: "bold",
+    //fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
     textAlign: "center",
   },
 });

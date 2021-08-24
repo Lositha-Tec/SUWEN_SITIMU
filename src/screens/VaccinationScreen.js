@@ -4,6 +4,8 @@ import { WebViewComponent } from "../components/WebViewComponent";
 import { AdMobBannerComponent } from "../components/AdMobBannerComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
+import AppLoading from 'expo-app-loading';
+import { useFonts, ExpletusSans_500Medium, } from '@expo-google-fonts/expletus-sans';
 
 const VaccinationURL = "https://vaccine.covid19.gov.lk/sign-in"
 
@@ -19,19 +21,25 @@ export default function VaccinationScreen() {
         return () => clearInterval(interval);
     }, []);
 
-    return (
-        connectStatus ? (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                    <WebViewComponent source={{ uri: `${VaccinationURL}` }} />
-                </View>
-                <View style={{ alignItems: "center", marginTop: 10 }}>
-                    <Text style={{ color: "gray" }}>
-                        Data Source: https://vaccine.covid19.gov.lk
-                    </Text>
-                </View>
-                <AdMobBannerComponent />
-            </SafeAreaView>
-        ) : (<NoNetworkConnection navigation={false} />)
-    );
-}
+    let [fontsLoaded] = useFonts({
+        ExpletusSans_500Medium,
+    });
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    } else {
+        return (
+            connectStatus ? (
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={{ flex: 1 }}>
+                        <WebViewComponent source={{ uri: `${VaccinationURL}` }} />
+                    </View>
+                    <View style={{ alignItems: "center", marginTop: 10 }}>
+                        <Text style={{ color: "gray", fontFamily: 'ExpletusSans_500Medium', }}>
+                            Data Source: https://vaccine.covid19.gov.lk
+                        </Text>
+                    </View>
+                    <AdMobBannerComponent />
+                </SafeAreaView>
+            ) : (<NoNetworkConnection navigation={false} />)
+        );}
+    }
