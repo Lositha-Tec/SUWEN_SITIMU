@@ -185,7 +185,7 @@ export default function LocalDataScreen(props) {
             </View>
 
             <View style={{ alignItems: "center", marginTop: 10 }}>
-              <Text style={{ color: "gray" }}>
+              <Text style={{ color: "gray", fontFamily:"ExpletusSans_500Medium" }}>
                 Data Source: https://www.hpb.health.gov.lk
               </Text>
             </View>

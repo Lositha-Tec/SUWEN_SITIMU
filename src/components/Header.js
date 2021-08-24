@@ -4,19 +4,8 @@ import { useNavigation, useTheme } from "@react-navigation/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import RNModal from 'react-native-modal';
-
 import AppLoading from 'expo-app-loading';
-import {
-  useFonts,
-  ExpletusSans_400Regular,
-  ExpletusSans_400Regular_Italic,
-  ExpletusSans_500Medium,
-  ExpletusSans_500Medium_Italic,
-  ExpletusSans_600SemiBold,
-  ExpletusSans_600SemiBold_Italic,
-  ExpletusSans_700Bold,
-  ExpletusSans_700Bold_Italic,
-} from '@expo-google-fonts/expletus-sans';
+import { useFonts, ExpletusSans_500Medium, ExpletusSans_600SemiBold, } from '@expo-google-fonts/expletus-sans';
 
 import { EContactItem } from '../components/EContactItem';
 import { MainModalComponent } from '../components/MainModalComponent';
@@ -50,7 +39,7 @@ const qurantineAntryNo = "0112860003";
 const rateUsURl = `https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.developers_in.suwen_sitimu&ddl=1&pcampaignid=web_ddl_1&showAllReviews=true`;
 
 
-export default function Header (props) {
+export default function Header(props) {
   const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [mainModalVisible, setMainModalVisible] = useState(false);
@@ -85,14 +74,8 @@ export default function Header (props) {
   };
 
   let [fontsLoaded] = useFonts({
-    ExpletusSans_400Regular,
-    ExpletusSans_400Regular_Italic,
     ExpletusSans_500Medium,
-    ExpletusSans_500Medium_Italic,
     ExpletusSans_600SemiBold,
-    ExpletusSans_600SemiBold_Italic,
-    ExpletusSans_700Bold,
-    ExpletusSans_700Bold_Italic,
   });
   if (!fontsLoaded) {
     return <AppLoading />;

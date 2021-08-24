@@ -1,22 +1,30 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Button } from "react-native";
 import { Entypo } from '@expo/vector-icons';
+import AppLoading from 'expo-app-loading';
+import { useFonts, ExpletusSans_600SemiBold, } from '@expo-google-fonts/expletus-sans';
 
 export const EContactItem = (props) => {
-  return (
-    <View>
-      <View style={styles.contactItemContainer}>
+  let [fontsLoaded] = useFonts({
+    ExpletusSans_600SemiBold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View>
+        <View style={styles.contactItemContainer}>
           <View style={styles.imageIcon}>
             <Image
               source={props.imageSource}
               style={styles.contactImg}
             />
           </View>
-          <View style={{flex: 1, marginTop: 20}}>
+          <View style={{ flex: 1, marginTop: 20 }}>
             {props.displayStyle ?
               <View>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem2}>
-                  <Entypo name="phone" size={24} color="white" style={{marginRight:5}} />
+                  <Entypo name="phone" size={24} color="white" style={{ marginRight: 5 }} />
                   <Text style={styles.itemText}>{props.labelComponent2}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem}>
@@ -26,7 +34,7 @@ export const EContactItem = (props) => {
               </View> :
               <View>
                 <TouchableOpacity style={styles.btnContact} onPress={props.onPressItem}>
-                  <Entypo name="phone" size={24} color="white"  style={{marginRight:5}} />
+                  <Entypo name="phone" size={24} color="white" style={{ marginRight: 5 }} />
                   <Text style={styles.itemText}>{props.labelComponent}</Text>
                 </TouchableOpacity>
               </View>
@@ -34,7 +42,8 @@ export const EContactItem = (props) => {
           </View>
         </View>
       </View>
-  );
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -56,12 +65,10 @@ const styles = StyleSheet.create({
     margin: 5,
     backgroundColor: "white",
     borderRadius: 10,
-    padding:5,
-    //borderWidth: 1
+    padding: 5,
   },
   imageIcon: {
     marginTop: 10,
-    //borderWidth:2,
   },
   contactImg: {
     width: 100,
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: 'ExpletusSans_600SemiBold',
   },
   btnContact: {
     flex: 0.25,
