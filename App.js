@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Animated, StyleSheet, View, Text, Platform } from "react-native";
+import { Animated, StyleSheet, View, Platform } from "react-native";
 import { StatusBar } from 'react-native';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
@@ -39,24 +39,20 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);
+  const [notification, setNotification] = useState(false);
   const [storedCredentials, setStoredCredentials] = useState("");
   //const [storedLanguage, setStoredLanguage] = useState(en);
 
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
+    registerForPushNotificationsAsync();
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
+    responseListener.current = Notifications.addNotificationResponseReceivedListener();
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
@@ -133,7 +129,6 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    //console.log(token);
     if (token) {
       fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
 
@@ -147,16 +142,8 @@ async function registerForPushNotificationsAsync() {
           appName: "Suwen_Sitimu",
         }),
       })
-        .then((x) => {
-          if (x.status == 200) {
-            //alert("Token sent")
-          }
-          console.log(x.status)
-          console.log("Token saved!")
-
-        })
         .catch(err => {
-          registerForPushNotificationsAsync();
+          console.log(err);
         })
     }
 
