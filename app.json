@@ -4,13 +4,20 @@
     "slug": "suwen_sitimu",
     "owner": "developers-in",
     "sdkVersion": "41.0.0",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "notification": {
+      "icon": "./assets/notifi-gray.png",
+      "color": "#3c6c91",
+      "iosDisplayInForeground": true,
+      "androidMode": "default",
+      "androidCollapsedTitle": "Updates from Colab.notes"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,11 +30,13 @@
     },
     "android": {
       "package": "com.developers_in.suwen_sitimu",
-      "versionCode": 8,
+      "versionCode": 9,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "useNextNotificationsApi": true,
+      "icon": "./assets/notifi-gray.png",
       "config": {
         "googleMobileAdsAppId":"ca-app-pub-7476028587946978~7316531160",
         "googleSignIn": {
