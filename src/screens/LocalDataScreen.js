@@ -77,14 +77,7 @@ export default function LocalDataScreen (props) {
     if (expoPushToken) {
       saveToken(expoPushToken);
     }
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, [sendStatus]);
 
-  useEffect(() => {
-    alert("2nd");
     setLoading(true);
 
     fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
@@ -98,9 +91,13 @@ export default function LocalDataScreen (props) {
         setConnectStatus(res);
       });
     }, 10);
-    return () => clearInterval(interval);
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+      return () => clearInterval(interval);
+    };
+  }, [sendStatus]);
 
-  }, []);
 
   let covidData = { };
 
