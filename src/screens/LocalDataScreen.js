@@ -65,7 +65,6 @@ export default function LocalDataScreen (props) {
 
 
   useEffect(() => {
-    alert("1st");
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
@@ -94,7 +93,7 @@ export default function LocalDataScreen (props) {
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
-      return () => clearInterval(interval);
+      clearInterval(interval);
     };
   }, [sendStatus]);
 
