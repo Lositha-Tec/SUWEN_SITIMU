@@ -51,39 +51,42 @@ Notifications.setNotificationHandler({
 });
 
 
-export default function LocalDataScreen(props) {
+export default function LocalDataScreen (props) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
+  const [sendStatus, setSendStatus] = useState('');
   const notificationListener = useRef();
   const responseListener = useRef();
 
   const [loading, setLoading] = useState(false);
-  const [connectStatus, setConnectStatus] = useState(false)
+  const [connectStatus, setConnectStatus] = useState(false);
   const [data, setData] = useState([]);
   const { colors } = useTheme();
 
 
   useEffect(() => {
-    console.log("1st")
+    alert("1st");
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
-
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-
+    alert("toke 1st " + expoPushToken);
+    if (expoPushToken) {
+      saveToken(expoPushToken);
+    }
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, []);
+  }, [sendStatus]);
 
   useEffect(() => {
-    console.log("2nd")
+    alert("2nd");
     setLoading(true);
+
     fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
       .then((response) => response.json())
       .then((json) => setData(json))
@@ -92,14 +95,14 @@ export default function LocalDataScreen(props) {
 
     const interval = setInterval(() => {
       checkConnected().then(res => {
-        setConnectStatus(res)
-      })
+        setConnectStatus(res);
+      });
     }, 10);
     return () => clearInterval(interval);
 
   }, []);
 
-  let covidData = {};
+  let covidData = { };
 
   if (data.data != undefined) {
     covidData.update_date_time = data.data.update_date_time;
@@ -116,14 +119,15 @@ export default function LocalDataScreen(props) {
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
   });
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    console.log(expoPushToken)
+    alert("return token : " + expoPushToken);
     return (
       connectStatus ? (
         <View style={styles.fullPage}>
-          {loading && expoPushToken ? <ActivityIndicatorComponent /> :
+          {loading ? <ActivityIndicatorComponent /> :
             <>
               <Header
                 navigation={props.navigation}
@@ -134,7 +138,7 @@ export default function LocalDataScreen(props) {
                 showsVerticalScrollIndicator={false}
               >
                 <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
-                <Text style={{ color: colors.subTitleColor }}>{expoPushToken}</Text>
+                <Text style={{ color: colors.subTitleColor }}>expo token value {expoPushToken}</Text>
 
                 <View style={styles.tileParent}>
                   <View style={{ flexDirection: "row" }}>
@@ -214,14 +218,28 @@ export default function LocalDataScreen(props) {
               </ScrollView>
             </>
           }
-
         </View>
       ) : (<NoNetworkConnection navigation={props.navigation} />)
     );
   }
 }
 
-async function registerForPushNotificationsAsync() {
+const saveToken = async (expoPushToken) => {
+  await fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      token: expoPushToken,
+      appName: "Suwen_Sitimu",
+    }),
+  }).then(x => {
+    setSendStatus(x.status);
+  });
+};
+async function registerForPushNotificationsAsync () {
   let token;
   if (Constants.isDevice) {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -235,33 +253,6 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    if (token) {
-      fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
-
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: token,
-          appName: "Suwen_Sitimu",
-        }),
-      })
-        .then((x) => {
-          if (x.status == 200) {
-            alert("Token sent")
-          }
-          console.log(x.status)
-
-          console.log("Token saved!")
-          //setState("This is token")
-
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    }
 
   } else {
     alert('Must use physical device for Push Notifications');
@@ -277,10 +268,6 @@ async function registerForPushNotificationsAsync() {
   }
   return token;
 }
-
-
-
-
 const styles = StyleSheet.create({
   fullPage: {
     flex: 1,
