@@ -50,6 +50,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
+let valueSample = 1;
 
 export default function LocalDataScreen (props) {
   const [expoPushToken, setExpoPushToken] = useState('');
@@ -60,57 +61,44 @@ export default function LocalDataScreen (props) {
 
   const [loading, setLoading] = useState(false);
   const [connectStatus, setConnectStatus] = useState(false);
-  const [data, setData] = useState([]);
+  const [covidData, setData] = useState('');
   const { colors } = useTheme();
 
 
   useEffect(() => {
+    setLoading(true);
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    saveToken(expoPushToken).then(status => setSendStatus(status));
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-    alert("toke 1st " + expoPushToken);
-    if (expoPushToken) {
-      saveToken(expoPushToken);
-    }
 
-    setLoading(true);
-
-    fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-
-    const interval = setInterval(() => {
-      checkConnected().then(res => {
-        setConnectStatus(res);
-      });
-    }, 10);
+    getStatistical().then(json => {
+      let covidData = { };
+      covidData.update_date_time = json.data.update_date_time;
+      covidData.local_total_cases = json.data.local_total_cases;
+      covidData.local_active_cases = json.data.local_active_cases;
+      covidData.local_new_cases = json.data.local_new_cases;
+      covidData.local_total_number_of_individuals_in_hospitals = json.data.local_total_number_of_individuals_in_hospitals;
+      covidData.local_recovered = json.data.local_recovered;
+      covidData.local_deaths = json.data.local_deaths;
+      covidData.local_new_deaths = json.data.local_new_deaths;
+      covidData.daily_antigen_testing_data_date = json.data.daily_antigen_testing_data[0].antigen_count;
+      covidData.daily_antigen_testing_data_count = json.data.daily_antigen_testing_data[0].date;
+      setData(covidData);
+      setLoading(false);
+    });
+    checkConnected().then(res => {
+      setConnectStatus(res);
+    });
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
-      clearInterval(interval);
     };
-  }, [sendStatus]);
-
-
-  let covidData = { };
-
-  if (data.data != undefined) {
-    covidData.update_date_time = data.data.update_date_time;
-    covidData.local_total_cases = data.data.local_total_cases;
-    covidData.local_active_cases = data.data.local_active_cases;
-    covidData.local_new_cases = data.data.local_new_cases;
-    covidData.local_total_number_of_individuals_in_hospitals =
-      data.data.local_total_number_of_individuals_in_hospitals;
-    covidData.local_recovered = data.data.local_recovered;
-    covidData.local_deaths = data.data.local_deaths;
-    covidData.local_new_deaths = data.data.local_new_deaths;
-  }
+  }, [expoPushToken]);
 
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
@@ -119,7 +107,9 @@ export default function LocalDataScreen (props) {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    alert("return token : " + expoPushToken);
+    console.log("return token : " + expoPushToken + " number " + valueSample);
+    alert("return token : " + expoPushToken + " number " + valueSample);
+    valueSample++;
     return (
       connectStatus ? (
         <View style={styles.fullPage}>
@@ -220,7 +210,18 @@ export default function LocalDataScreen (props) {
   }
 }
 
-const saveToken = async (expoPushToken) => {
+async function getStatistical () {
+  let data;
+  await fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
+    .then((response) => response.json())
+    .then((json) => {
+      data = json;
+    });
+  return data;
+}
+
+async function saveToken (expoPushToken) {
+  let status;
   await fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
     method: "POST",
     headers: {
@@ -232,8 +233,9 @@ const saveToken = async (expoPushToken) => {
       appName: "Suwen_Sitimu",
     }),
   }).then(x => {
-    setSendStatus(x.status);
+    status = x.status;
   });
+  return status;
 };
 async function registerForPushNotificationsAsync () {
   let token;
