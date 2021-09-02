@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Animated, StyleSheet, View, Platform } from "react-native";
 import { StatusBar } from 'react-native';
-import Constants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
 import * as SplashScreen from "expo-splash-screen";
 
 import RootStackNavigator from './src/navigators/RootStackNavigator';
@@ -29,40 +27,11 @@ const store = createStore(themeReducer);
 
 SplashScreen.preventAutoHideAsync().catch(() => { });
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
-
-export default function App() {
+export default function App () {
   const [appReady, setAppReady] = useState(false);
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
   const [storedCredentials, setStoredCredentials] = useState("");
   //const [storedLanguage, setStoredLanguage] = useState(en);
 
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
 
   const checkLoginCredentials = () => {
     AsyncStorage.getItem('suwenSitimuCredentials').then((result) => {
@@ -71,9 +40,9 @@ export default function App() {
       } else {
         setStoredCredentials(null);
       }
-    }).catch(error => console.log(error))
+    }).catch(error => console.log(error));
     //console.log(storedCredentials);
-  }
+  };
 
   // const checkStoredLanguage = () => {
   //   AsyncStorage.getItem('chosenLanguage').then((result) => {
@@ -102,82 +71,25 @@ export default function App() {
           onError={console.warn}
         /> */}
       </>
-    )
+    );
   }
 
   return (
     <AnimatedAppLoader image={require("./assets/Covid.gif")}>
       <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
         {/* <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}> */}
-          <Provider store={store}>
-            <StatusBar backgroundColor="gray" />
-            <RootStackNavigator />
-          </Provider>
+        <Provider store={store}>
+          <StatusBar backgroundColor="gray" />
+          <RootStackNavigator />
+        </Provider>
         {/* </LanguageContext.Provider> */}
       </CredentialsContext.Provider>
     </AnimatedAppLoader>
   );
 }
 
-async function registerForPushNotificationsAsync() {
-  let token;
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    if (token) {
-      fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
 
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: token,
-          appName: "Suwen_Sitimu",
-        }),
-      })
-      .then((x) => {
-        if (x.status == 200) {
-          alert("Token sent")
-        }
-        console.log(x.status)
-
-        console.log("Token saved!")
-        //setState("This is token")
-
-      })
-        .catch(err => {
-          registerForPushNotificationsAsync();
-        })
-    }
-
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-  return token;
-}
-
-
-function AnimatedAppLoader({ children, image }) {
+function AnimatedAppLoader ({ children, image }) {
   const [isSplashReady, setSplashReady] = React.useState(false);
 
   const startAsync = React.useMemo(
@@ -200,7 +112,7 @@ function AnimatedAppLoader({ children, image }) {
   return <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>;
 }
 
-function AnimatedSplashScreen({ children, image }) {
+function AnimatedSplashScreen ({ children, image }) {
   const animation = React.useMemo(() => new Animated.Value(1), []);
   const [isAppReady, setAppReady] = React.useState(false);
   const [isSplashAnimationComplete, setAnimationComplete] = React.useState(
