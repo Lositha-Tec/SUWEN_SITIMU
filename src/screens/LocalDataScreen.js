@@ -56,6 +56,7 @@ export default function LocalDataScreen (props) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const [sendStatus, setSendStatus] = useState('');
+
   const notificationListener = useRef();
   const responseListener = useRef();
 
@@ -98,7 +99,7 @@ export default function LocalDataScreen (props) {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, [expoPushToken]);
+  }, [expoPushToken, sendStatus]);
 
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
@@ -251,7 +252,7 @@ async function registerForPushNotificationsAsync () {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-
+    alert(token + " in side");
   } else {
     alert('Must use physical device for Push Notifications');
   }

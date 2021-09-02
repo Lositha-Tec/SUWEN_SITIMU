@@ -35,6 +35,7 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "permissions": ["NOTIFICATIONS"],
       "useNextNotificationsApi": true,
       "icon": "./assets/notifi-gray.png",
       "config": {
