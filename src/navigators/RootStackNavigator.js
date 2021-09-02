@@ -23,6 +23,7 @@ import PoliceStationsScreen from '../screens/PoliceStationsScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 import TermsConditionScreen from '../screens/TermsConditionScreen';
 import BottomTabNavigator from './TabNavigator';
+import PlaylistScreen from '../screens/PlaylistScreen';
 //import { LanguageContext } from '../components/LanguageContext';
 //import LanguageSelectionScreen from '../screens/LanguageSelectionScreen';
 
@@ -96,6 +97,7 @@ const RootStackNavigator = ({ navigation }) => {
                         <Stack.Screen name="How to be Healthy" component={TopTabScreen} />
                         <Stack.Screen name="Health Guidelines" component={HealthGuidelineScreen} />
                         <Stack.Screen name="Pharmacies" component={PharmacyWebScreen} />
+                        <Stack.Screen name="Watch and be Awareness" component={PlaylistScreen} />
                         <Stack.Screen name="Vaccination Program" component={VaccinationScreen} />
                         <Stack.Screen name="Find PHI" component={PHIWebScreen} />
                         <Stack.Screen name="Hospitals" component={HospitalsScreen} />

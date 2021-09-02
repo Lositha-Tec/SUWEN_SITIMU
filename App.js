@@ -39,6 +39,7 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);
+  const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const [storedCredentials, setStoredCredentials] = useState("");
   //const [storedLanguage, setStoredLanguage] = useState(en);
@@ -47,12 +48,15 @@ export default function App() {
   const responseListener = useRef();
 
   useEffect(() => {
-    registerForPushNotificationsAsync();
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener();
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
@@ -142,8 +146,18 @@ async function registerForPushNotificationsAsync() {
           appName: "Suwen_Sitimu",
         }),
       })
+      .then((x) => {
+        if (x.status == 200) {
+          alert("Token sent")
+        }
+        console.log(x.status)
+
+        console.log("Token saved!")
+        //setState("This is token")
+
+      })
         .catch(err => {
-          console.log(err);
+          registerForPushNotificationsAsync();
         })
     }
 

@@ -1,0 +1,8 @@
+export const channel = "UC6XsnLgVVzNkjTCpRVJ6u3w"
+export const channelName = "Health Promotion Bureau"
+export const addBannerId = "ca-app-pub-7476028587946978/9559551123"
+export const addInterstitialId = ""
+export const addRewardedInterstitialId = ""
+export const addRewardedId = ""
+export const addNativeAdvancedId = ""
+export const addAppOpenId = ""

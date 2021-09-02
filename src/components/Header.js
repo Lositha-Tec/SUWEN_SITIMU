@@ -94,8 +94,8 @@ export default function Header(props) {
               <TouchableOpacity onPress={() => navigation.navigate("How to be Healthy")}>
                 <Image source={require('../../assets/img/heart.png')} style={{ width: 40, height: 40 }} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate("Health Guidelines")}>
-                <Image source={require('../../assets/img/mask.png')} style={{ width: 40, height: 40 }} />
+              <TouchableOpacity onPress={() => navigation.navigate("Watch and be Awareness")}>
+                <Image source={require('../../assets/img/video.png')} style={{ width: 40, height: 40 }} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate("Pharmacies")}>
                 <Image source={require('../../assets/img/red-cross.png')} style={{ width: 40, height: 40 }} />
@@ -137,7 +137,7 @@ export default function Header(props) {
                     />
                   </View>
                   <View style={{ flex: 1, alignItems: "center", paddingBottom: 35, backgroundColor: "white", marginHorizontal: 20, marginBottom: 8, borderRadius: 7, }}>
-                    <Text style={{ fontSize: 20, color: "#DC143C", fontFamily: 'ExpletusSans_500Medium', textAlign:"center" }}>Emergency Contact Numbers</Text>
+                    <Text style={{ fontSize: 20, color: "#DC143C", fontFamily: 'ExpletusSans_500Medium', textAlign: "center" }}>Emergency Contact Numbers</Text>
                   </View>
                   <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>
@@ -256,14 +256,6 @@ export default function Header(props) {
                   </View>
                   <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", marginBottom: 30 }}>
-                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Vaccination Program"); }} activeOpacity={0}>
-                        <MainModalComponent
-                          imageSource={
-                            require("../../assets/modalImg/syringe.png")
-                          }
-                          pageName={"Vaccination Program"}
-                        />
-                      </TouchableOpacity>
                       <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Find PHI"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
@@ -272,12 +264,28 @@ export default function Header(props) {
                           pageName={"Find PHI"}
                         />
                       </TouchableOpacity>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Vaccination Program"); }} activeOpacity={0}>
+                        <MainModalComponent
+                          imageSource={
+                            require("../../assets/modalImg/syringe.png")
+                          }
+                          pageName={"Vaccination Program"}
+                        />
+                      </TouchableOpacity>
                       <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Hospitals"); }} activeOpacity={0}>
                         <MainModalComponent
                           imageSource={
                             require("../../assets/modalImg/hospital-alt.png")
                           }
                           pageName={"Hospitals"}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Health Guidelines"); }} activeOpacity={0}>
+                        <MainModalComponent
+                          imageSource={
+                            require("../../assets/modalImg/facemask.png")
+                          }
+                          pageName={"Health Guidelines"}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => { setMainModalVisible(!mainModalVisible); navigation.navigate("Tell to President"); }} activeOpacity={0}>
