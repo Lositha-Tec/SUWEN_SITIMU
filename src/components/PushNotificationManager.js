@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Platform } from 'react-native';
 
 Notifications.setNotificationHandler({
@@ -44,6 +44,7 @@ async function registerForPushNotificationsAsync () {
 }
 
 function saveToken (token) {
+    alert('Token man awa' + token);
     if (token) {
         fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
 
@@ -68,9 +69,6 @@ Notifications.addNotificationResponseReceivedListener(response => {
 });
 export const PushNotificationManager = () => {
     const [expoPushToken, setExpoPushToken] = useState('');
-    const [notification, setNotification] = useState(false);
-    const notificationListener = useRef();
-    const responseListener = useRef();
 
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => {
