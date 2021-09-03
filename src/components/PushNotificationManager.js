@@ -11,43 +11,6 @@ Notifications.setNotificationHandler({
     }),
 });
 
-
-
-export const PushNotificationManager = () => {
-    const [expoPushToken, setExpoPushToken] = useState('');
-    const [notification, setNotification] = useState(false);
-    const notificationListener = useRef();
-    const responseListener = useRef();
-
-    useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
-        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-            setNotification(notification);
-        });
-
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-            console.log(response);
-        });
-
-        return () => {
-            Notifications.removeNotificationSubscription(notificationListener.current);
-            Notifications.removeNotificationSubscription(responseListener.current);
-        };
-    }, []);
-
-    return (
-        <View
-            style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'space-around',
-            }}>
-            <Text>Your expo push token: {expoPushToken}</Text>
-        </View>
-    );
-};
-
 async function registerForPushNotificationsAsync () {
     let token;
     if (Constants.isDevice) {
@@ -63,6 +26,7 @@ async function registerForPushNotificationsAsync () {
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
         //console.log(token);
+        alert(token);
         if (token) {
             fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
 
@@ -75,20 +39,7 @@ async function registerForPushNotificationsAsync () {
                     token: token,
                     appName: "Sample",
                 }),
-            })
-                .then((x) => {
-                    if (x.status == 200) {
-                        alert("Token sent");
-                    }
-                    console.log(x.status);
-
-                    console.log("Token saved!");
-                    //setState("This is token")
-
-                })
-                .catch(err => {
-                    registerForPushNotificationsAsync();
-                });
+            });
         }
 
     } else {
@@ -107,3 +58,41 @@ async function registerForPushNotificationsAsync () {
 
     return token;
 }
+
+Notifications.addNotificationReceivedListener(notification => {
+    setNotification(notification);
+});
+Notifications.addNotificationResponseReceivedListener(response => {
+    console.log(response);
+});
+export const PushNotificationManager = () => {
+    const [expoPushToken, setExpoPushToken] = useState('');
+    const [notification, setNotification] = useState(false);
+    const notificationListener = useRef();
+    const responseListener = useRef();
+
+    useEffect(() => {
+        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+        // notificationListener.current = 
+
+        // responseListener.current = 
+
+        // return () => {
+        //     Notifications.removeNotificationSubscription(notificationListener.current);
+        //     Notifications.removeNotificationSubscription(responseListener.current);
+        // };
+    }, []);
+
+    return (
+        <View
+            style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'space-around',
+            }}>
+            <Text>Your expo push token: {expoPushToken}</Text>
+        </View>
+    );
+};
+

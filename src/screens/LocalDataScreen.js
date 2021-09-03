@@ -12,7 +12,7 @@ import Tile from "../components/Tile";
 import { ActivityIndicatorComponent } from "../components/ActivityIndicatorComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
-import {PushNotificationManager} from '../components/PushNotificationManager';
+import { PushNotificationManager } from '../components/PushNotificationManager';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { LanguageContext } from '../components/LanguageContext';
@@ -70,7 +70,7 @@ export default function LocalDataScreen (props) {
     checkConnected().then(res => {
       setConnectStatus(res);
     });
-  }, []);
+  }, [connectStatus]);
 
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
@@ -92,90 +92,90 @@ export default function LocalDataScreen (props) {
                 contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
                 showsVerticalScrollIndicator={false}
               >
-              <PushNotificationManager/>
-              <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
-              <View style={styles.tileParent}>
-                <View style={{ flexDirection: "row" }}>
-                  <Tile
-                    heading={"Daily New Cases"}
-                    iconComponent={
-                      <FontAwesome5 name="ambulance" size={25} color="white" />
-                    }
-                    count={covidData.local_new_cases}
-                    tileBackgroundColor={{ backgroundColor: "#7052fb" }}
-                  />
-                  <Tile
-                    heading={"Active Cases"}
-                    iconComponent={
-                      <FontAwesome5 name="procedures" size={25} color="white" />
-                    }
-                    count={covidData.local_active_cases}
-                    tileBackgroundColor={{ backgroundColor: "#e3342f" }}
-                  />
-                </View>
+                <PushNotificationManager />
+                <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
+                <View style={styles.tileParent}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Tile
+                      heading={"Daily New Cases"}
+                      iconComponent={
+                        <FontAwesome5 name="ambulance" size={25} color="white" />
+                      }
+                      count={covidData.local_new_cases}
+                      tileBackgroundColor={{ backgroundColor: "#7052fb" }}
+                    />
+                    <Tile
+                      heading={"Active Cases"}
+                      iconComponent={
+                        <FontAwesome5 name="procedures" size={25} color="white" />
+                      }
+                      count={covidData.local_active_cases}
+                      tileBackgroundColor={{ backgroundColor: "#e3342f" }}
+                    />
+                  </View>
 
-                <View style={{ flexDirection: "row" }}>
-                  <Tile
-                    heading={"New Deaths"}
-                    iconComponent={
-                      <FontAwesome5 name="bed" size={25} color="white" />
-                    }
-                    count={covidData.local_new_deaths}
-                    tileBackgroundColor={{ backgroundColor: "#f57b25" }}
-                  />
-                  <Tile
-                    heading={"Total Deaths"}
-                    iconComponent={
-                      <FontAwesome5 name="bed" size={25} color="white" />
-                    }
-                    count={covidData.local_deaths}
-                    tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
-                  />
-                </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Tile
+                      heading={"New Deaths"}
+                      iconComponent={
+                        <FontAwesome5 name="bed" size={25} color="white" />
+                      }
+                      count={covidData.local_new_deaths}
+                      tileBackgroundColor={{ backgroundColor: "#f57b25" }}
+                    />
+                    <Tile
+                      heading={"Total Deaths"}
+                      iconComponent={
+                        <FontAwesome5 name="bed" size={25} color="white" />
+                      }
+                      count={covidData.local_deaths}
+                      tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
+                    />
+                  </View>
 
-                <View style={{ flexDirection: "row" }}>
-                  <Tile
-                    heading={"Total Confirmed Cases"}
-                    iconComponent={
-                      <FontAwesome5 name="hospital" size={25} color="white" />
-                    }
-                    count={covidData.local_total_cases}
-                    tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
-                  />
-                  <Tile
-                    heading={"Currently in hospitals"}
-                    iconComponent={
-                      <FontAwesome5 name="clinic-medical" size={25} color="white" />
-                    }
-                    count={covidData.local_total_number_of_individuals_in_hospitals}
-                    tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
-                  />
-                </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Tile
+                      heading={"Total Confirmed Cases"}
+                      iconComponent={
+                        <FontAwesome5 name="hospital" size={25} color="white" />
+                      }
+                      count={covidData.local_total_cases}
+                      tileBackgroundColor={{ backgroundColor: "#fdb01a" }}
+                    />
+                    <Tile
+                      heading={"Currently in hospitals"}
+                      iconComponent={
+                        <FontAwesome5 name="clinic-medical" size={25} color="white" />
+                      }
+                      count={covidData.local_total_number_of_individuals_in_hospitals}
+                      tileBackgroundColor={{ backgroundColor: "#4d4dff" }}
+                    />
+                  </View>
 
-                <View style={{ flexDirection: "row", }}>
-                  <Tile
-                    heading={"Recovered & Discharged"}
-                    iconComponent={
-                      <FontAwesome5 name="running" size={25} color="white" />
-                    }
-                    count={covidData.local_recovered}
-                    tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
-                  />
-                </View>
+                  <View style={{ flexDirection: "row", }}>
+                    <Tile
+                      heading={"Recovered & Discharged"}
+                      iconComponent={
+                        <FontAwesome5 name="running" size={25} color="white" />
+                      }
+                      count={covidData.local_recovered}
+                      tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
+                    />
+                  </View>
 
-                <View style={{ alignItems: "center", marginTop: 10 }}>
-                  <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                    Data Source: https://www.hpb.health.gov.lk
-                  </Text>
+                  <View style={{ alignItems: "center", marginTop: 10 }}>
+                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                      Data Source: https://www.hpb.health.gov.lk
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            </ScrollView>
+              </ScrollView>
             </>
           }
         </View >
       ) : (<NoNetworkConnection navigation={props.navigation} />)
     );
-}
+  }
 }
 
 async function getStatistical () {

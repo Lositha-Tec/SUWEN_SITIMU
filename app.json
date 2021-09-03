@@ -34,10 +34,10 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "useNextNotificationsApi": true,
       "permissions": [
         "NOTIFICATIONS"
       ],
-      "useNextNotificationsApi": true,
       "icon": "./assets/notifi-gray.png",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7476028587946978~7316531160",
