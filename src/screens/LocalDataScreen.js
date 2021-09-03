@@ -12,7 +12,7 @@ import Tile from "../components/Tile";
 import { ActivityIndicatorComponent } from "../components/ActivityIndicatorComponent";
 import { checkConnected } from '../components/CheckConnectedComponent';
 import NoNetworkConnection from "../components/NoNetworkConnection";
-import PushNotificationManager from '../components/PushNotificationManager';
+import {PushNotificationManager} from '../components/PushNotificationManager';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { LanguageContext } from '../components/LanguageContext';
@@ -92,7 +92,7 @@ export default function LocalDataScreen (props) {
                 contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
                 showsVerticalScrollIndicator={false}
               >
-              </PushNotificationManager>
+              <PushNotificationManager/>
               <Text style={[styles.subTitle, { color: colors.subTitleColor }]}>Sri Lanka</Text>
               <View style={styles.tileParent}>
                 <View style={{ flexDirection: "row" }}>
