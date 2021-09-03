@@ -50,21 +50,25 @@ export default function LocalDataScreen (props) {
 
   useEffect(() => {
     setLoading(true);
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
+    getStatistical().then(json => {
+      let covidData = {};
+      covidData.update_date_time = json.data.update_date_time;
+      covidData.local_total_cases = json.data.local_total_cases;
+      covidData.local_active_cases = json.data.local_active_cases;
+      covidData.local_new_cases = json.data.local_new_cases;
+      covidData.local_total_number_of_individuals_in_hospitals = json.data.local_total_number_of_individuals_in_hospitals;
+      covidData.local_recovered = json.data.local_recovered;
+      covidData.local_deaths = json.data.local_deaths;
+      covidData.local_new_deaths = json.data.local_new_deaths;
+      covidData.daily_antigen_testing_data_date = json.data.daily_antigen_testing_data[0].antigen_count;
+      covidData.daily_antigen_testing_data_count = json.data.daily_antigen_testing_data[0].date;
+      setData(covidData);
+      setLoading(false);
     });
 
     checkConnected().then(res => {
       setConnectStatus(res);
     });
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
   }, []);
 
   let [fontsLoaded] = useFonts({
@@ -172,7 +176,7 @@ export default function LocalDataScreen (props) {
   }
 }
 
-async function getStatistical() {
+async function getStatistical () {
   let data;
   await fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
     .then((response) => response.json())

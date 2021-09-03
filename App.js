@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Animated, StyleSheet, View, Platform } from "react-native";
 import { StatusBar } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
@@ -224,7 +224,7 @@ async function registerForPushNotificationsAsync () {
     token = (await Notifications.getExpoPushTokenAsync()).data;
 
     alert(token + " in side");
-    saveToken(token).then(status => setSendStatus(status));
+    saveToken(token);
   } else {
     alert('Must use physical device for Push Notifications');
   }
@@ -255,6 +255,7 @@ async function saveToken (expoPushToken) {
       }),
     }).then(x => {
       status = x.status;
+      alert("status in side " + status);
     });
   }
   return status;
