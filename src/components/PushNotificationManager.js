@@ -27,20 +27,6 @@ async function registerForPushNotificationsAsync () {
         token = (await Notifications.getExpoPushTokenAsync()).data;
         //console.log(token);
         alert(token);
-        if (token) {
-            fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
-
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    token: token,
-                    appName: "Sample",
-                }),
-            });
-        }
 
     } else {
         alert('Must use physical device for Push Notifications');
@@ -54,9 +40,24 @@ async function registerForPushNotificationsAsync () {
             lightColor: '#FF231F7C',
         });
     }
-
-
     return token;
+}
+
+function saveToken (token) {
+    if (token) {
+        fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
+
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                token: token,
+                appName: "Sample",
+            }),
+        });
+    }
 }
 
 Notifications.addNotificationReceivedListener(notification => {
@@ -72,17 +73,14 @@ export const PushNotificationManager = () => {
     const responseListener = useRef();
 
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        registerForPushNotificationsAsync().then(token => {
+            setExpoPushToken(token);
+            if (token) {
+                saveToken(token);
+            }
+        });
 
-        // notificationListener.current = 
-
-        // responseListener.current = 
-
-        // return () => {
-        //     Notifications.removeNotificationSubscription(notificationListener.current);
-        //     Notifications.removeNotificationSubscription(responseListener.current);
-        // };
-    }, []);
+    }, [expoPushToken]);
 
     return (
         <View
