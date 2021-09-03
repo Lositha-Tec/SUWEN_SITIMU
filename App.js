@@ -1,9 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { Animated, StyleSheet, View, Platform } from "react-native";
 import { StatusBar } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
-import Constants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
 
 import RootStackNavigator from './src/navigators/RootStackNavigator';
 import AppLoading from 'expo-app-loading';
@@ -29,42 +27,10 @@ const store = createStore(themeReducer);
 
 SplashScreen.preventAutoHideAsync().catch(() => { });
 
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
-
-let valueSample = 1;
-
 export default function App () {
   const [appReady, setAppReady] = useState(false);
   const [storedCredentials, setStoredCredentials] = useState("");
   //const [storedLanguage, setStoredLanguage] = useState(en);
-
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
-
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    // registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
-
 
 
   const checkLoginCredentials = () => {
@@ -92,7 +58,6 @@ export default function App () {
   // }
 
   if (!appReady) {
-    console.log("came ehere");
     return (
       <>
         <AppLoading
@@ -112,11 +77,6 @@ export default function App () {
 
   return (
     <>
-      <AppLoading
-        startAsync={registerForPushNotificationsAsync().then(token => setExpoPushToken(token))}
-        // onFinish={() => setAppReady(true)}
-        onError={console.warn}
-      />
       <AnimatedAppLoader image={require("./assets/Covid.gif")}>
         <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
           {/* <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}> */}
@@ -217,55 +177,4 @@ function AnimatedSplashScreen ({ children, image }) {
   );
 }
 
-async function registerForPushNotificationsAsync () {
-  let token;
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
 
-    alert(token + " in side");
-    saveToken(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-  return token;
-}
-
-async function saveToken (expoPushToken) {
-  let status;
-  if (expoPushToken) {
-    await fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: expoPushToken,
-        appName: "Suwen_Sitimu",
-      }),
-    }).then(x => {
-      status = x.status;
-      alert("status in side " + status);
-    });
-  }
-  return status;
-};
