@@ -30,6 +30,7 @@
     "android": {
       "package": "com.developers_in.suwen_sitimu",
       "versionCode": 9,
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"

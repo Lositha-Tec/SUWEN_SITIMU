@@ -47,7 +47,7 @@ export default function HeaderNoNetwork(props) {
         // dismissed
       }
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

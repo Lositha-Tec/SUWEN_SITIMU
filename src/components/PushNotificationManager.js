@@ -11,7 +11,7 @@ Notifications.setNotificationHandler({
     }),
 });
 
-async function registerForPushNotificationsAsync () {
+async function registerForPushNotificationsAsync() {
     let token;
     if (Constants.isDevice) {
         const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -25,8 +25,6 @@ async function registerForPushNotificationsAsync () {
             return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
-        //console.log(token);
-        alert(token);
 
     } else {
         alert('Must use physical device for Push Notifications');
@@ -43,8 +41,7 @@ async function registerForPushNotificationsAsync () {
     return token;
 }
 
-function saveToken (token) {
-    alert('Token man awa' + token);
+function saveToken(token) {
     if (token) {
         fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
 
@@ -87,7 +84,7 @@ export const PushNotificationManager = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
             }}>
-            <Text>Your expo push token: {expoPushToken}</Text>
+            {/* <Text>Your expo push token: {expoPushToken}</Text> */}
         </View>
     );
 };

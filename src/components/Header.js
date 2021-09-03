@@ -69,7 +69,7 @@ export default function Header(props) {
         // dismissed
       }
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
