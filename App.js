@@ -52,7 +52,7 @@ export default function App () {
   const responseListener = useRef();
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    // registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
@@ -63,7 +63,7 @@ export default function App () {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, [expoPushToken]);
+  }, []);
 
 
 
@@ -92,6 +92,7 @@ export default function App () {
   // }
 
   if (!appReady) {
+    console.log("came ehere");
     return (
       <>
         <AppLoading
@@ -99,6 +100,7 @@ export default function App () {
           onFinish={() => setAppReady(true)}
           onError={console.warn}
         />
+
         {/* <AppLoading
           startAsync={checkStoredLanguage}
           onFinish={() => setAppReady(true)}
@@ -109,16 +111,23 @@ export default function App () {
   }
 
   return (
-    <AnimatedAppLoader image={require("./assets/Covid.gif")}>
-      <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
-        {/* <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}> */}
-        <Provider store={store}>
-          <StatusBar backgroundColor="gray" />
-          <RootStackNavigator />
-        </Provider>
-        {/* </LanguageContext.Provider> */}
-      </CredentialsContext.Provider>
-    </AnimatedAppLoader>
+    <>
+      <AppLoading
+        startAsync={registerForPushNotificationsAsync().then(token => setExpoPushToken(token))}
+        // onFinish={() => setAppReady(true)}
+        onError={console.warn}
+      />
+      <AnimatedAppLoader image={require("./assets/Covid.gif")}>
+        <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
+          {/* <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}> */}
+          <Provider store={store}>
+            <StatusBar backgroundColor="gray" />
+            <RootStackNavigator />
+          </Provider>
+          {/* </LanguageContext.Provider> */}
+        </CredentialsContext.Provider>
+      </AnimatedAppLoader>
+    </>
   );
 }
 
