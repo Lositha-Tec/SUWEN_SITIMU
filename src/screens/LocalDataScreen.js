@@ -172,7 +172,7 @@ export default function LocalDataScreen (props) {
   }
 }
 
-async function getStatistical () {
+async function getStatistical() {
   let data;
   await fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
     .then((response) => response.json())
