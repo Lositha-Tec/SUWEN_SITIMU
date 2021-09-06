@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "777283961114",
+    "project_id": "expo-pwa-with-fcm",
+    "storage_bucket": "expo-pwa-with-fcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777283961114:android:88b3952a7e2565ec076ca3",
+        "android_client_info": {
+          "package_name": "com.developers_in.notification_expo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRM3ZSBj3JcKAWiIhYOup_WgevG2pMck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777283961114:android:782535548beb80c3076ca3",
+        "android_client_info": {
+          "package_name": "com.developers_in.push_notification_sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRM3ZSBj3JcKAWiIhYOup_WgevG2pMck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777283961114:android:061005f2e5436aa0076ca3",
+        "android_client_info": {
+          "package_name": "com.developers_in.suwen_sitimu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRM3ZSBj3JcKAWiIhYOup_WgevG2pMck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777283961114:android:090ef208c787ebb7076ca3",
+        "android_client_info": {
+          "package_name": "expo.notifications.tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRM3ZSBj3JcKAWiIhYOup_WgevG2pMck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777283961114-busoik5h9g0b2epq0732qnv9fo64nca2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
