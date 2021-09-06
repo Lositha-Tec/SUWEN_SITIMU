@@ -42,7 +42,7 @@
       "icon": "./assets/notifi-gray.png",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7476028587946978~7316531160",
-        "googleSignIn": {
+        "googleSignIn": { 
           "apiKey": "AIzaSyAinNJVFP-kqO3ZrAF-wliz72zZhyuHMBU",
           "certificateHash": "EC1F81F3F4BA30C89AEC3E03DA0DFC7FC4D15FA5"
         }

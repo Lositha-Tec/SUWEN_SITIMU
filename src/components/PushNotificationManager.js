@@ -25,6 +25,8 @@ async function registerForPushNotificationsAsync() {
             return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log("Expo Push Token: "+ token);
+        alert("Expo Push Token: "+ token)
 
     } else {
         alert('Must use physical device for Push Notifications');
@@ -70,9 +72,10 @@ export const PushNotificationManager = () => {
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => {
             setExpoPushToken(token);
-            if (token) {
-                saveToken(token);
-            }
+            console.log(expoPushToken);
+            // if (token) {
+            //     saveToken(token);
+            // }
         });
 
     }, [expoPushToken]);
@@ -84,7 +87,7 @@ export const PushNotificationManager = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
             }}>
-            {/* <Text>Your expo push token: {expoPushToken}</Text> */}
+            <Text>Your expo push token: {expoPushToken}</Text>
         </View>
     );
 };
