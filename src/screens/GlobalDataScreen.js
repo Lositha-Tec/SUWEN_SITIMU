@@ -6,9 +6,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-na
 import { Picker } from "@react-native-picker/picker";
 import { FontAwesome5 } from "@expo/vector-icons";
 import AppLoading from 'expo-app-loading';
-import {
-  useFonts, ExpletusSans_500Medium,
-} from '@expo-google-fonts/expletus-sans';
+import { useFonts, ExpletusSans_500Medium, } from '@expo-google-fonts/expletus-sans';
+import { PieChart } from "react-native-chart-kit";
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
@@ -18,7 +17,7 @@ import NoNetworkConnection from "../components/NoNetworkConnection";
 
 import countryData from "../data/countries";
 
-export default function GlobalDataScreen(props) {
+export default function GlobalDataScreen (props) {
   const [loading, setLoading] = useState(false);
   const { colors } = useTheme();
   const [data, setData] = useState([]);
@@ -26,7 +25,7 @@ export default function GlobalDataScreen(props) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [errMsg, setErrMsg] = useState(null);
   const [title, setTitle] = useState("Global");
-  const [connectStatus, setConnectStatus] = useState(false)
+  const [connectStatus, setConnectStatus] = useState(false);
 
   // set country data to countries array in loading screen
   useEffect(() => {
@@ -46,8 +45,8 @@ export default function GlobalDataScreen(props) {
 
     const interval = setInterval(() => {
       checkConnected().then(res => {
-        setConnectStatus(res)
-      })
+        setConnectStatus(res);
+      });
     }, 10);
     return () => clearInterval(interval);
 
@@ -140,6 +139,40 @@ export default function GlobalDataScreen(props) {
   covidData.global_recovered = globalRecovered;
   covidData.global_deaths = globalDeaths;
 
+  const recovery = [
+    {
+      name: "Seoul",
+      population: 21500000,
+      color: "rgba(131, 167, 234, 1)",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+    {
+      name: "Toronto",
+      population: 2800000,
+      color: "#F00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+  ];
+
+  const death = [
+    {
+      name: "Seoul",
+      population: 21500000,
+      color: "rgba(131, 167, 234, 1)",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+    {
+      name: "Toronto",
+      population: 2800000,
+      color: "#F00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+  ];
+
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
   });
@@ -215,6 +248,39 @@ export default function GlobalDataScreen(props) {
                   }
                   count={covidData.global_deaths}
                   tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
+                />
+              </View>
+
+              <View style={{ alignItems: "center", marginTop: 10 }}>
+                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                  Confirmed case vs Recovered & Discharged
+                </Text>
+                <PieChart
+                  data={recovery}
+                  width={screenWidth}
+                  height={220}
+                  chartConfig={chartConfig}
+                  accessor={"population"}
+                  backgroundColor={"transparent"}
+                  paddingLeft={"15"}
+                  center={[10, 50]}
+                  absolute
+                />
+              </View>
+              <View style={{ alignItems: "center", marginTop: 10 }}>
+                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                  Confirmed case vs Deaths
+                </Text>
+                <PieChart
+                  data={deaths}
+                  width={screenWidth}
+                  height={220}
+                  chartConfig={chartConfig}
+                  accessor={"population"}
+                  backgroundColor={"transparent"}
+                  paddingLeft={"15"}
+                  center={[10, 50]}
+                  absolute
                 />
               </View>
 

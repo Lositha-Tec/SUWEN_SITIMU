@@ -6,6 +6,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
 import AppLoading from 'expo-app-loading';
 import { useFonts, ExpletusSans_500Medium, } from '@expo-google-fonts/expletus-sans';
+import { PieChart } from "react-native-chart-kit";
 
 import Header from "../components/Header";
 import Tile from "../components/Tile";
@@ -75,6 +76,40 @@ export default function LocalDataScreen (props) {
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
   });
+
+  const recovery = [
+    {
+      name: "Seoul",
+      population: 21500000,
+      color: "rgba(131, 167, 234, 1)",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+    {
+      name: "Toronto",
+      population: 2800000,
+      color: "#F00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+  ];
+
+  const death = [
+    {
+      name: "Seoul",
+      population: 21500000,
+      color: "rgba(131, 167, 234, 1)",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+    {
+      name: "Toronto",
+      population: 2800000,
+      color: "#F00",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    },
+  ];
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -160,6 +195,39 @@ export default function LocalDataScreen (props) {
                       }
                       count={covidData.local_recovered}
                       tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
+                    />
+                  </View>
+
+                  <View style={{ alignItems: "center", marginTop: 10 }}>
+                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                      Confirmed case vs Recovered & Discharged
+                    </Text>
+                    <PieChart
+                      data={recovery}
+                      width={screenWidth}
+                      height={220}
+                      chartConfig={chartConfig}
+                      accessor={"population"}
+                      backgroundColor={"transparent"}
+                      paddingLeft={"15"}
+                      center={[10, 50]}
+                      absolute
+                    />
+                  </View>
+                  <View style={{ alignItems: "center", marginTop: 10 }}>
+                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                      Confirmed case vs Deaths
+                    </Text>
+                    <PieChart
+                      data={deaths}
+                      width={screenWidth}
+                      height={220}
+                      chartConfig={chartConfig}
+                      accessor={"population"}
+                      backgroundColor={"transparent"}
+                      paddingLeft={"15"}
+                      center={[10, 50]}
+                      absolute
                     />
                   </View>
 
