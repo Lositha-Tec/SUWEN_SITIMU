@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Dimensions, ActivityIndicator, } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions, ActivityIndicator } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from "react-native-responsive-screen";
@@ -17,7 +17,7 @@ import NoNetworkConnection from "../components/NoNetworkConnection";
 
 import countryData from "../data/countries";
 
-export default function GlobalDataScreen (props) {
+export default function GlobalDataScreen(props) {
   const [loading, setLoading] = useState(false);
   const { colors } = useTheme();
   const [data, setData] = useState([]);
@@ -139,39 +139,53 @@ export default function GlobalDataScreen (props) {
   covidData.global_recovered = globalRecovered;
   covidData.global_deaths = globalDeaths;
 
+  const screenWidth = Dimensions.get("window").width;
+
   const recovery = [
     {
-      name: "Seoul",
-      population: 21500000,
-      color: "rgba(131, 167, 234, 1)",
+      name: "Recovered",
+      population: covidData.global_recovered,
+      color: "#50cd8a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
     {
-      name: "Toronto",
-      population: 2800000,
-      color: "#F00",
+      name: "Total Confirmed",
+      population: covidData.global_confirmed_cases,
+      color: "#fdb01a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
   ];
 
-  const death = [
+  const deaths = [
     {
-      name: "Seoul",
-      population: 21500000,
-      color: "rgba(131, 167, 234, 1)",
+      name: "Deaths",
+      population: covidData.global_deaths,
+      color: "#DF1808",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
     {
-      name: "Toronto",
-      population: 2800000,
-      color: "#F00",
+      name: "Total Confirmed",
+      population: covidData.global_confirmed_cases,
+      color: "#fdb01a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
   ];
+
+  const chartConfig = {
+    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#08130D",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
+
 
   let [fontsLoaded] = useFonts({
     ExpletusSans_500Medium,
@@ -250,48 +264,50 @@ export default function GlobalDataScreen (props) {
                   tileBackgroundColor={{ backgroundColor: "#f64a8f" }}
                 />
               </View>
+            </View>
 
-              <View style={{ alignItems: "center", marginTop: 10 }}>
-                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                  Confirmed case vs Recovered & Discharged
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>
+              <View style={{ width: "80%", alignItems: "center", flex: 1, alignItems: "center", justifyContent: "center" }}>
+                <Text style={{ textAlign: "center", color: "#003503", fontFamily: "ExpletusSans_500Medium", fontSize: 18 }}>
+                  Confirmed cases vs Recovered & Discharged
                 </Text>
                 <PieChart
                   data={recovery}
                   width={screenWidth}
-                  height={220}
+                  height={200}
                   chartConfig={chartConfig}
                   accessor={"population"}
                   backgroundColor={"transparent"}
-                  paddingLeft={"15"}
-                  center={[10, 50]}
-                  absolute
+                  paddingLeft={"0"}
+                  center={[5, 10]}
                 />
               </View>
-              <View style={{ alignItems: "center", marginTop: 10 }}>
-                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                  Confirmed case vs Deaths
+            </View>
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>
+              <View style={{ width: "80%", alignItems: "center", flex: 1, alignItems: "center", justifyContent: "center" }}>
+                <Text style={{ textAlign: "center", color: "#003503", fontFamily: "ExpletusSans_500Medium", fontSize: 18 }}>
+                  Confirmed cases vs Deaths
                 </Text>
                 <PieChart
                   data={deaths}
                   width={screenWidth}
-                  height={220}
+                  height={200}
                   chartConfig={chartConfig}
                   accessor={"population"}
                   backgroundColor={"transparent"}
-                  paddingLeft={"15"}
-                  center={[10, 50]}
-                  absolute
+                  paddingLeft={"0"}
+                  center={[5, 10]}
                 />
               </View>
+            </View>
 
-              <View style={{ marginTop: 50 }}>
-                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                  Data Source: https://www.hpb.health.gov.lk
-                </Text>
-                <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                  Data Source: https://api.covid19api.com
-                </Text>
-              </View>
+            <View style={{marginTop:15}}>
+              <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                Data Source: https://www.hpb.health.gov.lk
+              </Text>
+              <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                Data Source: https://api.covid19api.com
+              </Text>
             </View>
           </ScrollView>
         </View>

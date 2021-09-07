@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView, Platform } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
@@ -43,7 +43,7 @@ import { PushNotificationManager } from '../components/PushNotificationManager';
 //i18n.fallbacks = true;
 
 
-export default function LocalDataScreen (props) {
+export default function LocalDataScreen(props) {
   const [loading, setLoading] = useState(false);
   const [connectStatus, setConnectStatus] = useState(false);
   const [covidData, setData] = useState('');
@@ -77,39 +77,78 @@ export default function LocalDataScreen (props) {
     ExpletusSans_500Medium,
   });
 
+  const screenWidth = Dimensions.get("window").width;
+
   const recovery = [
     {
-      name: "Seoul",
-      population: 21500000,
-      color: "rgba(131, 167, 234, 1)",
+      name: "Recovered",
+      population: covidData.local_recovered,
+      color: "#50cd8a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
     {
-      name: "Toronto",
-      population: 2800000,
-      color: "#F00",
+      name: "Total Confirmed",
+      population: covidData.local_total_cases,
+      color: "#fdb01a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
   ];
 
-  const death = [
+  const deaths = [
     {
-      name: "Seoul",
-      population: 21500000,
-      color: "rgba(131, 167, 234, 1)",
+      name: "Deaths",
+      population: covidData.local_deaths,
+      color: "#DF1808",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
     {
-      name: "Toronto",
-      population: 2800000,
-      color: "#F00",
+      name: "Total Confirmed",
+      population: covidData.local_total_cases,
+      color: "#fdb01a",
       legendFontColor: "#7F7F7F",
-      legendFontSize: 15
+      legendFontSize: 14
     },
   ];
+
+  const recoveredDeaths = [
+    {
+      name: "Recovered",
+      population: covidData.local_recovered,
+      color: "#50cd8a",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 14
+    },
+    {
+      name: "Deaths",
+      population: covidData.local_deaths,
+      color: "#DF1808",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 14
+    },
+
+    {
+      name: "In Hospitals",
+      population: covidData.local_total_number_of_individuals_in_hospitals,
+      color: "#4d4dff",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 14
+    },
+  ];
+
+  const chartConfig = {
+    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#08130D",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
+
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -197,45 +236,65 @@ export default function LocalDataScreen (props) {
                       tileBackgroundColor={{ backgroundColor: "#50cd8a" }}
                     />
                   </View>
+                </View>
 
-                  <View style={{ alignItems: "center", marginTop: 10 }}>
-                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                      Confirmed case vs Recovered & Discharged
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>
+                  <View style={{ width: "80%", alignItems: "center", flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ textAlign: "center", color: "#003503", fontFamily: "ExpletusSans_500Medium", fontSize: 18 }}>
+                      Confirmed cases vs Recovered & Discharged
                     </Text>
                     <PieChart
                       data={recovery}
                       width={screenWidth}
-                      height={220}
+                      height={200}
                       chartConfig={chartConfig}
                       accessor={"population"}
                       backgroundColor={"transparent"}
-                      paddingLeft={"15"}
-                      center={[10, 50]}
-                      absolute
+                      paddingLeft={"0"}
+                      center={[5, 10]}
                     />
                   </View>
-                  <View style={{ alignItems: "center", marginTop: 10 }}>
-                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                      Confirmed case vs Deaths
+                </View>
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>
+                  <View style={{ width: "80%", alignItems: "center", flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ textAlign: "center", color: "#003503", fontFamily: "ExpletusSans_500Medium", fontSize: 18 }}>
+                      Confirmed cases vs Deaths
                     </Text>
                     <PieChart
                       data={deaths}
                       width={screenWidth}
-                      height={220}
+                      height={200}
                       chartConfig={chartConfig}
                       accessor={"population"}
                       backgroundColor={"transparent"}
-                      paddingLeft={"15"}
-                      center={[10, 50]}
-                      absolute
+                      paddingLeft={"0"}
+                      center={[5, 10]}
                     />
                   </View>
+                </View>
 
-                  <View style={{ alignItems: "center", marginTop: 10 }}>
-                    <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
-                      Data Source: https://www.hpb.health.gov.lk
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>
+                  <View style={{ width: "80%", alignItems: "center", flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ textAlign: "center", color: "#003503", fontFamily: "ExpletusSans_500Medium", fontSize: 18 }}>
+                      Recovered vs Deaths
                     </Text>
+                    <PieChart
+                      data={recoveredDeaths}
+                      width={screenWidth}
+                      height={200}
+                      chartConfig={chartConfig}
+                      accessor={"population"}
+                      backgroundColor={"transparent"}
+                      paddingLeft={"0"}
+                      center={[5, 10]}
+                    />
                   </View>
+                </View>
+
+                <View style={{ alignItems: "center", marginTop: 15 }}>
+                  <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
+                    Data Source: https://www.hpb.health.gov.lk
+                  </Text>
                 </View>
               </ScrollView>
             </>
@@ -246,7 +305,7 @@ export default function LocalDataScreen (props) {
   }
 }
 
-async function getStatistical () {
+async function getStatistical() {
   let data;
   await fetch("https://www.hpb.health.gov.lk/api/get-current-statistical")
     .then((response) => response.json())

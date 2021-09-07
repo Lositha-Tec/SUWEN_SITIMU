@@ -12,10 +12,8 @@ Notifications.setNotificationHandler({
 });
 
 async function registerForPushNotificationsAsync() {
-    console.log("function triggered")
     let token;
     if (Constants.isDevice) {
-        console.log("this is device")
         const { status: existingStatus } = await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
@@ -28,7 +26,7 @@ async function registerForPushNotificationsAsync() {
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
     } else {
-        alert('Must use physical device for Push Notifications');
+        //alert('Must use physical device for Push Notifications');
     }
 
     if (Platform.OS === 'android') {
@@ -45,7 +43,6 @@ async function registerForPushNotificationsAsync() {
 function saveToken(token) {
     if (token) {
         fetch("https://suwen-sitimu-notfication-api.herokuapp.com/api/save_token", {
-
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -71,7 +68,6 @@ export const PushNotificationManager = () => {
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => {
             setExpoPushToken(token);
-            console.log(expoPushToken);
             if (token) {
                 saveToken(token);
             }
