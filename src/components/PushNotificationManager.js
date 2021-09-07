@@ -13,11 +13,9 @@ Notifications.setNotificationHandler({
 
 async function registerForPushNotificationsAsync() {
     console.log("function triggered")
-    alert("function triggered")
     let token;
     if (Constants.isDevice) {
         console.log("this is device")
-        alert("this is device")
         const { status: existingStatus } = await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
@@ -29,9 +27,6 @@ async function registerForPushNotificationsAsync() {
             return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log("Expo Push Token: "+ token);
-        alert("Expo Push Token: "+ token)
-
     } else {
         alert('Must use physical device for Push Notifications');
     }
@@ -91,7 +86,6 @@ export const PushNotificationManager = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
             }}>
-            <Text>Your expo push token: {expoPushToken}</Text>
         </View>
     );
 };
