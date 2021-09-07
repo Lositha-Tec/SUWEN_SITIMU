@@ -12,8 +12,12 @@ Notifications.setNotificationHandler({
 });
 
 async function registerForPushNotificationsAsync() {
+    console.log("function triggered")
+    alert("function triggered")
     let token;
     if (Constants.isDevice) {
+        console.log("this is device")
+        alert("this is device")
         const { status: existingStatus } = await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
@@ -54,7 +58,7 @@ function saveToken(token) {
             },
             body: JSON.stringify({
                 token: token,
-                appName: "Sample",
+                appName: "Suwen_Sitimu",
             }),
         });
     }
@@ -73,9 +77,9 @@ export const PushNotificationManager = () => {
         registerForPushNotificationsAsync().then(token => {
             setExpoPushToken(token);
             console.log(expoPushToken);
-            // if (token) {
-            //     saveToken(token);
-            // }
+            if (token) {
+                saveToken(token);
+            }
         });
 
     }, [expoPushToken]);
