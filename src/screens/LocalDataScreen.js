@@ -139,12 +139,12 @@ export default function LocalDataScreen(props) {
   ];
 
   const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
+    backgroundGradientFrom: "white",
+    backgroundGradientFromOpacity: 1,
+    backgroundGradientTo: "white",
+    backgroundGradientToOpacity: 1,
+    color: (opacity = 0) => `red`,
+    strokeWidth: 3, // optional, default 3
     barPercentage: 0.5,
     useShadowColorFromDataset: false // optional
   };
@@ -253,6 +253,7 @@ export default function LocalDataScreen(props) {
                       paddingLeft={"0"}
                       center={[5, 10]}
                     />
+
                   </View>
                 </View>
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginTop: 15, width: "100%" }}>

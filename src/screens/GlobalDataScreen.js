@@ -41,6 +41,7 @@ export default function GlobalDataScreen(props) {
     } catch (err) {
       setErrMsg(err.message);
     }
+
     setCountries(countryData);
 
     const interval = setInterval(() => {
@@ -123,10 +124,10 @@ export default function GlobalDataScreen(props) {
           }
           dateAndTime = newTimeAndDate;
         } else {
-          globalConfirmed = "No data";
-          globalActive = "No data";
-          globalRecovered = "No data";
-          globalDeaths = "No data";
+          globalConfirmed = 0;
+          globalActive = 0;
+          globalRecovered = 0;
+          globalDeaths = 0;
           dateAndTime = "---";
         }
       }
@@ -144,14 +145,14 @@ export default function GlobalDataScreen(props) {
   const recovery = [
     {
       name: "Recovered",
-      population: covidData.global_recovered,
+      population: globalRecovered,
       color: "#50cd8a",
       legendFontColor: "#7F7F7F",
       legendFontSize: 14
     },
     {
       name: "Total Confirmed",
-      population: covidData.global_confirmed_cases,
+      population: globalConfirmed,
       color: "#fdb01a",
       legendFontColor: "#7F7F7F",
       legendFontSize: 14
@@ -161,14 +162,14 @@ export default function GlobalDataScreen(props) {
   const deaths = [
     {
       name: "Deaths",
-      population: covidData.global_deaths,
+      population: globalDeaths,
       color: "#DF1808",
       legendFontColor: "#7F7F7F",
       legendFontSize: 14
     },
     {
       name: "Total Confirmed",
-      population: covidData.global_confirmed_cases,
+      population: globalConfirmed,
       color: "#fdb01a",
       legendFontColor: "#7F7F7F",
       legendFontSize: 14
@@ -280,6 +281,7 @@ export default function GlobalDataScreen(props) {
                   backgroundColor={"transparent"}
                   paddingLeft={"0"}
                   center={[5, 10]}
+                  absolute
                 />
               </View>
             </View>
@@ -297,11 +299,12 @@ export default function GlobalDataScreen(props) {
                   backgroundColor={"transparent"}
                   paddingLeft={"0"}
                   center={[5, 10]}
+                  absolute
                 />
               </View>
             </View>
 
-            <View style={{marginTop:15}}>
+            <View style={{ marginTop: 15 }}>
               <Text style={{ color: "gray", fontFamily: "ExpletusSans_500Medium" }}>
                 Data Source: https://www.hpb.health.gov.lk
               </Text>
