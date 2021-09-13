@@ -77,7 +77,7 @@ export default function App () {
 
   return (
     <>
-      <AnimatedAppLoader image={require("./assets/Covid.gif")}>
+      <AnimatedAppLoader image={require("./assets/splash.png")}>
         <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }} >
           {/* <LanguageContext.Provider value={{ storedLanguage, setStoredLanguage }}> */}
           <Provider store={store}>
